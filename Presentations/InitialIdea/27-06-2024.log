@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.6.17)  27 JUN 2024 16:33
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.6.17)  27 JUN 2024 17:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -692,7 +692,7 @@ File: l3backend-pdftex.def 2022-01-12 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count331
 \l__pdf_internal_box=\box75
 )
-No file 27-06-2024.aux.
+(./27-06-2024.aux)
 \openout1 = `27-06-2024.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 24.
@@ -713,6 +713,7 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 24.
 LaTeX Font Info:    ... okay on input line 24.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 24.
 LaTeX Font Info:    ... okay on input line 24.
+
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -785,6 +786,8 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 24.
 LaTeX Info: Redefining \pageref on input line 24.
 LaTeX Info: Redefining \nameref on input line 24.
+
+(./27-06-2024.out) (./27-06-2024.out)
 \@outlinefile=\write5
 \openout5 = `27-06-2024.out'.
 
@@ -857,17 +860,16 @@ Dictionary: translator-theorem-dictionary, Language: English
 )
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-
-No file 27-06-2024.nav.
-<Pac-man pic.jpg, id=26, 601.4972pt x 301.125pt>
-File: Pac-man pic.jpg Graphic file (type jpg)
-<use Pac-man pic.jpg>
-Package pdftex.def Info: Pac-man pic.jpg  used on input line 33.
+ (./27-06-2024.nav)
+<../Assets/Pac-man pic.jpg, id=26, 601.4972pt x 301.125pt>
+File: ../Assets/Pac-man pic.jpg Graphic file (type jpg)
+<use ../Assets/Pac-man pic.jpg>
+Package pdftex.def Info: ../Assets/Pac-man pic.jpg  used on input line 33.
 (pdftex.def)             Requested size: 85.57382pt x 42.83723pt.
-[1
+ [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./Pac-man pic.jpg>]
-[2
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <../Assets/Pac-man pic.jpg>
+] [2
 
 ] [3
 
@@ -889,21 +891,16 @@ Package pdftex.def Info: Pac-man pic.jpg  used on input line 33.
 \tf@snm=\write8
 \openout8 = `27-06-2024.snm'.
 
- (./27-06-2024.aux)
 
-Package rerunfilecheck Warning: File `27-06-2024.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `27-06-2024.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  D41D8CD98F00B204E9800998ECF8427E;0.
+(./27-06-2024.aux)
+Package rerunfilecheck Info: File `27-06-2024.out' has not changed.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 22718 strings out of 480247
- 444078 string characters out of 5896151
- 693489 words of memory out of 5000000
- 40229 multiletter control sequences out of 15000+600000
+ 22746 strings out of 480247
+ 444471 string characters out of 5896151
+ 693593 words of memory out of 5000000
+ 40248 multiletter control sequences out of 15000+600000
  471682 words of font info for 36 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  99i,15n,104p,390b,572s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -911,7 +908,7 @@ Here is how much of TeX's memory you used:
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss17.pfb></usr/share/texl
 ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb>
-Output written on 27-06-2024.pdf (7 pages, 121223 bytes).
+Output written on 27-06-2024.pdf (7 pages, 121318 bytes).
 PDF statistics:
  244 PDF objects out of 1000 (max. 8388607)
  209 compressed objects within 3 object streams
