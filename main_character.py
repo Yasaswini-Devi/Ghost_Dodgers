@@ -1,6 +1,5 @@
 import pygame
-PACMAN = "Pacman"
-YELLOW = (255, 255, 0)
+from constants import *
 
 class Pacman:
     def __init__(self):
