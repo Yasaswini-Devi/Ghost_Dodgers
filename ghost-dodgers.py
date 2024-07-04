@@ -14,32 +14,51 @@ maze = [
     "#########################################"
 ]
 
-SCREEN_WIDTH = 600
+maze = [list(row.replace(" ", ".")) for row in maze]
+
+SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 400
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 CELL_SIZE = 10
+YELLOW = (255, 255, 0)
+BLUE = (0, 0, 255)
 
 pygame.init()
 
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("Recreating Pacman")
 
-running = True
+def update_cell(x: int, y: int):
+    if maze[y][x] == '.':
+        maze[y][x] = ' '
+    rect = pygame.Rect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE)
+    pygame.draw.rect(screen, BLACK, rect)
 
-while running:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-    
+def run_game():
+    x, y = 1, 1
+    running = True
+    draw_maze()
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+            if event.type == pygame.KEYDOWN:
+                update_cell(x, y)
+                x += 1
+                rect = pygame.Rect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE)
+                pygame.draw.rect(screen, YELLOW, rect)
+                
+            pygame.display.flip()
+
+def draw_maze():
     screen.fill(WHITE)
-
     for y, row in enumerate(maze):
         for x, cell in enumerate(row):
-            color = BLACK if cell == '#' else WHITE
+            color = BLUE if cell == '#' else WHITE 
             rect = pygame.Rect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE)
             pygame.draw.rect(screen, color, rect)
-
     pygame.display.flip()
 
+run_game()
 pygame.quit()
