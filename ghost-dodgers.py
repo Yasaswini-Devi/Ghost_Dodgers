@@ -51,6 +51,17 @@ def update_cell(x: int, y: int):
 def move_player(x: int, y: int):
     pygame.draw.circle(screen, YELLOW, (x * CELL_SIZE + CELL_SIZE // 2, y * CELL_SIZE + CELL_SIZE // 2), CELL_SIZE // 2)
 
+def handle_keys(x: int, y: int, event):
+    if event.key == pygame.K_LEFT:
+        x -= 1
+    elif event.key == pygame.K_RIGHT:
+        x += 1
+    elif event.key == pygame.K_UP:
+        y -= 1
+    elif event.key == pygame.K_DOWN:
+        y += 1
+    return x, y
+
 def run_game():
     x, y = 1, 1
     running = True
@@ -62,14 +73,7 @@ def run_game():
                 running = False
             if event.type == pygame.KEYDOWN:
                 update_cell(x, y)
-                if event.key == pygame.K_LEFT:
-                    x -= 1
-                elif event.key == pygame.K_RIGHT:
-                    x += 1
-                elif event.key == pygame.K_UP:
-                    y -= 1
-                elif event.key == pygame.K_DOWN:
-                    y += 1
+                x, y = handle_keys(x, y, event)
                 move_player(x, y)
         pygame.display.flip()
 
