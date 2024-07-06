@@ -14,7 +14,7 @@ maze = [
     "#########################################"
 ]
 
-maze = [list(row.replace(" ", ".")) for row in maze]
+#maze = [list(row.replace(" ", ".")) for row in maze]
 
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 400
@@ -46,19 +46,20 @@ def run_game():
             if event.type == pygame.KEYDOWN:
                 update_cell(x, y)
                 x += 1
-                rect = pygame.Rect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE)
-                pygame.draw.rect(screen, YELLOW, rect)
-                
+                pygame.draw.circle(screen, YELLOW, (x * CELL_SIZE + CELL_SIZE // 2, y * CELL_SIZE + CELL_SIZE // 2), CELL_SIZE // 2)                
             pygame.display.flip()
 
 def draw_maze():
-    screen.fill(WHITE)
+    screen.fill(BLACK)
     for y, row in enumerate(maze):
         for x, cell in enumerate(row):
-            color = BLUE if cell == '#' else WHITE 
-            rect = pygame.Rect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE)
-            pygame.draw.rect(screen, color, rect)
+            if cell == '#': 
+                rect = pygame.Rect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE)
+                pygame.draw.rect(screen, BLUE, rect)
+            else:
+                pygame.draw.circle(screen, WHITE, (x * CELL_SIZE + CELL_SIZE // 2, y * CELL_SIZE + CELL_SIZE // 2), CELL_SIZE // 10)
     pygame.display.flip()
 
 run_game()
 pygame.quit()
+
