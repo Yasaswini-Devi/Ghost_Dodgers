@@ -1,3 +1,5 @@
+import random
+
 class Cell:
     
     wall_pairs = {'N': 'S', 'S': 'N', 'E': 'W', 'W': 'E'}
@@ -21,7 +23,7 @@ class Maze:
         self.maze_map = [[Cell(x, y) for y in range(ny)] for x in range(nx)]
 
     def create_top_border(self):
-        return '#' * self.nx * 2
+        return '#' * (self.nx * 2 + 1)
 
     def create_east_wall_row(self, y: int):
         maze_row = ['#']
@@ -67,8 +69,29 @@ class Maze:
                     neighbours.append((direction, neighbour))
         return neighbours
 
-nx, ny = 15, 15
+    def make_maze(self):
+        n = self.nx * self.ny
+        cell_stack = []
+        current_cell = self.cell_at(self.ix, self.iy)
+        visited = 1
+
+        while visited < n:
+            neighbours = self.find_valid_neighbours(current_cell)
+
+            if not neighbours:
+                current_cell = cell_stack.pop()
+                continue
+
+            direction, next_cell = random.choice(neighbours)
+            current_cell.knock_down_wall(next_cell, direction)
+            cell_stack.append(current_cell)
+            current_cell = next_cell
+            visited += 1
+
+
+nx, ny = 5, 5 
 ix, iy = 0, 0
 
 maze = Maze(nx, ny, ix, iy)
+maze.make_maze()
 print(maze)
