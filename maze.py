@@ -48,6 +48,25 @@ class Maze:
             maze_rows.append(self.create_south_wall_row(y))
         return '\n'.join(maze_rows)
 
+    def cell_at(self, x, y):
+        return self.maze_map[x][y]
+
+    def find_valid_neighbours(self, cell):
+        delta = [('W', (-1, 0)),
+                 ('E', (1, 0)),
+                 ('S', (0, 1)),
+                 ('N', (0, -1))]
+
+        neighbours = []
+
+        for direction, (dx, dy) in delta:
+            x2, y2 = cell.x + dx, cell.y + dy
+            if (0 <= x2 < self.nx) and (0 <= y2 < self.ny):
+                neighbour = self.cell_at(x2, y2)
+                if neighbour.has_all_walls():
+                    neighbours.append((direction, neighbour))
+        return neighbours
+
 nx, ny = 15, 15
 ix, iy = 0, 0
 
