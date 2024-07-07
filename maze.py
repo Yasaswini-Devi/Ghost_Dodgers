@@ -1,4 +1,6 @@
 class Cell:
+    
+    wall_pairs = {'N': 'S', 'S': 'N', 'E': 'W', 'W': 'E'}
 
     def __init__(self, x: int, y: int):
         self.x, self.y = x, y
