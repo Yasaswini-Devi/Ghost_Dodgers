@@ -6,7 +6,41 @@ class Cell:
 
 class Maze:
 
-    def __init__(self, rows: int, colums: int, ix: int, iy: int):
-        self.rows, self.colums = rows, columns
+    def __init__(self, nx: int, ny: int, ix: int, iy: int):
+        self.nx, self.ny = nx, ny
         self.ix, self.iy = ix, iy
-        self.maze_map = [[Cell(x, y) for y in range(columns)] for x in range(rows)]
+        self.maze_map = [[Cell(x, y) for y in range(ny)] for x in range(nx)]
+
+    def create_top_border(self):
+        return '#' * self.nx * 2
+
+    def create_east_wall_row(self, y):
+        maze_row = ['#']
+        for x in range(self.nx):
+            if self.maze_map[x][y].walls['E']:
+                maze_row.append(' #')
+            else:
+                maze_row.append('  ')
+        return ''.join(maze_row)
+
+    def create_south_wall_row(self, y):
+        maze_row = ['#']
+        for x in range(self.nx):
+            if self.maze_map[x][y].walls['S']:
+                maze_row.append('##')
+            else:
+                maze_row.append(' #')
+        return ''.join(maze_row)
+
+    def __str__(self):
+        maze_rows = [self.create_top_border()]
+        for y in range(self.ny):
+            maze_rows.append(self.create_east_wall_row(y))
+            maze_rows.append(self.create_south_wall_row(y))
+        return '\n'.join(maze_rows)
+
+nx, ny = 15, 15
+ix, iy = 0, 0
+
+maze = Maze(nx, ny, ix, iy)
+print(maze)
