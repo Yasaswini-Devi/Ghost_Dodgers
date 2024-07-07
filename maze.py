@@ -22,10 +22,10 @@ class Maze:
         self.ix, self.iy = ix, iy
         self.maze_map = [[Cell(x, y) for y in range(ny)] for x in range(nx)]
 
-    def create_top_border(self):
+    def create_top_border(self) -> str:
         return '#' * (self.nx * 2 + 1)
 
-    def create_east_wall_row(self, y: int):
+    def create_east_wall_row(self, y: int) -> str:
         maze_row = ['#']
         for x in range(self.nx):
             if self.maze_map[x][y].walls['E']:
@@ -34,7 +34,7 @@ class Maze:
                 maze_row.append('  ')
         return ''.join(maze_row)
 
-    def create_south_wall_row(self, y: int):
+    def create_south_wall_row(self, y: int) -> str:
         maze_row = ['#']
         for x in range(self.nx):
             if self.maze_map[x][y].walls['S']:
@@ -53,7 +53,7 @@ class Maze:
     def cell_at(self, x, y):
         return self.maze_map[x][y]
 
-    def find_valid_neighbours(self, cell):
+    def find_valid_neighbours(self, cell) -> list:
         delta = [('W', (-1, 0)),
                  ('E', (1, 0)),
                  ('S', (0, 1)),
@@ -87,11 +87,3 @@ class Maze:
             cell_stack.append(current_cell)
             current_cell = next_cell
             visited += 1
-
-
-nx, ny = 5, 5 
-ix, iy = 0, 0
-
-maze = Maze(nx, ny, ix, iy)
-maze.make_maze()
-print(maze)

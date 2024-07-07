@@ -1,18 +1,13 @@
 import pygame
+from maze import Maze
 
-maze = [
-    "#########################################",
-    "#                                       #",
-    "# ########## ######### ############## # #",
-    "# #          #       #              # # #",
-    "# # ######## # ##### ####### ###### # # #",
-    "# # #        #     #       # #      # # #",
-    "# # #  ############### ##### # ###### # #",
-    "# # #                  #     # #      # #",
-    "# # ######## ########### ##### # ###### #",
-    "#                                       #",
-    "#########################################"
-]
+nx, ny = 5, 5
+ix, iy = 0, 0
+
+maze_obj = Maze(nx, ny, ix, iy)
+maze_obj.make_maze()
+maze = str(maze_obj)
+maze = [list(row) for row in maze.split('\n')]
 
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 400
@@ -52,14 +47,19 @@ def move_player(x: int, y: int):
     pygame.draw.circle(screen, YELLOW, (x * CELL_SIZE + CELL_SIZE // 2, y * CELL_SIZE + CELL_SIZE // 2), CELL_SIZE // 2)
 
 def handle_keys(x: int, y: int, event):
+    new_x, new_y = x, y
+
     if event.key == pygame.K_LEFT:
-        x -= 1
+        new_x -= 1
     elif event.key == pygame.K_RIGHT:
-        x += 1
+        new_x += 1
     elif event.key == pygame.K_UP:
-        y -= 1
+        new_y -= 1
     elif event.key == pygame.K_DOWN:
-        y += 1
+        new_y += 1
+
+    if maze[new_y][new_x] != '#':
+        return new_x, new_y
     return x, y
 
 def run_game():
@@ -79,4 +79,3 @@ def run_game():
 
 run_game()
 pygame.quit()
-
