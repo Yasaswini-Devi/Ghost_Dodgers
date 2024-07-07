@@ -4,6 +4,13 @@ class Cell:
         self.x, self.y = x, y
         self.walls = {'N': True, 'S': True, 'E': True, 'W': True}
 
+    def has_all_walls(self):
+        return all(self.walls.values())
+
+    def knock_down_wall(self, other, wall: str):
+        self.walls[wall] = False
+        other.walls[Cell.wall_pairs[wall]] = False
+
 class Maze:
 
     def __init__(self, nx: int, ny: int, ix: int, iy: int):
@@ -14,7 +21,7 @@ class Maze:
     def create_top_border(self):
         return '#' * self.nx * 2
 
-    def create_east_wall_row(self, y):
+    def create_east_wall_row(self, y: int):
         maze_row = ['#']
         for x in range(self.nx):
             if self.maze_map[x][y].walls['E']:
@@ -23,7 +30,7 @@ class Maze:
                 maze_row.append('  ')
         return ''.join(maze_row)
 
-    def create_south_wall_row(self, y):
+    def create_south_wall_row(self, y: int):
         maze_row = ['#']
         for x in range(self.nx):
             if self.maze_map[x][y].walls['S']:
