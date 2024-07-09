@@ -1,21 +1,11 @@
 import pygame
 from maze import Maze
-
-nx, ny = 5, 5
-ix, iy = 0, 0
+from constants import *
 
 maze_obj = Maze(nx, ny, ix, iy)
 maze_obj.make_maze()
 maze = str(maze_obj)
 maze = [list(row) for row in maze.split('\n')]
-
-SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 400
-WHITE = (255, 255, 255)
-BLACK = (0, 0, 0)
-CELL_SIZE = 10
-YELLOW = (255, 255, 0)
-BLUE = (0, 0, 255)
 
 pygame.init()
 
