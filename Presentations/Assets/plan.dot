@@ -1,0 +1,12 @@
+digraph PacManProject {
+    node [shape=box]; // All nodes are shaped as boxes
+    phase1 [label="Phase 1\nBasic Movement Mechanics\nInitial Gameplay Testing"];
+    phase2 [label="Phase 2\nPower-Ups and Fruits\nEnhanced Gameplay Features"];
+    phase3 [label="Phase 3\nUI Polish\nGameplay Refinement\nBug Fixes and Testing"];
+    phase4 [label="Phase 4\nFinal Touches\nHigh Score Tracking\nGame Over Screen"];
+
+    phase1 -> phase2;
+    phase2 -> phase3;
+    phase3 -> phase4;
+
+ }
