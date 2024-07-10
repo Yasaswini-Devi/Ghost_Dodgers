@@ -16,7 +16,9 @@ def draw_maze():
     screen.fill(BLACK)
     for y, row in enumerate(maze):
         for x, cell in enumerate(row):
-            if cell == '#': 
+            if maze_obj.is_in_ghost_house(x, y):
+                draw_ghost_house(x, y)
+            elif cell == '#': 
                 draw_wall(x, y)
             else:
                 draw_pellet(x, y)
@@ -29,12 +31,19 @@ def draw_wall(x: int, y: int):
 def draw_pellet(x: int, y: int):
     pygame.draw.circle(screen, WHITE, (x * CELL_SIZE + CELL_SIZE // 2, y * CELL_SIZE + CELL_SIZE // 2), CELL_SIZE // 10)
 
+def draw_ghost_house(x: int, y: int):
+    rect = pygame.Rect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE)
+    pygame.draw.rect(screen, (128, 0, 128), rect)
+
 def update_cell(x: int, y: int):
     rect = pygame.Rect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE)
     pygame.draw.rect(screen, BLACK, rect)
 
 def move_player(x: int, y: int):
     pygame.draw.circle(screen, YELLOW, (x * CELL_SIZE + CELL_SIZE // 2, y * CELL_SIZE + CELL_SIZE // 2), CELL_SIZE // 2)
+
+def check_collisions(x: int, y: int) -> bool:
+    return maze[y][x] == '#' or maze_obj.is_in_ghost_house(x, y)
 
 def handle_keys(x: int, y: int, event):
     new_x, new_y = x, y
@@ -48,9 +57,10 @@ def handle_keys(x: int, y: int, event):
     elif event.key == pygame.K_DOWN:
         new_y += 1
 
-    if maze[new_y][new_x] != '#':
+    if check_collisions(new_x, new_y):
+        return x, y
+    else:
         return new_x, new_y
-    return x, y
 
 def run_game():
     x, y = 1, 1

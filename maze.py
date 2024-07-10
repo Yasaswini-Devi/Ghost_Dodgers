@@ -21,6 +21,7 @@ class Maze:
         self.nx, self.ny = nx, ny
         self.ix, self.iy = ix, iy
         self.maze_map = [[Cell(x, y) for y in range(ny)] for x in range(nx)]
+        self.ghost_house_area = ((nx - 1, ny), (nx + 1, ny))
 
     def create_top_border(self) -> str:
         return '#' * (self.nx * 2 + 1)
@@ -80,10 +81,13 @@ class Maze:
 
             if not neighbours:
                 current_cell = cell_stack.pop()
-                continue
+            else:
+                direction, next_cell = random.choice(neighbours)
+                current_cell.knock_down_wall(next_cell, direction)
+                cell_stack.append(current_cell)
+                current_cell = next_cell
+                visited += 1
 
-            direction, next_cell = random.choice(neighbours)
-            current_cell.knock_down_wall(next_cell, direction)
-            cell_stack.append(current_cell)
-            current_cell = next_cell
-            visited += 1
+    def is_in_ghost_house(self, x, y):
+        (x1, y1), (x2, y2) = self.ghost_house_area
+        return x1 <= x <= x2 and y1 <= y <= y2
