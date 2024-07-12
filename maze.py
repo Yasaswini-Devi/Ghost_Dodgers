@@ -5,9 +5,9 @@ def initialize_maze(width, height):
     return maze
 
 def add_ghost_house(maze, x, y, width, height):
-    for i in range(y, y + height):
-        for j in range(x, x + width):
-            maze[i][j] = 'G'
+    for row in range(y, y + height):
+        for col in range(x, x + width):
+            maze[row][col] = 'G'
 
 def carve_passages_from(cx, cy, grid):
     directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]
@@ -24,10 +24,7 @@ def create_maze_with_ghost_house(width, height, ghost_house_x, ghost_house_y, gh
 
     add_ghost_house(maze, ghost_house_x, ghost_house_y, ghost_house_width, ghost_house_height)
 
-    start_x, start_y = 1, 1
-    while (ghost_house_x <= start_x < ghost_house_x + ghost_house_width and 
-           ghost_house_y <= start_y < ghost_house_y + ghost_house_height):
-        start_x, start_y = random.randint(0, width - 1), random.randint(0, height - 1)
+    start_x, start_y = ghost_house_y, ghost_house_x + width // 2
 
     maze[start_y][start_x] = ' '
     carve_passages_from(start_x, start_y, maze)
