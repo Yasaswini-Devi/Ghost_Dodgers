@@ -34,14 +34,5 @@ def create_maze_with_ghost_house(width, height, ghost_house_x, ghost_house_y, gh
 
     return maze
 
-def print_maze(maze):
-    for row in maze:
-        print(''.join(row))
-
-width, height = 21, 21
-ghost_house_x, ghost_house_y = 9, 9
-ghost_house_width, ghost_house_height = 3, 3
-
 maze = create_maze_with_ghost_house(width, height, ghost_house_x, ghost_house_y, ghost_house_width, ghost_house_height)
-print_maze(maze)
 
