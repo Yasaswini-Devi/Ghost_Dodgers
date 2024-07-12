@@ -1,93 +1,35 @@
 import random
 
-class Cell:
-    
-    wall_pairs = {'N': 'S', 'S': 'N', 'E': 'W', 'W': 'E'}
+def initialize_maze(width, height):
+    maze = [['#'] * width for _ in range(height)]
+    return maze
 
-    def __init__(self, x: int, y: int):
-        self.x, self.y = x, y
-        self.walls = {'N': True, 'S': True, 'E': True, 'W': True}
+def add_ghost_house(maze, x, y, width, height):
+    for i in range(y, y + height):
+        for j in range(x, x + width):
+            maze[i][j] = 'G'
 
-    def has_all_walls(self):
-        return all(self.walls.values())
+def carve_passages_from(cx, cy, grid):
+    directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]
+    random.shuffle(directions)
+    for direction in directions:
+        nx, ny = cx + direction[0] * 2, cy + direction[1] * 2
+        if 0 <= ny < len(grid) and 0 <= nx < len(grid[0]) and grid[ny][nx] == '#':
+            grid[cy + direction[1]][cx + direction[0]] = ' '
+            grid[ny][nx] = ' '
+            carve_passages_from(nx, ny, grid)
 
-    def knock_down_wall(self, other, wall: str):
-        self.walls[wall] = False
-        other.walls[Cell.wall_pairs[wall]] = False
+def create_maze_with_ghost_house(width, height, ghost_house_x, ghost_house_y, ghost_house_width, ghost_house_height):
+    maze = initialize_maze(width, height)
 
-class Maze:
+    add_ghost_house(maze, ghost_house_x, ghost_house_y, ghost_house_width, ghost_house_height)
 
-    def __init__(self, nx: int, ny: int, ix: int, iy: int):
-        self.nx, self.ny = nx, ny
-        self.ix, self.iy = ix, iy
-        self.maze_map = [[Cell(x, y) for y in range(ny)] for x in range(nx)]
-        self.ghost_house_area = ((nx - 1, ny), (nx + 1, ny))
+    start_x, start_y = 1, 1
+    while (ghost_house_x <= start_x < ghost_house_x + ghost_house_width and 
+           ghost_house_y <= start_y < ghost_house_y + ghost_house_height):
+        start_x, start_y = random.randint(0, width - 1), random.randint(0, height - 1)
 
-    def create_top_border(self) -> str:
-        return '#' * (self.nx * 2 + 1)
+    maze[start_y][start_x] = ' '
+    carve_passages_from(start_x, start_y, maze)
 
-    def create_east_wall_row(self, y: int) -> str:
-        maze_row = ['#']
-        for x in range(self.nx):
-            if self.maze_map[x][y].walls['E']:
-                maze_row.append(' #')
-            else:
-                maze_row.append('  ')
-        return ''.join(maze_row)
-
-    def create_south_wall_row(self, y: int) -> str:
-        maze_row = ['#']
-        for x in range(self.nx):
-            if self.maze_map[x][y].walls['S']:
-                maze_row.append('##')
-            else:
-                maze_row.append(' #')
-        return ''.join(maze_row)
-
-    def __str__(self):
-        maze_rows = [self.create_top_border()]
-        for y in range(self.ny):
-            maze_rows.append(self.create_east_wall_row(y))
-            maze_rows.append(self.create_south_wall_row(y))
-        return '\n'.join(maze_rows)
-
-    def cell_at(self, x, y):
-        return self.maze_map[x][y]
-
-    def find_valid_neighbours(self, cell) -> list:
-        delta = [('W', (-1, 0)),
-                 ('E', (1, 0)),
-                 ('S', (0, 1)),
-                 ('N', (0, -1))]
-
-        neighbours = []
-
-        for direction, (dx, dy) in delta:
-            x2, y2 = cell.x + dx, cell.y + dy
-            if (0 <= x2 < self.nx) and (0 <= y2 < self.ny):
-                neighbour = self.cell_at(x2, y2)
-                if neighbour.has_all_walls():
-                    neighbours.append((direction, neighbour))
-        return neighbours
-
-    def make_maze(self):
-        n = self.nx * self.ny
-        cell_stack = []
-        current_cell = self.cell_at(self.ix, self.iy)
-        visited = 1
-
-        while visited < n:
-            neighbours = self.find_valid_neighbours(current_cell)
-
-            if not neighbours:
-                current_cell = cell_stack.pop()
-            else:
-                direction, next_cell = random.choice(neighbours)
-                current_cell.knock_down_wall(next_cell, direction)
-                cell_stack.append(current_cell)
-                current_cell = next_cell
-                visited += 1
-
-    def is_in_ghost_house(self, x, y):
-        (x1, y1), (x2, y2) = self.ghost_house_area
-        return x1 <= x <= x2 and y1 <= y <= y2
+    return maze

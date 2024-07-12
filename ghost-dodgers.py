@@ -1,11 +1,8 @@
 import pygame
-from maze import Maze
+from maze import *
 from constants import *
 
-maze_obj = Maze(nx, ny, ix, iy)
-maze_obj.make_maze()
-maze = str(maze_obj)
-maze = [list(row) for row in maze.split('\n')]
+maze = create_maze_with_ghost_house(width, height, ghost_house_x, ghost_house_y, ghost_house_width, ghost_house_height)
 
 pygame.init()
 
@@ -16,7 +13,7 @@ def draw_maze():
     screen.fill(BLACK)
     for y, row in enumerate(maze):
         for x, cell in enumerate(row):
-            if maze_obj.is_in_ghost_house(x, y):
+            if cell == 'G':
                 draw_ghost_house(x, y)
             elif cell == '#': 
                 draw_wall(x, y)
@@ -43,7 +40,7 @@ def move_player(x: int, y: int):
     pygame.draw.circle(screen, YELLOW, (x * CELL_SIZE + CELL_SIZE // 2, y * CELL_SIZE + CELL_SIZE // 2), CELL_SIZE // 2)
 
 def check_collisions(x: int, y: int) -> bool:
-    return maze[y][x] == '#' or maze_obj.is_in_ghost_house(x, y)
+    return maze[y][x] == '#' or maze[y][x] == 'G'
 
 def handle_keys(event, current_direction):
     if event.key == pygame.K_LEFT:
