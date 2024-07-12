@@ -14,7 +14,7 @@ def run_game():
     pacman = Pacman(img_1)
     current_direction = None
     running = True
-
+    draw_maze(screen, maze)
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -29,7 +29,6 @@ def run_game():
                 x, y = new_x, new_y
                 pacman.move_player(x, y, screen)
         
-	draw_maze(screen, maze)
         pygame.display.flip()
         pygame.time.delay(200)
 
