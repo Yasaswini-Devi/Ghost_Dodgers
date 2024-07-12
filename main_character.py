@@ -1,8 +1,8 @@
 import pygame
 from constants import *
 
-img_1 = pygame.transform.scale(pygame.image.load(f'assets/pacman_halloween_theme.jpeg'), (45, 45))
-img_2 = pygame.transform.scale(pygame.image.load(f'assets/pacman_hacking_theme.jpeg'), (45, 45))
+img_1 = pygame.transform.scale(pygame.image.load(f'assets/pacman_halloween_theme.jpeg'), (CELL_SIZE, CELL_SIZE))
+img_2 = pygame.transform.scale(pygame.image.load(f'assets/pacman_hacking_theme.jpeg'), (CELL_SIZE, CELL_SIZE))
 
 class Pacman:
     def __init__(self, img):
@@ -15,7 +15,7 @@ class Pacman:
         self.is_alive = False
 
     def move_player(self, screen, x: int, y: int):
-        screen.blit(self.img, (x * CELL_SIZE, y * CELL_SIZE))
+        screen.blit(self.img, (x * CELL_SIZE + (CELL_SIZE - self.img.get_width()) // 2, y * CELL_SIZE + (CELL_SIZE - self.img.get_height()) // 2))
 
 def handle_keys(event, current_direction):
     if event.key == pygame.K_LEFT:
