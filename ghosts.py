@@ -5,10 +5,12 @@ SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 400
 screen = screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
+>>>>>>> fc2c090f5fd7b9c40af707b47ee20b921e28821f
 ghost1_img = pygame.transform.scale(pygame.image.load(f'assets/ghost1_hallowen.png'), (45, 45))
 ghost2_img = pygame.transform.scale(pygame.image.load(f'assets/ghost2_hallowen.png'), (45, 45))
 ghost3_img = pygame.transform.scale(pygame.image.load(f'assets/ghost3_hallowen.png'), (45, 45))
 ghost4_img = pygame.transform.scale(pygame.image.load(f'assets/ghost4_hallowen.png'), (45, 45))
+
 spooked_img = pygame.transform.scale(pygame.image.load(f'assets/ghost2_hackers.png'), (45, 45))
 dead_img = pygame.transform.scale(pygame.image.load(f'assets/ghost3_hacker.png'), (45, 45))
 
