@@ -14,8 +14,8 @@ class Pacman:
     def die(self):
         self.is_alive = False
 
-def move_player(x: int, y: int):
-    screen.blit(self.img, (self.x * CELL_SIZE, self.y * CELL_SIZE))
+    def move_player(x: int, y: int):
+        screen.blit(self.img, (self.x * CELL_SIZE, self.y * CELL_SIZE))
 
 def handle_keys(event, current_direction):
     if event.key == pygame.K_LEFT:
