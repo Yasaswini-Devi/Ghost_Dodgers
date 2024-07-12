@@ -10,3 +10,5 @@ BLUE = (0, 0, 255)
 CELL_SIZE = 15
 nx, ny = 15, 10
 ix, iy = 0, 0
+PACMAN_START_X = 1
+PACMAN_START_Y = 1
