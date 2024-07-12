@@ -36,8 +36,5 @@ def update_cell(x: int, y: int):
     rect = pygame.Rect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE)
     pygame.draw.rect(screen, BLACK, rect)
 
-def move_player(x: int, y: int):
-    pygame.draw.circle(screen, YELLOW, (x * CELL_SIZE + CELL_SIZE // 2, y * CELL_SIZE + CELL_SIZE // 2), CELL_SIZE // 2)
-
 def check_collisions(x: int, y: int) -> bool:
     return maze[y][x] == '#' or maze[y][x] == 'G'
