@@ -9,13 +9,13 @@ class Pacman:
         self.name = PACMAN
         self.color = YELLOW
         self.is_alive = True
-        self.img = img_1
+        self.img = img
 
     def die(self):
         self.is_alive = False
 
-    def move_player(x: int, y: int):
-        screen.blit(self.img, (self.x * CELL_SIZE, self.y * CELL_SIZE))
+    def move_player(self, screen, x: int, y: int):
+        screen.blit(self.img, (x * CELL_SIZE, y * CELL_SIZE))
 
 def handle_keys(event, current_direction):
     if event.key == pygame.K_LEFT:
