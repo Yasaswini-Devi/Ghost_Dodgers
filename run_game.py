@@ -1,7 +1,7 @@
 import pygame
 from maze import *
 from constants import *
-from ghost-dodgers import *
+from drawing import *
 
 def run_game():
     x, y = PACMAN_START_X, PACMAN_START_Y
