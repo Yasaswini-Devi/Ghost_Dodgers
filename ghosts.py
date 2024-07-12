@@ -1,8 +1,8 @@
 import pygame
-ghost1_img = pygame.transform.scale(pygame.image.load(f'assets/ghost1_hallowen'), (45, 45))
-ghost2_img = pygame.transform.scale(pygame.image.load(f'assets/ghost2_hallowen'), (45, 45))
-ghost3_img = pygame.transform.scale(pygame.image.load(f'assets/ghost3_hallowen'), (45, 45))
-ghost4_img = pygame.transform.scale(pygame.image.load(f'assets/ghost4_hallowen'), (45, 45))
+ghost1_img = pygame.transform.scale(pygame.image.load(f'assets/ghost1_hallowen.png'), (45, 45))
+ghost2_img = pygame.transform.scale(pygame.image.load(f'assets/ghost2_hallowen.png'), (45, 45))
+ghost3_img = pygame.transform.scale(pygame.image.load(f'assets/ghost3_hallowen.png'), (45, 45))
+ghost4_img = pygame.transform.scale(pygame.image.load(f'assets/ghost4_hallowen.png'), (45, 45))
 
 ghost1_x = 56
 ghost1_y = 58
