@@ -13,6 +13,9 @@ class Pacman:
     def die(self):
         self.is_alive = False
 
+def move_player(x: int, y: int):
+    pygame.draw.circle(screen, YELLOW, (x * CELL_SIZE + CELL_SIZE // 2, y * CELL_SIZE + CELL_SIZE // 2), CELL_SIZE // 2)
+
 def handle_keys(event, current_direction):
     if event.key == pygame.K_LEFT:
         return 'LEFT'
