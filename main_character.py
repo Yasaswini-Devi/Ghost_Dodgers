@@ -5,16 +5,17 @@ img_1 = pygame.transform.scale(pygame.image.load(f'assets/pacman_halloween_theme
 img_2 = pygame.transform.scale(pygame.image.load(f'assets/pacman_hacking_them.jpeg'), (45, 45))
 
 class Pacman:
-    def __init__(self):
+    def __init__(self, img):
         self.name = PACMAN
         self.color = YELLOW
         self.is_alive = True
+	self.img = img_1
 
     def die(self):
         self.is_alive = False
 
 def move_player(x: int, y: int):
-    pygame.draw.circle(screen, YELLOW, (x * CELL_SIZE + CELL_SIZE // 2, y * CELL_SIZE + CELL_SIZE // 2), CELL_SIZE // 2)
+    screen.blit(self.img, (self.x * CELL_SIZE, self.y * CELL_SIZE))
 
 def handle_keys(event, current_direction):
     if event.key == pygame.K_LEFT:
