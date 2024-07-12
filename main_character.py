@@ -2,14 +2,14 @@ import pygame
 from constants import *
 
 img_1 = pygame.transform.scale(pygame.image.load(f'assets/pacman_halloween_theme.jpeg'), (45, 45))
-img_2 = pygame.transform.scale(pygame.image.load(f'assets/pacman_hacking_them.jpeg'), (45, 45))
+img_2 = pygame.transform.scale(pygame.image.load(f'assets/pacman_hacking_theme.jpeg'), (45, 45))
 
 class Pacman:
     def __init__(self, img):
         self.name = PACMAN
         self.color = YELLOW
         self.is_alive = True
-	self.img = img_1
+        self.img = img_1
 
     def die(self):
         self.is_alive = False
