@@ -3,7 +3,7 @@ from maze import *
 from constants import *
 from drawing import *
 from main_character import *
-from ghosts import *
+#from ghosts import *
 
 def run_game():
     pygame.init()
