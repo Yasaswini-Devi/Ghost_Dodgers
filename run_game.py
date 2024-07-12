@@ -11,6 +11,7 @@ def run_game():
     pygame.display.set_caption("Trouble Escapers")
     
     x, y = PACMAN_START_X, PACMAN_START_Y
+    pacman = Pacman(img_1)
     current_direction = None
     running = True
 
@@ -26,7 +27,7 @@ def run_game():
             if not check_collisions(new_x, new_y):
                 update_cell(x, y)
                 x, y = new_x, new_y
-                move_player(x, y, screen)
+                pacman.move_player(x, y, screen)
         
 	draw_maze(screen, maze)
         pygame.display.flip()
