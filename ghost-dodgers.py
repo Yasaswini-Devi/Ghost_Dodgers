@@ -7,7 +7,7 @@ maze = create_maze_with_ghost_house(width, height, ghost_house_x, ghost_house_y,
 pygame.init()
 
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-pygame.display.set_caption("Recreating Pacman")
+pygame.display.set_caption("Trouble Escapers")
 
 def draw_maze():
     screen.fill(BLACK)
