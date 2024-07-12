@@ -2,6 +2,9 @@ import pygame
 from maze import Maze
 from constants import *
 
+PACMAN_START_X = 1
+PACMAN_START_Y = 1
+
 maze_obj = Maze(nx, ny, ix, iy)
 maze_obj.make_maze()
 maze = str(maze_obj)
@@ -45,37 +48,51 @@ def move_player(x: int, y: int):
 def check_collisions(x: int, y: int) -> bool:
     return maze[y][x] == '#' or maze_obj.is_in_ghost_house(x, y)
 
-def handle_keys(x: int, y: int, event):
-    new_x, new_y = x, y
-
+def handle_keys(event, current_direction):
     if event.key == pygame.K_LEFT:
-        new_x -= 1
+        return 'LEFT'
     elif event.key == pygame.K_RIGHT:
-        new_x += 1
+        return 'RIGHT'
     elif event.key == pygame.K_UP:
-        new_y -= 1
+        return 'UP'
     elif event.key == pygame.K_DOWN:
-        new_y += 1
+        return 'DOWN'
+    return current_direction
 
-    if check_collisions(new_x, new_y):
-        return x, y
-    else:
-        return new_x, new_y
+def move_in_direction(x, y, direction):
+    if direction == 'LEFT':
+        x -= 1
+    elif direction == 'RIGHT':
+        x += 1
+    elif direction == 'UP':
+        y -= 1
+    elif direction == 'DOWN':
+        y += 1
+    return x, y
 
 def run_game():
-    x, y = 1, 1
+    x, y = PACMAN_START_X, PACMAN_START_Y
+    current_direction = None
     running = True
     draw_maze()
     move_player(x, y)
+
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
             if event.type == pygame.KEYDOWN:
+                current_direction = handle_keys(event, current_direction)
+
+        if current_direction:
+            new_x, new_y = move_in_direction(x, y, current_direction)
+            if not check_collisions(new_x, new_y):
                 update_cell(x, y)
-                x, y = handle_keys(x, y, event)
+                x, y = new_x, new_y
                 move_player(x, y)
+
         pygame.display.flip()
+        pygame.time.delay(200) 
 
 run_game()
 pygame.quit()
