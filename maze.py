@@ -33,6 +33,3 @@ def create_maze_with_ghost_house(width, height, ghost_house_x, ghost_house_y, gh
     carve_passages_from(start_x, start_y, maze)
 
     return maze
-
-maze = create_maze_with_ghost_house(width, height, ghost_house_x, ghost_house_y, ghost_house_width, ghost_house_height)
-
