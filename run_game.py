@@ -27,7 +27,7 @@ def run_game():
             if not check_collisions(new_x, new_y):
                 update_cell(screen, x, y)
                 x, y = new_x, new_y
-                pacman.move_player(x, y, screen)
+                pacman.move_player(screen, x, y)
         
         pygame.display.flip()
         pygame.time.delay(200)
