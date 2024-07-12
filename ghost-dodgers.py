@@ -42,28 +42,6 @@ def move_player(x: int, y: int):
 def check_collisions(x: int, y: int) -> bool:
     return maze[y][x] == '#' or maze[y][x] == 'G'
 
-def handle_keys(event, current_direction):
-    if event.key == pygame.K_LEFT:
-        return 'LEFT'
-    elif event.key == pygame.K_RIGHT:
-        return 'RIGHT'
-    elif event.key == pygame.K_UP:
-        return 'UP'
-    elif event.key == pygame.K_DOWN:
-        return 'DOWN'
-    return current_direction
-
-def move_in_direction(x, y, direction):
-    if direction == 'LEFT':
-        x -= 1
-    elif direction == 'RIGHT':
-        x += 1
-    elif direction == 'UP':
-        y -= 1
-    elif direction == 'DOWN':
-        y += 1
-    return x, y
-
 def run_game():
     x, y = PACMAN_START_X, PACMAN_START_Y
     current_direction = None
