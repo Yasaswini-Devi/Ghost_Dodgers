@@ -25,7 +25,7 @@ def run_game():
         if current_direction:
             new_x, new_y = move_in_direction(x, y, current_direction)
             if not check_collisions(new_x, new_y):
-                update_cell(x, y)
+                update_cell(screen, x, y)
                 x, y = new_x, new_y
                 pacman.move_player(x, y, screen)
         
