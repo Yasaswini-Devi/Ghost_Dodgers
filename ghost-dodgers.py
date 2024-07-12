@@ -2,9 +2,6 @@ import pygame
 from maze import Maze
 from constants import *
 
-PACMAN_START_X = 1
-PACMAN_START_Y = 1
-
 maze_obj = Maze(nx, ny, ix, iy)
 maze_obj.make_maze()
 maze = str(maze_obj)
