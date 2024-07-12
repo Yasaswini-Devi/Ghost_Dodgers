@@ -14,6 +14,7 @@ def draw_maze(screen, maze):
                 draw_wall(screen, x, y)
             else:
                 draw_pellet(screen, x, y)
+    pygame.display.flip()
 
 def draw_wall(screen, x: int, y: int):
     rect = pygame.Rect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE)
