@@ -3,6 +3,7 @@ from maze import *
 from constants import *
 from drawing import *
 from main_character import *
+from ghosts import *
 
 def run_game():
     x, y = PACMAN_START_X, PACMAN_START_Y
