@@ -3,7 +3,7 @@ from maze import *
 from constants import *
 from drawing import *
 from main_character import *
-from ghosts import *
+#from ghosts import *
 
 def run_game():
     pygame.init()
@@ -14,7 +14,7 @@ def run_game():
     pacman = Pacman(img_1)
     current_direction = None
     running = True
-
+    draw_maze(screen, maze)
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -25,11 +25,10 @@ def run_game():
         if current_direction:
             new_x, new_y = move_in_direction(x, y, current_direction)
             if not check_collisions(new_x, new_y):
-                update_cell(x, y)
+                update_cell(screen, x, y)
                 x, y = new_x, new_y
-                pacman.move_player(x, y, screen)
+                pacman.move_player(screen, x, y)
         
-	draw_maze(screen, maze)
         pygame.display.flip()
         pygame.time.delay(200)
 
