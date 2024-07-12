@@ -6,11 +6,14 @@ from main_character import *
 from ghosts import *
 
 def run_game():
+    pygame.init()
+    screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+    pygame.display.set_caption("Trouble Escapers")
+    
     x, y = PACMAN_START_X, PACMAN_START_Y
+    pacman = Pacman(img_1)
     current_direction = None
     running = True
-    draw_maze()
-    move_player(x, y)
 
     while running:
         for event in pygame.event.get():
@@ -24,10 +27,12 @@ def run_game():
             if not check_collisions(new_x, new_y):
                 update_cell(x, y)
                 x, y = new_x, new_y
-                move_player(x, y)
-
+                pacman.move_player(x, y, screen)
+        
+	draw_maze(screen, maze)
         pygame.display.flip()
         pygame.time.delay(200)
 
+    pygame.quit()
+
 run_game()
-pygame.quit()
