@@ -9,7 +9,7 @@ def run_game():
     pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     pygame.display.set_caption("Trouble Escapers")
-    
+    maze = create_maze_with_ghost_house(width, height, ghost_house_x, ghost_house_y, ghost_house_width, ghost_house_height)
     x, y = PACMAN_START_X, PACMAN_START_Y
     pacman = Pacman(img_1)
     current_direction = None
