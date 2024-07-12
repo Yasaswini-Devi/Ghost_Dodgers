@@ -26,7 +26,7 @@ def draw_ghost_house(screen, x: int, y: int):
     rect = pygame.Rect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE)
     pygame.draw.rect(screen, (128, 0, 128), rect)
 
-def update_cell(x: int, y: int):
+def update_cell(screen, x: int, y: int):
     rect = pygame.Rect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE)
     pygame.draw.rect(screen, BLACK, rect)
 
