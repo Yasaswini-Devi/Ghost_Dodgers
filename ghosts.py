@@ -2,11 +2,8 @@ import pygame
 from constants import *
 from maze import *
 
-SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 400
 screen = screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 width, height = 21, 21
-CELL_SIZE = 30
 
 ghost1_img = pygame.transform.scale(pygame.image.load(f'assets/ghost1_hallowen.png'), (CELL_SIZE, CELL_SIZE))
 ghost2_img = pygame.transform.scale(pygame.image.load(f'assets/ghost2_hallowen.png'), (CELL_SIZE, CELL_SIZE))
