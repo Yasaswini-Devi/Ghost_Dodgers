@@ -5,7 +5,7 @@ from drawing import *
 from main_character import *
 from ghosts import *
 
-def toggle_fullscreen(full_screen):
+def toggle_fullscreen(full_screen) -> bool:
     if full_screen:
         pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), pygame.RESIZABLE)
     else:
@@ -33,7 +33,10 @@ def run_game():
                 running = False
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
+                    screen_content = screen.copy()
                     full_screen = toggle_fullscreen(full_screen)
+                    screen.blit(screen_content, (0, 0))
+                    pygame.display.flip()
                 else:
                     current_direction = handle_keys(event, current_direction)
 
