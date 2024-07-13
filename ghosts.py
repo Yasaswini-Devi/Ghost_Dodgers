@@ -8,13 +8,13 @@ screen = screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 width, height = 21, 21
 CELL_SIZE = 30
 
-ghost1_img = pygame.transform.scale(pygame.image.load(f'assets/ghost1_hallowen.png'), (45, 45))
-ghost2_img = pygame.transform.scale(pygame.image.load(f'assets/ghost2_hallowen.png'), (45, 45))
-ghost3_img = pygame.transform.scale(pygame.image.load(f'assets/ghost3_hallowen.png'), (45, 45))
-ghost4_img = pygame.transform.scale(pygame.image.load(f'assets/ghost4_hallowen.png'), (45, 45))
+ghost1_img = pygame.transform.scale(pygame.image.load(f'assets/ghost1_hallowen.png'), (CELL_SIZE, CELL_SIZE))
+ghost2_img = pygame.transform.scale(pygame.image.load(f'assets/ghost2_hallowen.png'), (CELL_SIZE, CELL_SIZE))
+ghost3_img = pygame.transform.scale(pygame.image.load(f'assets/ghost3_hallowen.png'), (CELL_SIZE, CELL_SIZE))
+ghost4_img = pygame.transform.scale(pygame.image.load(f'assets/ghost4_hallowen.png'), (CELL_SIZE, CELL_SIZE))
 
-spooked_img = pygame.transform.scale(pygame.image.load(f'assets/ghost2_hackers.png'), (45, 45))
-dead_img = pygame.transform.scale(pygame.image.load(f'assets/ghost3_hacker.png'), (45, 45))
+spooked_img = pygame.transform.scale(pygame.image.load(f'assets/ghost2_hackers.png'), (CELL_SIZE, CELL_SIZE))
+dead_img = pygame.transform.scale(pygame.image.load(f'assets/ghost3_hacker.png'), (CELL_SIZE, CELL_SIZE))
 
 eaten_ghost = [False, False, False, False]
 ghost1_dead = False
