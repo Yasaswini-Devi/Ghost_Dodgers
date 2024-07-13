@@ -5,9 +5,16 @@ from drawing import *
 from main_character import *
 from ghosts import *
 
+def toggle_fullscreen(full_screen) -> bool:
+    if full_screen:
+        pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), pygame.RESIZABLE)
+    else:
+        pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), pygame.FULLSCREEN)
+    return not full_screen
+
 def run_game():
     pygame.init()
-    screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+    screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), pygame.RESIZABLE)
     pygame.display.set_caption("Trouble Escapers")
     maze = create_maze_with_ghost_house(width, height, ghost_house_x, ghost_house_y, ghost_house_width, ghost_house_height)
     
@@ -15,6 +22,7 @@ def run_game():
     pacman = Pacman(img_1)
     current_direction = None
     running = True
+    full_screen = False
     draw_maze(screen, maze)
     pacman.move_player(screen, x, y)
     pygame.display.flip()
@@ -23,8 +31,14 @@ def run_game():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
-            if event.type == pygame.KEYDOWN:
-                current_direction = handle_keys(event, current_direction)
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    screen_content = screen.copy()
+                    full_screen = toggle_fullscreen(full_screen)
+                    screen.blit(screen_content, (0, 0))
+                    pygame.display.flip()
+                else:
+                    current_direction = handle_keys(event, current_direction)
 
         if current_direction:
             new_x, new_y = move_in_direction(x, y, current_direction)
@@ -34,8 +48,8 @@ def run_game():
                 pacman.move_player(screen, x, y)
 
         for ghost in ghosts:
-            ghost.draw()        
-        
+            ghost.draw()
+
         pygame.display.flip()
         pygame.time.delay(200)
 
