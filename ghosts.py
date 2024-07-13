@@ -1,9 +1,12 @@
 import pygame
 from constants import *
+from maze import *
 
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 400
 screen = screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+width, height = 21, 21
+CELL_SIZE = 30
 
 ghost1_img = pygame.transform.scale(pygame.image.load(f'assets/ghost1_hallowen.png'), (45, 45))
 ghost2_img = pygame.transform.scale(pygame.image.load(f'assets/ghost2_hallowen.png'), (45, 45))
@@ -12,19 +15,6 @@ ghost4_img = pygame.transform.scale(pygame.image.load(f'assets/ghost4_hallowen.p
 
 spooked_img = pygame.transform.scale(pygame.image.load(f'assets/ghost2_hackers.png'), (45, 45))
 dead_img = pygame.transform.scale(pygame.image.load(f'assets/ghost3_hacker.png'), (45, 45))
-
-ghost1_x = 56
-ghost1_y = 58
-ghost1_direction = 0
-ghost2_x = 440
-ghost2_y = 388
-ghost2_direction = 2
-ghost3_x = 440
-ghost3_y = 438
-ghost3_direction = 2
-ghost4_x = 440
-ghost4_y = 438
-ghost4_direction = 2
 
 eaten_ghost = [False, False, False, False]
 ghost1_dead = False
@@ -40,7 +30,7 @@ powerup = False
 ghost_speed = 2
 
 class Ghost:
-    def __init__(self, x_coord, y_coord, target, speed, img, direct, dead, box, id ):
+    def __init__(self, x_coord, y_coord, target, speed, img, direct, dead, box, id, maze ):
        self.x_pos = x_coord
        self.y_pos = y_coord
        self.center_x = self.x_pos + 22
@@ -48,8 +38,11 @@ class Ghost:
        self.target = target
        self.speed = speed
        self.img = img
+       self.direction = direct
+       self.dead = dead
        self.in_box = box
        self.id = id
+       self.maze = maze
        self.turns, self.in_box = self.check_collisions()
        self.rect = self.draw()
 
@@ -62,3 +55,67 @@ class Ghost:
             screen.blit(dead_img, (self.x_pos, self.y_pos))
         ghost_rect = pygame.rect.Rect((self.center_x - 18, self.center_y - 18), (36, 36))
         return ghost_rect
+    
+    def check_collisions(self):
+        num1 = len(self.maze)
+        num2 = len(self.maze[0])
+        num3 = 15
+        self.turns = [False, False, False, False]
+        if 0 < self.center_x // 30 < num2 - 1:
+            if self.maze[(self.center_y - num3) // 30][self.center_x // 30] == 0:
+                self.turns[2] = True
+            if self.maze[self.center_y // 30][(self.center_x - num3) // 30] == 0:
+                self.turns[1] = True
+            if self.maze[self.center_y // 30][(self.center_x + num3) // 30] == 0:
+                self.turns[0] = True
+            if self.maze[(self.center_y + num3) // 30][self.center_x // 30] == 0:
+                self.turns[3] = True
+
+        if self.direction in [2, 3]:
+            if 12 <= self.center_x % 30 <= 18:
+                if self.maze[(self.center_y + num3) // 30][self.center_x // 30] == 0:
+                    self.turns[3] = True
+                if self.maze[(self.center_y - num3) // 30][self.center_x // 30] == 0:
+                    self.turns[2] = True
+            if 12 <= self.center_y % 30 <= 18:
+                if self.maze[self.center_y // 30][(self.center_x - num2) // 30] == 0:
+                    self.turns[1] = True
+                if self.maze[self.center_y // 30][(self.center_x + num2) // 30] == 0:
+                    self.turns[0] = True
+
+        if self.direction in [0, 1]:
+            if 12 <= self.center_x % 30 <= 18:
+                if self.maze[(self.center_y + num3) // 30][self.center_x // 30] == 0:
+                    self.turns[3] = True
+                if self.maze[(self.center_y - num3) // 30][self.center_x // 30] == 0:
+                    self.turns[2] = True
+            if 12 <= self.center_y % 30 <= 18:
+                if self.maze[self.center_y // 30][(self.center_x - num3) // 30] == 0:
+                    self.turns[1] = True
+                if self.maze[self.center_y // 30][(self.center_x + num3) // 30] == 0:
+                    self.turns[0] = True
+        else:
+            self.turns[0] = True
+            self.turns[1] = True
+        if 350 < self.x_pos < 550 and 370 < self.y_pos < 480:
+            self.in_box = True
+        else:
+            self.in_box = False
+        return self.turns, self.in_box
+    
+ghost1_x = (width // 2) * CELL_SIZE
+ghost1_y = (height // 2) * CELL_SIZE
+ghost2_x = (width // 2) * CELL_SIZE + CELL_SIZE
+ghost2_y = (height // 2) * CELL_SIZE
+ghost3_x = (width // 2) * CELL_SIZE
+ghost3_y = (height // 2) * CELL_SIZE + CELL_SIZE
+ghost4_x = (width // 2) * CELL_SIZE + CELL_SIZE
+ghost4_y = (height // 2) * CELL_SIZE + CELL_SIZE
+
+ghosts = [
+    Ghost(ghost1_x, ghost1_y, target=None, speed=2, img=ghost1_img, direct=0, dead=False, box=True, id=0, maze=maze),
+    Ghost(ghost2_x, ghost2_y, target=None, speed=2, img=ghost2_img, direct=0, dead=False, box=True, id=1, maze=maze),
+    Ghost(ghost3_x, ghost3_y, target=None, speed=2, img=ghost3_img, direct=0, dead=False, box=True, id=2, maze=maze),
+    Ghost(ghost4_x, ghost4_y, target=None, speed=2, img=ghost4_img, direct=0, dead=False, box=True, id=3, maze=maze)
+] 
+
