@@ -8,7 +8,7 @@ def draw_maze(screen, maze):
     screen.fill(BLACK)
     for y, row in enumerate(maze):
         for x, cell in enumerate(row):
-            if cell == 'G':
+            if cell == 'G' or cell == 'S':
                 draw_ghost_house(screen, x, y)
             elif cell == '#': 
                 draw_wall(screen, x, y)
