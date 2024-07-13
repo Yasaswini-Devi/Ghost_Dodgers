@@ -1,5 +1,6 @@
 import random
-
+width = 21
+height = 21
 def initialize_maze(width, height):
     maze = [['#'] * width for _ in range(height)]
     return maze
@@ -30,3 +31,4 @@ def create_maze_with_ghost_house(width, height, ghost_house_x, ghost_house_y, gh
     carve_passages_from(start_x, start_y, maze)
 
     return maze
+maze = initialize_maze(width, height)
