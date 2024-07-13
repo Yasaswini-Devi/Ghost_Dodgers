@@ -7,7 +7,6 @@ img_2 = pygame.transform.scale(pygame.image.load(f'assets/pacman_hacking_theme.j
 class Pacman:
     def __init__(self, img):
         self.name = PACMAN
-        self.color = YELLOW
         self.is_alive = True
         self.img = img
 
