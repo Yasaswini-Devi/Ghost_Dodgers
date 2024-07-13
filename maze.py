@@ -25,7 +25,7 @@ def create_maze_with_ghost_house(width, height, ghost_house_x, ghost_house_y, gh
 
     add_ghost_house(maze, ghost_house_x, ghost_house_y, ghost_house_width, ghost_house_height)
 
-    start_x, start_y = ghost_house_y, ghost_house_x + width // 2
+    start_x, start_y = ghost_house_y, ghost_house_x + ghost_house_width // 2 + 1
 
     maze[start_y][start_x] = 'S'
     carve_passages_from(start_x, start_y, maze)
