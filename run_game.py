@@ -32,6 +32,9 @@ def run_game():
                 update_cell(screen, x, y)
                 x, y = new_x, new_y
                 pacman.move_player(screen, x, y)
+
+        for ghost in ghosts:
+            ghost.draw()        
         
         pygame.display.flip()
         pygame.time.delay(200)
