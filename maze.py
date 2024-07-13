@@ -1,6 +1,6 @@
 import random
-width = 21
-height = 21
+from constants import *
+
 def initialize_maze(width, height):
     maze = [['#'] * width for _ in range(height)]
     return maze
