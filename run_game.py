@@ -3,7 +3,7 @@ from maze import *
 from constants import *
 from drawing import *
 from main_character import *
-#from ghosts import *
+from ghosts import *
 
 def toggle_fullscreen(full_screen) -> bool:
     if full_screen:
@@ -20,6 +20,12 @@ def run_game():
     
     x, y = PACMAN_START_X, PACMAN_START_Y
     pacman = Pacman(img_1)
+    ghosts = [
+    Ghost(ghost1_x, ghost1_y, target=None, speed=2, img=ghost1_img, direct=0, dead=False, box=True, id=0, maze=maze),
+    Ghost(ghost2_x, ghost2_y, target=None, speed=2, img=ghost2_img, direct=0, dead=False, box=True, id=1, maze=maze),
+    Ghost(ghost3_x, ghost3_y, target=None, speed=2, img=ghost3_img, direct=0, dead=False, box=True, id=2, maze=maze),
+    Ghost(ghost4_x, ghost4_y, target=None, speed=2, img=ghost4_img, direct=0, dead=False, box=True, id=3, maze=maze)
+]
     current_direction = None
     running = True
     full_screen = False
@@ -49,8 +55,8 @@ def run_game():
             else:
                 current_direction = None
 
-        '''for ghost in ghosts:
-            ghost.draw()'''
+        for ghost in ghosts:
+            ghost.draw()
 
         pygame.display.flip()
         pygame.time.delay(200)
