@@ -3,7 +3,7 @@ from maze import *
 from constants import *
 from drawing import *
 from main_character import *
-from ghosts import *
+#from ghosts import *
 
 def toggle_fullscreen(full_screen) -> bool:
     if full_screen:
@@ -39,16 +39,20 @@ def run_game():
                     pygame.display.flip()
                 else:
                     current_direction = handle_keys(event, current_direction)
+                    print(current_direction)
 
         if current_direction:
             new_x, new_y = move_in_direction(x, y, current_direction)
-            if not check_collisions(new_x, new_y):
+            print(new_x, new_y, check_collisions(maze, new_x, new_y))
+            if not check_collisions(maze, new_x, new_y):
                 update_cell(screen, x, y)
                 x, y = new_x, new_y
                 pacman.move_player(screen, x, y)
+            else:
+                current_direction = None
 
-        for ghost in ghosts:
-            ghost.draw()
+        '''for ghost in ghosts:
+            ghost.draw()'''
 
         pygame.display.flip()
         pygame.time.delay(200)
