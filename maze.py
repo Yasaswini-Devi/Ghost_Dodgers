@@ -1,16 +1,16 @@
 import random
 from constants import *
 
-def initialize_maze(width, height):
+def initialize_maze(width: int, height: int) -> list[list[str]]:
     maze = [['#'] * width for _ in range(height)]
     return maze
 
-def add_ghost_house(maze, x, y, width, height):
+def add_ghost_house(maze: list[list[str]], x: int, y: int, width: int, height: int):
     for row in range(y, y + height):
         for col in range(x, x + width):
             maze[row][col] = 'G'
 
-def carve_passages_from(cx, cy, grid):
+def carve_passages_from(cx: int, cy: int, grid: list[list[str]]):
     directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]
     random.shuffle(directions)
     for direction in directions:
@@ -20,7 +20,7 @@ def carve_passages_from(cx, cy, grid):
             grid[ny][nx] = ' '
             carve_passages_from(nx, ny, grid)
 
-def create_maze_with_ghost_house(width, height, ghost_house_x, ghost_house_y, ghost_house_width, ghost_house_height):
+def create_maze_with_ghost_house(width: int, height: int, ghost_house_x: int, ghost_house_y: int, ghost_house_width: int, ghost_house_height: int) -> list[list[str]]:
     maze = initialize_maze(width, height)
 
     add_ghost_house(maze, ghost_house_x, ghost_house_y, ghost_house_width, ghost_house_height)
@@ -31,4 +31,3 @@ def create_maze_with_ghost_house(width, height, ghost_house_x, ghost_house_y, gh
     carve_passages_from(start_x, start_y, maze)
 
     return maze
-maze = initialize_maze(width, height)
