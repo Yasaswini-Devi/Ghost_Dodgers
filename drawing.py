@@ -1,5 +1,4 @@
 import pygame
-from maze import *
 from constants import *
 
 def draw_maze(screen, maze):
