@@ -1,6 +1,5 @@
 import pygame
 from constants import *
-from maze import *
 
 screen = screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 width, height = 21, 21
@@ -108,11 +107,3 @@ ghost3_x = (width // 2) * CELL_SIZE
 ghost3_y = (height // 2) * CELL_SIZE + CELL_SIZE
 ghost4_x = (width // 2) * CELL_SIZE + CELL_SIZE
 ghost4_y = (height // 2) * CELL_SIZE + CELL_SIZE
-
-ghosts = [
-    Ghost(ghost1_x, ghost1_y, target=None, speed=2, img=ghost1_img, direct=0, dead=False, box=True, id=0, maze=maze),
-    Ghost(ghost2_x, ghost2_y, target=None, speed=2, img=ghost2_img, direct=0, dead=False, box=True, id=1, maze=maze),
-    Ghost(ghost3_x, ghost3_y, target=None, speed=2, img=ghost3_img, direct=0, dead=False, box=True, id=2, maze=maze),
-    Ghost(ghost4_x, ghost4_y, target=None, speed=2, img=ghost4_img, direct=0, dead=False, box=True, id=3, maze=maze)
-] 
-
