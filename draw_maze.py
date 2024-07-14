@@ -28,7 +28,7 @@ class Maze:
 		self.generate_maze()
 
 	def generate_maze(self):
-		for y_index, col in enumerate(MAP):
+		for y_index, col in enumerate(MAZE):
 			for x_index, char in enumerate(col):
 				if char == "1":	# cell being a part of wall
 					self.walls.add(Cell(x_index, y_index, CHAR_SIZE, CHAR_SIZE))
