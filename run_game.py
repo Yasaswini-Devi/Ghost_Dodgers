@@ -43,7 +43,6 @@ def run_game():
 
         if current_direction:
             new_x, new_y = move_in_direction(x, y, current_direction)
-            print(new_x, new_y, check_collisions(maze, new_x, new_y))
             if not check_collisions(maze, new_x, new_y):
                 update_cell(screen, x, y)
                 x, y = new_x, new_y
