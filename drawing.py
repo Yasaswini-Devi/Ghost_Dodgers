@@ -2,8 +2,6 @@ import pygame
 from maze import *
 from constants import *
 
-maze = create_maze_with_ghost_house(width, height, ghost_house_x, ghost_house_y, ghost_house_width, ghost_house_height)
-
 def draw_maze(screen, maze):
     screen.fill(BLACK)
     for y, row in enumerate(maze):
@@ -31,5 +29,5 @@ def update_cell(screen, x: int, y: int):
     rect = pygame.Rect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE)
     pygame.draw.rect(screen, BLACK, rect)
 
-def check_collisions(x: int, y: int) -> bool:
+def check_collisions(maze: list[list[str]], x: int, y: int) -> bool:
     return maze[y][x] == '#' or maze[y][x] == 'G'
