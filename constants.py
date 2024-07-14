@@ -1,7 +1,6 @@
 #Consists of all the constants for the game
 
 PACMAN = "Pacman"
-YELLOW = (255, 255, 0)
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 700
 WHITE = (255, 255, 255)
