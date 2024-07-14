@@ -39,7 +39,6 @@ def run_game():
                     pygame.display.flip()
                 else:
                     current_direction = handle_keys(event, current_direction)
-                    print(current_direction)
 
         if current_direction:
             new_x, new_y = move_in_direction(x, y, current_direction)
