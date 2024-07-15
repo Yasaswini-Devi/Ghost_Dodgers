@@ -9,14 +9,15 @@ class Pacman(pygame.sprite.Sprite):
 	super().__init__()
 	self.image = img
 	self.rect = self.image.get_rect()
-        self.is_alive = True
+        self.rect.topleft = (x * CELL_SIZE, y * CELL_SIZE)
+	self.is_alive = True
         self.direction = None
 
     def die(self):
         self.is_alive = False
 
-    def move_player(self, screen, x: int, y: int):
-        screen.blit(self.img, (x * CELL_SIZE, y * CELL_SIZE))
+    def update(self, screen):
+        screen.blit(self.image, self.rect.topleft)
 
     def move(self, direction):
         if direction == 'LEFT':
