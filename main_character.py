@@ -16,7 +16,17 @@ class Pacman:
     def move_player(self, screen, x: int, y: int):
         screen.blit(self.img, (x * CELL_SIZE, y * CELL_SIZE))
 
-def handle_keys(event, current_direction):
+    def move(self, direction):
+        if direction == 'LEFT':
+            self.rect.x -= CELL_SIZE
+        elif direction == 'RIGHT':
+            self.rect.x += CELL_SIZE
+        elif direction == 'UP':
+            self.rect.y -= CELL_SIZE
+        elif direction == 'DOWN':
+            self.rect.y += CELL_SIZE
+
+def handle_keys(event):
     if event.key == pygame.K_LEFT:
         return 'LEFT'
     elif event.key == pygame.K_RIGHT:
@@ -25,15 +35,4 @@ def handle_keys(event, current_direction):
         return 'UP'
     elif event.key == pygame.K_DOWN:
         return 'DOWN'
-    return current_direction
-
-def move_in_direction(x, y, direction):
-    if direction == 'LEFT':
-        x -= 1
-    elif direction == 'RIGHT':
-        x += 1
-    elif direction == 'UP':
-        y -= 1
-    elif direction == 'DOWN':
-        y += 1
-    return x, y
+    return None
