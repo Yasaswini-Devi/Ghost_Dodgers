@@ -1,7 +1,7 @@
 #Consists of all the constants for the game
 
-SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 700
+SCREEN_WIDTH = 570
+SCREEN_HEIGHT = 570
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 BLUE = (0, 0, 255)
