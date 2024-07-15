@@ -34,7 +34,7 @@ def main():
             maze.move_player(current_direction)
             move_timer = 0
 
-        screen.fill(BLACK)
+        screen.fill(BLUE)
         maze.update()
         pygame.display.flip()
         clock.tick(60)
