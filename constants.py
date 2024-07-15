@@ -1,6 +1,5 @@
 #Consists of all the constants for the game
 
-PACMAN = "Pacman"
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 700
 WHITE = (255, 255, 255)
@@ -26,4 +25,3 @@ ghost3_direction = 2
 ghost4_x = 440
 ghost4_y = 438
 ghost4_direction = 2
-
