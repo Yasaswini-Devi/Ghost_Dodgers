@@ -12,4 +12,4 @@ class Cell(pygame.sprite.Sprite):
 		self.rect = pygame.Rect(self.abs_x, self.abs_y, self.width, self.height)
 
 	def update(self, screen):
-		pygame.draw.rect(screen, BLUE, self.rect)
+		pygame.draw.rect(screen, BLACK, self.rect)
