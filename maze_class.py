@@ -99,7 +99,7 @@ class Maze:
         self.ghosts.empty()
         self.walls.empty()
         self.fruits.empty()
-        self.generate_maze()
         self.pellets = 0
         self.score = 0
         self.lives = 3
+        self.generate_maze()
