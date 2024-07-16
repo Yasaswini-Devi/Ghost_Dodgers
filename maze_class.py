@@ -54,6 +54,10 @@ class Maze:
             player.rect.topleft = original_position
 
         pellets_collided = pygame.sprite.spritecollide(player, self.fruits, True)
+        if pellets_collided:
+            self.pellets -= 1
+            if self.pellets == 0:
+                self.game_over()
 
         if player.rect.x < 0:
             player.rect.x = SCREEN_WIDTH - CELL_SIZE
