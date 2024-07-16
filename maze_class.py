@@ -25,10 +25,10 @@ class Maze:
                 if char == "1":
                     self.walls.add(Cell(x_index, y_index, CELL_SIZE, CELL_SIZE))
                 elif char == " ":
-                    self.fruits.add(Pellet(x_index, y_index, CELL_SIZE // 4))
+                    self.fruits.add(Pellet(x_index, y_index, CELL_SIZE // 3))
                     self.pellets += 1
                 elif char == "B":
-                    self.fruits.add(PowerUp(x_index, y_index, CELL_SIZE // 2, is_power_up=True))
+                    self.fruits.add(PowerUp(x_index, y_index, CELL_SIZE, is_power_up = True))
                     self.pellets += 1
                 elif char == "s":
                     self.ghosts.add(Ghost1(x_index, y_index, "black"))
