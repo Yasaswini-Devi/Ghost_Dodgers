@@ -46,6 +46,7 @@ class Maze:
         self.fruits.update(self.screen)
         self.player.update(self.screen)
         self.ghosts.update(self.screen)
+        self.display_stats()
 
     def display_life_lost_message(self):
         font = pygame.font.Font(None, 36)
@@ -54,6 +55,16 @@ class Maze:
         self.screen.blit(life_lost_text, life_lost_rect)
         pygame.display.flip()
         pygame.time.wait(2000)
+
+    def display_stats(self):
+        font = pygame.font.Font(None, 36)
+        lives_text = font.render(f"Lives: {self.lives}", True, WHITE)
+        lives_rect = lives_text.get_rect(topright = (SCREEN_WIDTH - 10, 10))
+        self.screen.blit(lives_text, lives_rect)
+
+        score_text = font.render(f"Score: {self.score}", True, WHITE)
+        score_rect = score_text.get_rect(topleft = (10, 10))
+        self.screen.blit(score_text, score_rect)
 
     def move_player(self, direction):
         player = self.player.sprite
