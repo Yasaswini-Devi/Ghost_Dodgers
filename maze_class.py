@@ -16,6 +16,7 @@ class Maze:
         self.fruits = pygame.sprite.Group()
         self.generate_maze()
         self.pellets = 0
+        self.score = 0
 
     def generate_maze(self):
         for y_index, col in enumerate(MAZE):
@@ -56,6 +57,7 @@ class Maze:
         pellets_collided = pygame.sprite.spritecollide(player, self.fruits, True)
         if pellets_collided:
             self.pellets -= 1
+            self.score += 10
             if self.pellets == 0:
                 self.game_over(win = True)
         
@@ -77,4 +79,31 @@ class Maze:
         text_rect = text_render.get_rect(center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 - 20))
         self.screen.blit(text_render, text_rect)
 
+        text_restart = font.render("Press R to Restart", True, WHITE)
+        text_restart_rect = text_restart.get_rect(center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 20))
+        self.screen.blit(text_restart, text_restart_rect)
+
+        text_quit = font.render("Press Q to Quit", True, WHITE)
+        text_quit_rect = text_quit.get_rect(center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 60))
+        self.screen.blit(text_quit, text_quit_rect)
+
         pygame.display.flip()
+
+        while True:
+            for event in pygame.event.get():
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_r:
+                        self.reset_game()
+                        return
+                    elif event.key == pygame.K_q:
+                        pygame.quit()
+                        return
+
+    def reset_game(self):
+        self.player.empty()
+        self.ghosts.empty()
+        self.walls.empty()
+        self.fruits.empty()
+        self.generate_maze()
+        self.pellets = 0
+        self.score = 0
