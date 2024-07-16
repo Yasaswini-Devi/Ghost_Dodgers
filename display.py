@@ -26,9 +26,9 @@ class Display:
         pygame.display.flip()
         pygame.time.wait(1000)
 
-    def show_game_over(self, win = False):
+    def show_game_over(self, win = False, score = 0):
         text = "You Win!" if win else "Game Over!"
-        text += f" Score: {self.score}"
+        text += f" Score: {score}"
         text_render = self.font.render(text, True, WHITE)
         text_rect = text_render.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 - 20))
         self.screen.blit(text_render, text_rect)
