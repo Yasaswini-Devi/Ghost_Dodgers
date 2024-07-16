@@ -57,10 +57,10 @@ class Maze:
         if pellets_collided:
             self.pellets -= 1
             if self.pellets == 0:
-                self.game_over()
+                self.game_over(win = True)
         
         if pygame.sprite.spritecollideany(player, self.ghosts):
-            self.game_over()
+            self.game_over(win = False)
 
         if player.rect.x < 0:
             player.rect.x = SCREEN_WIDTH - CELL_SIZE
@@ -68,3 +68,13 @@ class Maze:
             player.rect.x = 0
 
         self.update()
+
+    def game_over(self, win = False):
+        font = pygame.font.Font(None, 35)
+        text = "You Win!" if win else "Game Over!"
+        text += f" Score: {self.score}"
+        text_render = font.render(text, True, WHITE)
+        text_rect = text_render.get_rect(center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 - 20))
+        self.screen.blit(text_render, text_rect)
+
+        pygame.display.flip()
