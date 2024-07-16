@@ -14,10 +14,10 @@ class Maze:
         self.ghosts = pygame.sprite.Group()
         self.walls = pygame.sprite.Group()
         self.fruits = pygame.sprite.Group()
-        self.generate_maze()
         self.pellets = 0
         self.score = 0
         self.lives = 3
+        self.generate_maze()
 
     def generate_maze(self):
         for y_index, col in enumerate(MAZE):
