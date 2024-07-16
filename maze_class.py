@@ -6,10 +6,12 @@ from ghosts_classes import *
 from cells import *
 from powerup import *
 from pellets import *
+from display import *
 
 class Maze:
     def __init__(self, screen):
         self.screen = screen
+        self.display = Display(screen)
         self.player = pygame.sprite.GroupSingle()
         self.ghosts = pygame.sprite.Group()
         self.walls = pygame.sprite.Group()
@@ -46,25 +48,8 @@ class Maze:
         self.fruits.update(self.screen)
         self.player.update(self.screen)
         self.ghosts.update(self.screen)
-        self.display_stats()
-
-    def display_life_lost_message(self):
-        font = pygame.font.Font(None, 36)
-        life_lost_text = font.render(f"You lost a life. Remaining lives: {self.lives}", True, WHITE)
-        life_lost_rect = life_lost_text.get_rect(center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2))
-        self.screen.blit(life_lost_text, life_lost_rect)
-        pygame.display.flip()
-        pygame.time.wait(2000)
-
-    def display_stats(self):
-        font = pygame.font.Font(None, 36)
-        lives_text = font.render(f"Lives: {self.lives}", True, WHITE)
-        lives_rect = lives_text.get_rect(topright = (SCREEN_WIDTH - 5, 5))
-        self.screen.blit(lives_text, lives_rect)
-
-        score_text = font.render(f"Score: {self.score}", True, WHITE)
-        score_rect = score_text.get_rect(topleft = (5, 5))
-        self.screen.blit(score_text, score_rect)
+        self.display.show_life(self.lives)
+        self.display.show_score(self.score)
 
     def move_player(self, direction):
         player = self.player.sprite
@@ -92,27 +77,12 @@ class Maze:
                 self.game_over(win = False)
             else:
                 player.rect.topleft = (PACMAN_START_X * CELL_SIZE, PACMAN_START_Y * CELL_SIZE)
-                self.display_life_lost_message()
+                self.display.show_life_lost_message()
 
         self.update()
 
     def game_over(self, win = False):
-        font = pygame.font.Font(None, 35)
-        text = "You Win!" if win else "Game Over!"
-        text += f" Score: {self.score}"
-        text_render = font.render(text, True, WHITE)
-        text_rect = text_render.get_rect(center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 - 20))
-        self.screen.blit(text_render, text_rect)
-
-        text_restart = font.render("Press R to Restart", True, WHITE)
-        text_restart_rect = text_restart.get_rect(center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 20))
-        self.screen.blit(text_restart, text_restart_rect)
-
-        text_quit = font.render("Press Q to Quit", True, WHITE)
-        text_quit_rect = text_quit.get_rect(center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 60))
-        self.screen.blit(text_quit, text_quit_rect)
-
-        pygame.display.flip()
+        self.display.show_game_over(win)
 
         while True:
             for event in pygame.event.get():
