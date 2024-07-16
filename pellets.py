@@ -10,4 +10,4 @@ class Pellet(pygame.sprite.Sprite):
         self.rect.center = ((x + 0.5) * CELL_SIZE, (y + 0.5) * CELL_SIZE)
 
     def update(self, screen):
-        screen.blit(self.image, self.rect.center)
+        screen.blit(self.image, self.rect.topleft)
