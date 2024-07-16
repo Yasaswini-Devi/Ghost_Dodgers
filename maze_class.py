@@ -82,7 +82,7 @@ class Maze:
         self.update()
 
     def game_over(self, win = False):
-        self.display.show_game_over(win)
+        self.display.show_game_over(win, self.score)
 
         while True:
             for event in pygame.event.get():
