@@ -53,6 +53,7 @@ class Maze:
         life_lost_rect = life_lost_text.get_rect(center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2))
         self.screen.blit(life_lost_text, life_lost_rect)
         pygame.display.flip()
+        pygame.time.wait(2000)
 
     def move_player(self, direction):
         player = self.player.sprite
