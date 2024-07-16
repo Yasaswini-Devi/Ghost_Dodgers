@@ -1,7 +1,9 @@
 **Ghost Dodgers**
 
-We plan to develop the classic Pacman game, enhanced with a 1 vs 1 player mode.
-We also plan to add multiple themes for improved user experience.
+We plan to develop the classic Pacman game, enhanced with a 1 vs 1 player mode.\
+We also plan to add multiple themes for improved user experience.\
+
+Execute the run_main.py file to play the game.\
 
 Our plan of action:\
  \
