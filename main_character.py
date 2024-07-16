@@ -16,7 +16,7 @@ class Pacman(pygame.sprite.Sprite):
     def die(self):
         self.is_alive = False
 
-	def update(self, screen):
+    def update(self, screen):
         screen.blit(self.image, self.rect.topleft)
 
     def move(self, direction):
