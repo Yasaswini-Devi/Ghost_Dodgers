@@ -71,6 +71,11 @@ class Maze:
         original_position = player.rect.topleft
         player.move(direction)
 
+        if player.rect.x < 0:
+            player.rect.x = SCREEN_WIDTH - CELL_SIZE
+        elif player.rect.x >= SCREEN_WIDTH:
+            player.rect.x = 0
+
         if pygame.sprite.spritecollide(player, self.walls, False):
             player.rect.topleft = original_position
 
@@ -88,11 +93,6 @@ class Maze:
             else:
                 player.rect.topleft = (PACMAN_START_X * CELL_SIZE, PACMAN_START_Y * CELL_SIZE)
                 self.display_life_lost_message()
-
-        if player.rect.x < 0:
-            player.rect.x = SCREEN_WIDTH - CELL_SIZE
-        elif player.rect.x >= SCREEN_WIDTH:
-            player.rect.x = 0
 
         self.update()
 
