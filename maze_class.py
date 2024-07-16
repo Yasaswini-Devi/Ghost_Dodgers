@@ -17,6 +17,7 @@ class Maze:
         self.generate_maze()
         self.pellets = 0
         self.score = 0
+        self.lives = 3
 
     def generate_maze(self):
         for y_index, col in enumerate(MAZE):
@@ -46,6 +47,13 @@ class Maze:
         self.player.update(self.screen)
         self.ghosts.update(self.screen)
 
+    def display_life_lost_message(self):
+        font = pygame.font.Font(None, 36)
+        life_lost_text = font.render(f"You lost a life. Remaining lives: {self.lives}", True, WHITE)
+        life_lost_rect = life_lost_text.get_rect(center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2))
+        self.screen.blit(life_lost_text, life_lost_rect)
+        pygame.display.flip()
+
     def move_player(self, direction):
         player = self.player.sprite
         original_position = player.rect.topleft
@@ -62,7 +70,12 @@ class Maze:
                 self.game_over(win = True)
         
         if pygame.sprite.spritecollideany(player, self.ghosts):
-            self.game_over(win = False)
+            self.lives -= 1
+            if self.lives == 0:
+                self.game_over(win = False)
+            else:
+                player.rect.topleft = (PACMAN_START_X * CELL_SIZE, PACMAN_START_Y * CELL_SIZE)
+                self.display_life_lost_message()
 
         if player.rect.x < 0:
             player.rect.x = SCREEN_WIDTH - CELL_SIZE
