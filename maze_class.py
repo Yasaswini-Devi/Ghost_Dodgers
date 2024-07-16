@@ -59,11 +59,11 @@ class Maze:
     def display_stats(self):
         font = pygame.font.Font(None, 36)
         lives_text = font.render(f"Lives: {self.lives}", True, WHITE)
-        lives_rect = lives_text.get_rect(topright = (SCREEN_WIDTH - 10, 10))
+        lives_rect = lives_text.get_rect(topright = (SCREEN_WIDTH - 5, 5))
         self.screen.blit(lives_text, lives_rect)
 
         score_text = font.render(f"Score: {self.score}", True, WHITE)
-        score_rect = score_text.get_rect(topleft = (10, 10))
+        score_rect = score_text.get_rect(topleft = (5, 5))
         self.screen.blit(score_text, score_rect)
 
     def move_player(self, direction):
