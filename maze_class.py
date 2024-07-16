@@ -66,3 +66,5 @@ class Maze:
             player.rect.x = SCREEN_WIDTH - CELL_SIZE
         elif player.rect.x >= SCREEN_WIDTH:
             player.rect.x = 0
+
+        self.update()
