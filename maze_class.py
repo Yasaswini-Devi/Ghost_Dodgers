@@ -121,3 +121,4 @@ class Maze:
         self.generate_maze()
         self.pellets = 0
         self.score = 0
+        self.lives = 3
