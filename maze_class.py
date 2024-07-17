@@ -69,6 +69,7 @@ class Maze:
             self.pellets -= 1
             self.score += 10
             if self.pellets == 0:
+                self.update()
                 self.game_over(win = True)
         
         if pygame.sprite.spritecollideany(player, self.ghosts):
