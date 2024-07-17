@@ -66,8 +66,13 @@ class Maze:
 
         pellets_collided = pygame.sprite.spritecollide(player, self.fruits, True)
         if pellets_collided:
-            self.pellets -= 1
-            self.score += 10
+            for pellet in pellets_collided:
+                self.pellets -= 1
+                if isinstance(pellet, PowerUp):
+                    self.score += 50
+                else:
+                    self.score += 10
+
             if self.pellets == 0:
                 self.update()
                 self.game_over(win = True)
