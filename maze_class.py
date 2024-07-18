@@ -70,6 +70,7 @@ class Maze:
                 self.pellets -= 1
                 if isinstance(pellet, PowerUp):
                     self.score += 50
+		    player.activate_powerup(1000)
                 else:
                     self.score += 10
 
@@ -78,7 +79,11 @@ class Maze:
                 self.game_over(win = True)
         
         if pygame.sprite.spritecollideany(player, self.ghosts):
-            self.lives -= 1
+	    if player.invincible:
+		for ghost in pygame.sprite.spritecollide(player, self.ghosts, False):
+			#need to define function to reset ghost position
+	    else:
+		    self.lives -= 1
             if self.lives == 0:
                 self.game_over(win = False)
             else:
