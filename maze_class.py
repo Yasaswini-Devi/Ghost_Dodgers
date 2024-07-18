@@ -7,6 +7,7 @@ from cells import *
 from powerup import *
 from pellets import *
 from display import *
+from theme import *
 
 class Maze:
     def __init__(self, screen):
