@@ -10,8 +10,9 @@ from display import *
 from theme import *
 
 class Maze:
-    def __init__(self, screen):
+    def __init__(self, screen, theme_name):
         self.screen = screen
+        self.theme = Theme(theme_name)
         self.display = Display(screen)
         self.player = pygame.sprite.GroupSingle()
         self.ghosts = pygame.sprite.Group()
@@ -34,15 +35,15 @@ class Maze:
                     self.fruits.add(PowerUp(x_index, y_index, CELL_SIZE, is_power_up = True))
                     self.pellets += 1
                 elif char == "s":
-                    self.ghosts.add(Ghost1(x_index, y_index))
+                    self.ghosts.add(Ghost1(x_index, y_index, self.theme))
                 elif char == "p":
-                    self.ghosts.add(Ghost2(x_index, y_index))
+                    self.ghosts.add(Ghost2(x_index, y_index, self.theme))
                 elif char == "o":
-                    self.ghosts.add(Ghost3(x_index, y_index))
+                    self.ghosts.add(Ghost3(x_index, y_index, self.theme))
                 elif char == "r":
-                    self.ghosts.add(Ghost4(x_index, y_index))
+                    self.ghosts.add(Ghost4(x_index, y_index, self.theme))
                 elif char == "P":
-                    self.player.add(Pacman(x_index, y_index, img_1))
+                    self.player.add(Pacman(x_index, y_index, self.theme.get_pacman_image))
 
     def update(self):
         self.walls.update(self.screen)
