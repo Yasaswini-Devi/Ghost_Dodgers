@@ -109,3 +109,10 @@ class Maze:
         self.score = 0
         self.lives = 3
         self.generate_maze()
+
+    def move_ghost(self, ghost):
+        original_position = ghost.rect.topleft
+        ghost.move()
+        if pygame.sprite.spritecollide(ghost, self.walls, False):
+            ghost.rect.topleft = original_position
+
