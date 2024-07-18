@@ -17,6 +17,16 @@ class Ghost(pygame.sprite.Sprite):
         self.rect.topleft = (x * CELL_SIZE, y * CELL_SIZE)
         self.direction = random.choice(['LEFT', 'RIGHT', 'UP', 'DOWN'])
 
+    def move(self):
+        if self.direction == 'LEFT':
+            self.rect.x -= CELL_SIZE
+        elif self.direction == 'RIGHT':
+            self.rect.x += CELL_SIZE
+        elif self.direction == 'UP':
+            self.rect.y -= CELL_SIZE
+        elif self.direction == 'DOWN':
+            self.rect.y += CELL_SIZE
+
 class Ghost1(Pacman):
     def __init__(self, x, y, color):
         super().__init__(x, y, ghost1)
