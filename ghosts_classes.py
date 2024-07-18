@@ -16,6 +16,10 @@ class Ghost(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.topleft = (x * CELL_SIZE, y * CELL_SIZE)
         self.direction = random.choice(['LEFT', 'RIGHT', 'UP', 'DOWN'])
+    
+    def update(self, screen):
+        self.move()
+        screen.blit(self.image, self.rect.topleft)
 
     def move(self):
         if self.direction == 'LEFT':
