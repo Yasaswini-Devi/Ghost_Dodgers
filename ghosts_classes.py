@@ -36,35 +36,7 @@ class Ghost(pygame.sprite.Sprite):
 class Ghost1(Ghost):
     def __init__(self, x, y):
         super().__init__(x, y, ghost1)
-        #self.directions = ['LEFT', 'RIGHT', 'UP', 'DOWN']
-'''
-    def move(self, maze):
-        direction = self.choose_direction(maze)
-        original_position = self.rect.topleft
-        super().move(direction)
-
-        if pygame.sprite.spritecollide(self, maze.walls, False):
-            self.rect.topleft = original_position
-
-    def choose_direction(self, maze):
-        # Implement logic to choose direction based on maze and player position
-        # Example logic:
-        # Randomly choose a direction initially
-        direction = random.choice(self.directions)
-
-        # Check if moving in that direction would collide with walls
-        next_position = self.rect.move(CELL_SIZE, CELL_SIZE).topleft
-        if direction == 'LEFT' and next_position[0] < 0:
-            direction = 'RIGHT'
-        elif direction == 'RIGHT' and next_position[0] >= SCREEN_WIDTH:
-            direction = 'LEFT'
-        elif direction == 'UP' and next_position[1] < 0:
-            direction = 'DOWN'
-        elif direction == 'DOWN' and next_position[1] >= SCREEN_HEIGHT:
-            direction = 'UP'
-
-        return direction
-'''
+        
 class Ghost2(Ghost):
     def __init__(self, x, y):
         super().__init__(x, y, ghost2)
