@@ -9,11 +9,19 @@ ghost3 = pygame.transform.scale(pygame.image.load(f'assets/ghost3_hallowen.png')
 ghost4 = pygame.transform.scale(pygame.image.load(f'assets/ghost4_hallowen.png'), (CELL_SIZE, CELL_SIZE))
 
 
+class Ghost(pygame.sprite.Sprite):
+    def __init__(self, x, y, img):
+        super().__init__()
+        self.image = img
+        self.rect = self.image.get_rect()
+        self.rect.topleft = (x * CELL_SIZE, y * CELL_SIZE)
+        self.direction = random.choice(['LEFT', 'RIGHT', 'UP', 'DOWN'])
+
 class Ghost1(Pacman):
     def __init__(self, x, y, color):
         super().__init__(x, y, ghost1)
-        self.directions = ['LEFT', 'RIGHT', 'UP', 'DOWN']
-
+        #self.directions = ['LEFT', 'RIGHT', 'UP', 'DOWN']
+'''
     def move(self, maze):
         direction = self.choose_direction(maze)
         original_position = self.rect.topleft
@@ -40,7 +48,7 @@ class Ghost1(Pacman):
             direction = 'UP'
 
         return direction
-
+'''
 class Ghost2(Pacman):
     def __init__(self, x, y, color):
         super().__init__(x, y, ghost2)
