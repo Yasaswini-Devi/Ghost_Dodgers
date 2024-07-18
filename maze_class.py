@@ -81,7 +81,7 @@ class Maze:
         if pygame.sprite.spritecollideany(player, self.ghosts):
 	    if player.invincible:
 		for ghost in pygame.sprite.spritecollide(player, self.ghosts, False):
-			#need to define function to reset ghost position
+                    ghost.reset_pos()
 	    else:
 		    self.lives -= 1
             if self.lives == 0:
