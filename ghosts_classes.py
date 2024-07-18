@@ -36,7 +36,7 @@ class Ghost(pygame.sprite.Sprite):
 
 
 class Ghost1(Pacman):
-    def __init__(self, x, y, color):
+    def __init__(self, x, y):
         super().__init__(x, y, ghost1)
         #self.directions = ['LEFT', 'RIGHT', 'UP', 'DOWN']
 '''
@@ -68,13 +68,13 @@ class Ghost1(Pacman):
         return direction
 '''
 class Ghost2(Pacman):
-    def __init__(self, x, y, color):
+    def __init__(self, x, y):
         super().__init__(x, y, ghost2)
 
 class Ghost3(Pacman):
-    def __init__(self, x, y, color):
+    def __init__(self, x, y):
         super().__init__(x, y, ghost3)
 
 class Ghost4(Pacman):
-    def __init__(self, x, y, color):
+    def __init__(self, x, y):
         super().__init__(x, y, ghost4)
