@@ -83,7 +83,7 @@ class Maze:
                 self.game_over(win = False)
             else:
                 player.rect.topleft = (PACMAN_START_X * CELL_SIZE, PACMAN_START_Y * CELL_SIZE)
-                self.display.show_life_lost_message()
+                self.display.show_life_lost_message(self.lives)
 
         self.update()
 
