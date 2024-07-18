@@ -116,4 +116,7 @@ class Maze:
         if pygame.sprite.spritecollide(ghost, self.walls, False):
             ghost.rect.topleft = original_position
             ghost.direction = random.choice(['LEFT', 'RIGHT', 'UP', 'DOWN'])
-
+        if ghost.rect.x < 0:
+            ghost.rect.x = SCREEN_WIDTH - CELL_SIZE
+        elif ghost.rect.x >= SCREEN_WIDTH:
+            ghost.rect.x = 0
