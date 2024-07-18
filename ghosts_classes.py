@@ -1,12 +1,7 @@
 import pygame
 import random
 from constants import *
-
-ghost1 = pygame.transform.scale(pygame.image.load(f'assets/ghost1_hallowen.png'), (CELL_SIZE, CELL_SIZE))
-ghost2 = pygame.transform.scale(pygame.image.load(f'assets/ghost2_hallowen.png'), (CELL_SIZE, CELL_SIZE))
-ghost3 = pygame.transform.scale(pygame.image.load(f'assets/ghost3_hallowen.png'), (CELL_SIZE, CELL_SIZE))
-ghost4 = pygame.transform.scale(pygame.image.load(f'assets/ghost4_hallowen.png'), (CELL_SIZE, CELL_SIZE))
-
+from theme import *
 
 class Ghost(pygame.sprite.Sprite):
     def __init__(self, x, y, img):
@@ -39,16 +34,16 @@ class Ghost(pygame.sprite.Sprite):
 
 class Ghost1(Ghost):
     def __init__(self, x, y):
-        super().__init__(x, y, ghost1)
+        super().__init__(x, y, theme.get_ghost_image(0), (x * CELL_SIZE, y * CELL_SIZE))
         
 class Ghost2(Ghost):
     def __init__(self, x, y):
-        super().__init__(x, y, ghost2)
+        super().__init__(x, y, theme.get_ghost_image(1), (x * CELL_SIZE, y * CELL_SIZE))
 
 class Ghost3(Ghost):
     def __init__(self, x, y):
-        super().__init__(x, y, ghost3)
+        super().__init__(x, y, theme.get_ghost_image(2), (x * CELL_SIZE, y * CELL_SIZE))
 
 class Ghost4(Ghost):
     def __init__(self, x, y):
-        super().__init__(x, y, ghost4)
+        super().__init__(x, y, theme.get_ghost_image(3), (x * CELL_SIZE, y * CELL_SIZE))
