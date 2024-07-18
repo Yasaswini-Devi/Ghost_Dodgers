@@ -11,8 +11,8 @@ class Pacman(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.topleft = (x * CELL_SIZE, y * CELL_SIZE)
 	self.initial_pos = (x, y)
-        self.is_alive = True
-        self.direction = None
+	self.is_alive = True
+	self.direction = None
 	self.invincible = False
 	self.invincible_timer = 0
 
