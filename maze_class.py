@@ -33,13 +33,13 @@ class Maze:
                     self.fruits.add(PowerUp(x_index, y_index, CELL_SIZE, is_power_up = True))
                     self.pellets += 1
                 elif char == "s":
-                    self.ghosts.add(Ghost1(x_index, y_index, "black"))
+                    self.ghosts.add(Ghost1(x_index, y_index))
                 elif char == "p":
-                    self.ghosts.add(Ghost2(x_index, y_index, "white"))
+                    self.ghosts.add(Ghost2(x_index, y_index))
                 elif char == "o":
-                    self.ghosts.add(Ghost3(x_index, y_index, "red"))
+                    self.ghosts.add(Ghost3(x_index, y_index))
                 elif char == "r":
-                    self.ghosts.add(Ghost4(x_index, y_index, "green"))
+                    self.ghosts.add(Ghost4(x_index, y_index))
                 elif char == "P":
                     self.player.add(Pacman(x_index, y_index, img_1))
 
