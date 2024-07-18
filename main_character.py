@@ -10,6 +10,7 @@ class Pacman(pygame.sprite.Sprite):
         self.image = img
         self.rect = self.image.get_rect()
         self.rect.topleft = (x * CELL_SIZE, y * CELL_SIZE)
+	self.initial_pos = (x, y)
         self.is_alive = True
         self.direction = None
 	self.invincible = False
@@ -34,6 +35,9 @@ class Pacman(pygame.sprite.Sprite):
     def activate_powerup(self, duration):
 	    self.invincible = True
 	    self.invincible_timer = duration
+
+    def reset_pos(self):
+	    self.rect.topleft = (self.initial_pos[0] * CELL_SIZE, self.initial_pos[1] * CELL_SIZE)
 
 def handle_keys(event):
     if event.key == pygame.K_LEFT:
