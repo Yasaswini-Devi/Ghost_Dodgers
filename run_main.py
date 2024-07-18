@@ -1,13 +1,6 @@
 import pygame
 from constants import *
-from static_maze import *
-from main_character import *
-from ghosts_classes import *
-from cells import *
-from powerup import *
-from pellets import *
 from maze_class import *
-from theme import *
 
 def main():
     pygame.init()
