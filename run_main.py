@@ -7,6 +7,7 @@ from cells import *
 from powerup import *
 from pellets import *
 from maze_class import *
+from theme import *
 
 def main():
     pygame.init()
@@ -14,7 +15,8 @@ def main():
     pygame.display.set_caption('Trouble Escapers')
 
     clock = pygame.time.Clock()
-    maze = Maze(screen)
+    theme_name = "Let's Hack"
+    maze = Maze(screen, theme_name)
 
     running = True
     current_direction = None
