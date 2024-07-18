@@ -115,4 +115,5 @@ class Maze:
         ghost.move()
         if pygame.sprite.spritecollide(ghost, self.walls, False):
             ghost.rect.topleft = original_position
+            ghost.direction = random.choice(['LEFT', 'RIGHT', 'UP', 'DOWN'])
 
