@@ -18,7 +18,6 @@ class Ghost(pygame.sprite.Sprite):
         self.direction = random.choice(['LEFT', 'RIGHT', 'UP', 'DOWN'])
     
     def update(self, screen):
-        self.move()
         screen.blit(self.image, self.rect.topleft)
 
     def move(self):
