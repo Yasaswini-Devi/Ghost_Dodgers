@@ -14,7 +14,7 @@ class Theme:
             pygame.transform.scale(pygame.image.load(f'assets/{self.theme_name}/ghost3.png'), (CELL_SIZE, CELL_SIZE)),
             pygame.transform.scale(pygame.image.load(f'assets/{self.theme_name}/ghost4.png'), (CELL_SIZE, CELL_SIZE))
             ]
-        self.powerup_image = pygame.image.load(f'assets/{self.theme_name}/powerup.png')
+        self.powerup_image = pygame.transform.scale(pygame.image.load(f'assets/{self.theme_name}/powerup.png'), (CELL_SIZE, CELL_SIZE))
 
     def get_pacman_image(self):
         return self.pacman_img
