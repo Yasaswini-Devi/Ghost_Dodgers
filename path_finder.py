@@ -40,3 +40,6 @@ def a_star(start, goal, grid):
         
         if (current_node.x, current_node.y) == (goal_node.x, goal_node.y):
             path = []
+            while current_node:
+                path.append((current_node.x, current_node.y))
+                current_node = came_from.get((current_node.x, current_node.y))
