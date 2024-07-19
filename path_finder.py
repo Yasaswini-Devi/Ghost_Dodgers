@@ -12,3 +12,5 @@ class Node:
     def __lt__(self, other):
         return self.f_cost < other.f_cost
 
+def heuristic(a, b):
+    return abs(a.x - b.x) + abs(a.y - b.y)
