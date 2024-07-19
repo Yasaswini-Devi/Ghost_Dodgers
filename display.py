@@ -5,6 +5,9 @@ class Display:
     def __init__(self, screen):
         self.screen = screen
         self.font = pygame.font.Font(None, 36)
+
+    def show_main_menu(self):
+        menu_options = ["Start Game", "Instructions", "Quit"]
   
     def show_life(self, lives):
         text = f"Lives: {lives}"
