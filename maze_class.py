@@ -32,7 +32,7 @@ class Maze:
                     self.fruits.add(Pellet(x_index, y_index, CELL_SIZE // 3))
                     self.pellets += 1
                 elif char == "B":
-                    self.fruits.add(PowerUp(x_index, y_index, CELL_SIZE, is_power_up = True))
+                    self.fruits.add(PowerUp(x_index, y_index, CELL_SIZE, is_power_up=True))
                     self.pellets += 1
                 elif char == "s":
                     self.ghosts.add(Ghost1(x_index, y_index, self.theme))
@@ -78,23 +78,23 @@ class Maze:
 
             if self.pellets == 0:
                 self.update()
-                self.game_over(win = True)
+                self.game_over(win=True)
         
         if pygame.sprite.spritecollideany(player, self.ghosts):
-	        if player.invincible:
-		        for ghost in pygame.sprite.spritecollide(player, self.ghosts, False):
-                    ghost.reset_pos()
+            if player.invincible:
+                for ghost in pygame.sprite.spritecollide(player, self.ghosts, False):
+                    ghost.reset_pos()  # Correct indentation here
             else:
                 self.lives -= 1
                 if self.lives == 0:
-                    self.game_over(win = False)
+                    self.game_over(win=False)
                 else:
                     player.reset_pos()
                     self.display.show_life_lost_message(self.lives)
 
         self.update()
 
-    def game_over(self, win = False):
+    def game_over(self, win=False):
         self.display.show_game_over(win, self.score)
 
         while True:
@@ -133,3 +133,4 @@ class Maze:
             ghost.rect.x = SCREEN_WIDTH - CELL_SIZE
         elif ghost.rect.x >= SCREEN_WIDTH:
             ghost.rect.x = 0
+
