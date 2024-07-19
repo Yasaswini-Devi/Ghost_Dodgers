@@ -7,14 +7,15 @@ class Theme:
         self.load_assets()
 
     def load_assets(self):
-        self.pacman_img = pygame.transform.scale(pygame.image.load(f'assets/{self.theme_name}/pacman.png'), (CELL_SIZE, CELL_SIZE))
+        base_path = f'assets/{self.theme_name}'
+        self.pacman_img = pygame.transform.scale(pygame.image.load(f'{base_path}/pacman.png'), (CELL_SIZE, CELL_SIZE))
         self.ghost_images = [
-            pygame.transform.scale(pygame.image.load(f'assets/{self.theme_name}/ghost1.png'), (CELL_SIZE, CELL_SIZE)),
-            pygame.transform.scale(pygame.image.load(f'assets/{self.theme_name}/ghost2.png'), (CELL_SIZE, CELL_SIZE)),
-            pygame.transform.scale(pygame.image.load(f'assets/{self.theme_name}/ghost3.png'), (CELL_SIZE, CELL_SIZE)),
-            pygame.transform.scale(pygame.image.load(f'assets/{self.theme_name}/ghost4.png'), (CELL_SIZE, CELL_SIZE))
+            pygame.transform.scale(pygame.image.load(f'{base_path}/ghost1.png'), (CELL_SIZE, CELL_SIZE)),
+            pygame.transform.scale(pygame.image.load(f'{base_path}/ghost2.png'), (CELL_SIZE, CELL_SIZE)),
+            pygame.transform.scale(pygame.image.load(f'base_path}/ghost3.png'), (CELL_SIZE, CELL_SIZE)),
+            pygame.transform.scale(pygame.image.load(f'{base_path}/ghost4.png'), (CELL_SIZE, CELL_SIZE))
             ]
-        self.powerup_image = pygame.transform.scale(pygame.image.load(f'assets/{self.theme_name}/powerup.png'), (CELL_SIZE, CELL_SIZE))
+        self.powerup_image = pygame.transform.scale(pygame.image.load(f'{base_path}/powerup.png'), (CELL_SIZE, CELL_SIZE))
 
     def get_pacman_image(self):
         return self.pacman_img
