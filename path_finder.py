@@ -14,3 +14,6 @@ class Node:
 
 def heuristic(a, b):
     return abs(a.x - b.x) + abs(a.y - b.y)
+
+def get_neighbors(node, grid):
+    neighbors = []
