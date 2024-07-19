@@ -30,3 +30,5 @@ def a_star(start, goal, grid):
 
     start_node = Node(start[0], start[1])
     goal_node = Node(goal[0], goal[1])
+
+    heapq.heappush(open_list, start_node)
