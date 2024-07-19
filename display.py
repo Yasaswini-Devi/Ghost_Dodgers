@@ -14,7 +14,7 @@ class Display:
 
     def show_main_menu(self):
         menu_options = ["Start Game", "Instructions", "Quit"]
-  
+          
     def show_life(self, lives):
         text = f"Lives: {lives}"
         lives_text = self.font.render(text, True, WHITE)
