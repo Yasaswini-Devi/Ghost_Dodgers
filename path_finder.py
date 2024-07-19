@@ -47,3 +47,7 @@ def a_star(start, goal, grid):
             return path[::-1]
 
         closed_list.add((current_node.x, current_node.y))
+
+        for neighbor in get_neighbors(current_node, grid):
+            if (neighbor.x, neighbor.y) in closed_list:
+                continue
