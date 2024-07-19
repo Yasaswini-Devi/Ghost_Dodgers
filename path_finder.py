@@ -27,3 +27,6 @@ def get_neighbors(node, grid):
 def a_star(start, goal, grid):
     open_list = []
     closed_list = set()
+
+    start_node = Node(start[0], start[1])
+    goal_node = Node(goal[0], goal[1])
