@@ -10,9 +10,9 @@ from display import *
 from theme import *
 
 class Maze:
-    def __init__(self, screen, theme_name):
+    def __init__(self, screen, theme):
         self.screen = screen
-        self.theme = Theme(theme_name)
+        self.theme = theme
         self.display = Display(screen)
         self.player = pygame.sprite.GroupSingle()
         self.ghosts = pygame.sprite.Group()
