@@ -43,7 +43,7 @@ class Maze:
                 elif char == "r":
                     self.ghosts.add(Ghost4(x_index, y_index, self.theme))
                 elif char == "P":
-                    self.player.add(Pacman(x_index, y_index, self.theme.get_pacman_image))
+                    self.player.add(Pacman(x_index, y_index, self.theme.get_pacman_image()))
 
     def update(self):
         self.walls.update(self.screen)
