@@ -8,7 +8,7 @@ def main():
     pygame.display.set_caption('Trouble Escapers')
 
     clock = pygame.time.Clock()
-    theme_name = "It's Halloween Time"
+    theme_name = "Let's Hack"
     maze = Maze(screen, theme_name)
 
     running = True
