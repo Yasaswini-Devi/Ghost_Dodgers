@@ -45,3 +45,5 @@ def a_star(start, goal, grid):
                 current_node = came_from.get((current_node.x, current_node.y))
 
             return path[::-1]
+
+        closed_list.add((current_node.x, current_node.y))
