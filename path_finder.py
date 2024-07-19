@@ -1,3 +1,5 @@
+import heapq
+
 class Node:
     def __init__(self, x, y, g_cost=0, h_cost=0, parent=None):
         self.x = x
