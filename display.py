@@ -5,6 +5,40 @@ class Display:
     def __init__(self, screen):
         self.screen = screen
         self.font = pygame.font.Font(None, 36)
+        self.themes = {
+                "It's Halloween Time": "halloween",
+                "Let's Hack": "lets_hack"
+                }
+
+    def theme_selection_menu(self):
+        background = pygame.transform.scale(pygame.image.load("assets/wallpaper.jpeg"), (SCREEN_WIDTH, SCREEN_HEIGHT))
+        title_font = pygame.font.Font(None, 56)
+        title_text = title_font.render("Select a Theme", True, BLACK)
+        title_rect = title_text.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 - 50))
+        theme_texts = []
+
+        for i, (theme_name, theme_folder) in enumerate(self.themes.items()):
+            text = self.font.render(theme_name, True, BLACK)
+            rect = text.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + i * 40))
+            theme_texts.append((text, rect, theme_folder))
+
+        while True:
+            self.screen.blit(background, (0, 0))
+            self.screen.blit(title_text, title_rect)
+
+            for text, rect, _ in theme_texts:
+                self.screen.blit(text, rect)
+
+            pygame.display.flip()
+
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    exit()
+                elif event.type == pygame.MOUSEBUTTONDOWN:
+                    for text, rect, theme_folder in theme_texts:
+                        if rect.collidepoint(event.pos):
+                            return theme_folder
 
     def draw_text(text, font, color, surface, x, y):
         text_obj = self.font.render(text, True, color)
