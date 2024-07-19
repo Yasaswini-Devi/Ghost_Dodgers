@@ -51,3 +51,5 @@ def a_star(start, goal, grid):
         for neighbor in get_neighbors(current_node, grid):
             if (neighbor.x, neighbor.y) in closed_list:
                 continue
+
+            tentative_g_cost = current_node.g_cost + 1
