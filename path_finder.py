@@ -23,3 +23,7 @@ def get_neighbors(node, grid):
         if 0 <= nx < len(grid) and 0 <= ny < len(grid[0]) and grid[nx][ny] == 0:
             neighbors.append(Node(nx, ny))
     return neighbors
+
+def a_star(start, goal, grid):
+    open_list = []
+    closed_list = set()
