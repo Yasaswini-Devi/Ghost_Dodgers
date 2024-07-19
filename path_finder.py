@@ -37,3 +37,6 @@ def a_star(start, goal, grid):
 
     while open_list:
         current_node = heapq.heappop(open_list)
+        
+        if (current_node.x, current_node.y) == (goal_node.x, goal_node.y):
+            path = []
