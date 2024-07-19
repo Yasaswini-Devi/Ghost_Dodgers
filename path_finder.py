@@ -43,3 +43,5 @@ def a_star(start, goal, grid):
             while current_node:
                 path.append((current_node.x, current_node.y))
                 current_node = came_from.get((current_node.x, current_node.y))
+
+            return path[::-1]
