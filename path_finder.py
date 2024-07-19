@@ -32,3 +32,5 @@ def a_star(start, goal, grid):
     goal_node = Node(goal[0], goal[1])
 
     heapq.heappush(open_list, start_node)
+
+    came_from = {}
