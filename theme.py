@@ -12,7 +12,7 @@ class Theme:
         self.ghost_images = [
             pygame.transform.scale(pygame.image.load(f'{base_path}/ghost1.png'), (CELL_SIZE, CELL_SIZE)),
             pygame.transform.scale(pygame.image.load(f'{base_path}/ghost2.png'), (CELL_SIZE, CELL_SIZE)),
-            pygame.transform.scale(pygame.image.load(f'base_path}/ghost3.png'), (CELL_SIZE, CELL_SIZE)),
+            pygame.transform.scale(pygame.image.load(f'{base_path}/ghost3.png'), (CELL_SIZE, CELL_SIZE)),
             pygame.transform.scale(pygame.image.load(f'{base_path}/ghost4.png'), (CELL_SIZE, CELL_SIZE))
             ]
         self.powerup_image = pygame.transform.scale(pygame.image.load(f'{base_path}/powerup.png'), (CELL_SIZE, CELL_SIZE))
