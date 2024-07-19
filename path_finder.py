@@ -6,3 +6,7 @@ class Node:
         self.h_cost = h_cost
         self.f_cost = g_cost + h_cost
         self.parent = parent
+
+    def __lt__(self, other):
+        return self.f_cost < other.f_cost
+
