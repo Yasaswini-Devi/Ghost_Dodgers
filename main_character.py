@@ -1,9 +1,6 @@
 import pygame
 from constants import *
 
-img_1 = pygame.transform.scale(pygame.image.load(f'assets/pacman_halloween_theme.png'), (CELL_SIZE, CELL_SIZE))
-img_2 = pygame.transform.scale(pygame.image.load(f'assets/pacman_hacking_theme.png'), (CELL_SIZE, CELL_SIZE))
-
 class Pacman(pygame.sprite.Sprite):
     def __init__(self, x, y, img):
         super().__init__()
