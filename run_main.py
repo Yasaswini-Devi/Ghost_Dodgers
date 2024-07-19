@@ -7,9 +7,12 @@ def main():
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     pygame.display.set_caption('Trouble Escapers')
 
+    display = Display(screen)
+    selected_theme = display.theme_selection_name()
+    theme = Theme(selected_theme)
+
     clock = pygame.time.Clock()
-    theme_name = "Let's Hack"
-    maze = Maze(screen, theme_name)
+    maze = Maze(screen, theme)
 
     running = True
     current_direction = None
