@@ -17,3 +17,4 @@ def heuristic(a, b):
 
 def get_neighbors(node, grid):
     neighbors = []
+    directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]
