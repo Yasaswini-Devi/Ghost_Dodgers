@@ -34,3 +34,6 @@ def a_star(start, goal, grid):
     heapq.heappush(open_list, start_node)
 
     came_from = {}
+
+    while open_list:
+        current_node = heapq.heappop(open_list)
