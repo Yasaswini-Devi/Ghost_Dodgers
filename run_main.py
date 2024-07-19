@@ -8,7 +8,7 @@ def main():
     pygame.display.set_caption('Trouble Escapers')
 
     display = Display(screen)
-    selected_theme = display.theme_selection_name()
+    selected_theme = display.theme_selection_menu()
     theme = Theme(selected_theme)
 
     clock = pygame.time.Clock()
