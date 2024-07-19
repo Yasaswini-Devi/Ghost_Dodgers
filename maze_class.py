@@ -32,7 +32,7 @@ class Maze:
                     self.fruits.add(Pellet(x_index, y_index, CELL_SIZE // 3))
                     self.pellets += 1
                 elif char == "B":
-                    self.fruits.add(PowerUp(x_index, y_index, CELL_SIZE, is_power_up=True))
+                    self.fruits.add(PowerUp(x_index, y_index, CELL_SIZE,self.theme, is_power_up=True))
                     self.pellets += 1
                 elif char == "s":
                     self.ghosts.add(Ghost1(x_index, y_index, self.theme))
@@ -83,7 +83,7 @@ class Maze:
         if pygame.sprite.spritecollideany(player, self.ghosts):
             if player.invincible:
                 for ghost in pygame.sprite.spritecollide(player, self.ghosts, False):
-                    ghost.reset_pos()  # Correct indentation here
+                    ghost.reset_pos()
             else:
                 self.lives -= 1
                 if self.lives == 0:
