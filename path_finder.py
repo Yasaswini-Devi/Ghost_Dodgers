@@ -53,3 +53,7 @@ def a_star(start, goal, grid):
                 continue
 
             tentative_g_cost = current_node.g_cost + 1
+            if (neighbor.x, neighbor.y) not in [(n.x, n.y) for n in open_list]:
+                neighbor.g_cost = tentative_g_cost
+                neighbor.h_cost = heuristic(neighbor, goal_node)
+                neighbor.f_cost = neighbor.g_cost + neighbor.h_cost
