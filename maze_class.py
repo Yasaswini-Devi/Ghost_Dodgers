@@ -119,7 +119,8 @@ class Maze:
 
     def move_ghost(self, ghost):
         original_position = ghost.rect.topleft
-        ghost.set_direction(self.player.sprite.rect.topleft)
+        player_pos = self.player.sprite.rect
+        ghost.set_direction((player_pos.x // CELL_SIZE, player_pos.y // CELL_SIZE))
         ghost.move()
         '''if pygame.sprite.spritecollide(ghost, self.walls, False):
             ghost.rect.topleft = original_position
