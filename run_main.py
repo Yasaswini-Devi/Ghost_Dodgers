@@ -31,12 +31,14 @@ def main():
                         current_direction = new_direction
 
             move_timer += 1
-            if move_timer >= 10:
+            if move_timer % 10 == 0:
                 maze.move_player(current_direction)
                 for ghost in maze.ghosts:
                     maze.move_ghost(ghost)
-                    break
-                move_timer = 0
+                    ghost.timer += 1
+                    if ghost.timer >= ghost.delay:
+                        maze.move_ghost(ghost)
+                        ghost.timer = 0 
 
             screen.fill(BLUE)
             maze.update()
