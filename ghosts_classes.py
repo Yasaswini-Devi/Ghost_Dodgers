@@ -47,15 +47,15 @@ class Ghost(pygame.sprite.Sprite):
 
 class Ghost1(Ghost):
     def __init__(self, x, y, theme):
-        super().__init__(x, y, theme.get_ghost_image(0), 30)
+        super().__init__(x, y, theme.get_ghost_image(0), 150)
         
 class Ghost2(Ghost):
     def __init__(self, x, y, theme):
-        super().__init__(x, y, theme.get_ghost_image(1), 20)
+        super().__init__(x, y, theme.get_ghost_image(1), 50)
 
 class Ghost3(Ghost):
     def __init__(self, x, y, theme):
-        super().__init__(x, y, theme.get_ghost_image(2), 10)
+        super().__init__(x, y, theme.get_ghost_image(2), 100)
 
 class Ghost4(Ghost):
     def __init__(self, x, y, theme):
