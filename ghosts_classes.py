@@ -1,5 +1,6 @@
 import pygame
 import random
+from static_maze import *
 from constants import *
 from theme import *
 
