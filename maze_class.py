@@ -23,7 +23,7 @@ class Maze:
         self.score = 0
         self.lives = 3
         self.generate_maze()
-        self.grid = self.create_grid()
+        self.grid = MAZE
 
     def generate_maze(self):
         for y_index, col in enumerate(MAZE):
@@ -119,19 +119,6 @@ class Maze:
         self.lives = 3
         self.grid = self.create_grid()
         self.generate_maze()
-
-    
-    def create_grid(self):
-        grid = []
-        for row in MAZE:
-            grid_row = []
-            for cell in row:
-                if cell == '1':
-                    grid_row.append(1)  # Wall
-                else:
-                    grid_row.append(0)  # Empty space
-            grid.append(grid_row)
-        return grid
 
     def move_ghost(self, ghost):
         original_position = ghost.rect.topleft
