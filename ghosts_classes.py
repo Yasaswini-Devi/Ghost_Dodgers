@@ -6,13 +6,15 @@ from theme import *
 from path_finder import a_star
 
 class Ghost(pygame.sprite.Sprite):
-    def __init__(self, x, y, img):
+    def __init__(self, x, y, img, delay):
         super().__init__()
         self.image = img
         self.rect = self.image.get_rect()
         self.initial_pos = (x, y)
         self.rect.topleft = (x * CELL_SIZE, y * CELL_SIZE)
         self.direction = ''
+        self.timer = 0
+        self.delay = delay
     
     def update(self, screen):
         screen.blit(self.image, self.rect.topleft)
@@ -45,16 +47,16 @@ class Ghost(pygame.sprite.Sprite):
 
 class Ghost1(Ghost):
     def __init__(self, x, y, theme):
-        super().__init__(x, y, theme.get_ghost_image(0))
+        super().__init__(x, y, theme.get_ghost_image(0), 0)
         
 class Ghost2(Ghost):
     def __init__(self, x, y, theme):
-        super().__init__(x, y, theme.get_ghost_image(1))
+        super().__init__(x, y, theme.get_ghost_image(1), 10)
 
 class Ghost3(Ghost):
     def __init__(self, x, y, theme):
-        super().__init__(x, y, theme.get_ghost_image(2))
+        super().__init__(x, y, theme.get_ghost_image(2), 20)
 
 class Ghost4(Ghost):
     def __init__(self, x, y, theme):
-        super().__init__(x, y, theme.get_ghost_image(3))
+        super().__init__(x, y, theme.get_ghost_image(3), 30)
