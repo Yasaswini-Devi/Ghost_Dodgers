@@ -10,6 +10,60 @@ class Display:
                 "Let's Hack": "lets_hack"
                 }
 
+    def show_main_menu(self):
+        background = pygame.transform.scale(pygame.image.load("assets/main_menu.jpeg"), (SCREEN_WIDTH, SCREEN_HEIGHT))
+        self.screen.fill(BLACK)
+        menu_options = ["Start Game", "Instructions", "Quit"]
+        selected_option = 0
+
+        while True:
+            self.screen.blit(background, (0, 0))
+            title_text = self.font.render("WELCOME TO TROUBLE ESCAPERS!", True, BLACK)
+            title_rect = title_text.get_rect(center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 - 150))
+            self.screen.blit(title_text, title_rect)
+
+            for index, option in enumerate(menu_options):
+                option_text = self.font.render(option, True, WHITE)
+                option_rect = option_text.get_rect(center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + index * 50))
+
+                box_rect = pygame.Rect(option_rect.left - 10, option_rect.top - 10, option_rect.width + 20, option_rect.height + 20)
+                pygame.draw.rect(self.screen, RED, box_rect, 2)
+
+                self.screen.blit(option_text, option_rect)
+
+            pygame.display.flip()
+
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    exit()
+                elif event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_UP:
+                        selected_option = (selected_option - 1) % len(menu_options)
+                    elif event.key == pygame.K_DOWN:
+                        selected_option = (selected_option + 1) % len(menu_options)
+                    elif event.key == pygame.K_RETURN:
+                        if selected_option == 0:
+                            return "start"
+                        elif selected_option == 1:
+                            self.show_instructions()
+                        elif selected_option == 2:
+                            pygame.quit()
+                            exit()
+                elif event.type == pygame.MOUSEBUTTONDOWN:
+                    if event.button == 1:
+                        x, y = event.pos
+                        for i, option in enumerate(menu_options):
+                            option_rect = pygame.Rect(SCREEN_WIDTH // 2 - 100, SCREEN_HEIGHT // 2 + i * 60 - 20, 200, 40)
+                            if option_rect.collidepoint(x, y):
+                                if i == 0:
+                                    return "start"
+                                elif i == 1:
+                                    self.show_instructions()
+                                elif i == 2:
+                                    pygame.quit()
+                                    exit()
+
     def theme_selection_menu(self):
         background = pygame.transform.scale(pygame.image.load("assets/wallpaper.jpeg"), (SCREEN_WIDTH, SCREEN_HEIGHT))
         title_font = pygame.font.Font(None, 56)
