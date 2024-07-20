@@ -75,7 +75,7 @@ class Maze:
                 self.pellets -= 1
                 if isinstance(pellet, PowerUp):
                     self.score += 50
-                    player.activate_powerup(1000)
+                    player.activate_powerup(100)
                 else:
                     self.score += 10
 
