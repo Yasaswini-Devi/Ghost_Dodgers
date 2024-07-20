@@ -63,3 +63,5 @@ def a_star(start, goal, grid):
                 neighbor.g_cost = tentative_g_cost
                 neighbor.f_cost = neighbor.g_cost + neighbor.h_cost
                 came_from[(neighbor.x, neighbor.y)] = current_node
+
+        return None
