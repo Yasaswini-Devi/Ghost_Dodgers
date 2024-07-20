@@ -37,9 +37,7 @@ def main():
                 for ghost in maze.ghosts:
                     ghost.timer = move_timer
                     if ghost.timer >= ghost.delay:
-                        print(ghost.timer, ghost.delay)
-                        maze.move_ghost(ghost)
- 
+                        maze.move_ghost(ghost) 
 
             screen.fill(BLUE)
             maze.update()
