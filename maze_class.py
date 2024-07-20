@@ -69,7 +69,8 @@ class Maze:
         if player.invincible:
             if player.invincible_timer == 0:
                 player.invincible = False
-                ghost.mode = "chase"
+                for ghost in self.ghosts:
+                    ghost.mode = "chase"
             else:
                 player.invincible_timer -= 1
 
@@ -134,9 +135,9 @@ class Maze:
         self.generate_maze()
 
     def move_ghost(self, ghost):
+        target = {'chase': self.player.sprite.rect, 'frightened': ghost.rect}
         original_position = ghost.rect.topleft
-        pacman_pos = (self.player.sprite.rect.x // CELL_SIZE, self.player.sprite.rect.y // CELL_SIZE)
-        ghost.set_direction(pacman_pos)
+        ghost.set_direction((target[ghost.mode].x // CELL_SIZE, target[ghost.mode].y // CELL_SIZE))
         ghost.move()
 
         for other_ghost in self.ghosts:
