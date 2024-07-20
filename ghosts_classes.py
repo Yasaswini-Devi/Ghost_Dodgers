@@ -29,10 +29,6 @@ class Ghost(pygame.sprite.Sprite):
         elif self.direction == 'DOWN':
             self.rect.y += CELL_SIZE
 
-        if random.randint(0, 10) == 0:
-            self.direction = random.choice(['LEFT', 'RIGHT', 'UP', 'DOWN'])
-
-
 class Ghost1(Ghost):
     def __init__(self, x, y, theme):
         super().__init__(x, y, theme.get_ghost_image(0))
