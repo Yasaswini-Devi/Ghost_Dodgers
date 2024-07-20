@@ -82,6 +82,8 @@ class Maze:
                 if isinstance(pellet, PowerUp):
                     self.score += 50
                     player.activate_powerup(100)
+                    for ghost in self.ghosts:
+                        ghost.mode = "frightened"
                 else:
                     self.score += 10
 
