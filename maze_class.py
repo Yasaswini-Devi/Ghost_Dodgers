@@ -8,6 +8,7 @@ from powerup import *
 from pellets import *
 from display import *
 from theme import *
+from path_finder import *
 
 class Maze:
     def __init__(self, screen, theme):
@@ -22,6 +23,7 @@ class Maze:
         self.score = 0
         self.lives = 3
         self.generate_maze()
+        self.grid = self.create_grid()
 
     def generate_maze(self):
         for y_index, col in enumerate(MAZE):
@@ -115,11 +117,43 @@ class Maze:
         self.pellets = 0
         self.score = 0
         self.lives = 3
+        self.grid = self.create_grid()
         self.generate_maze()
+
+    
+    def create_grid(self):
+        grid = []
+        for row in MAZE:
+            grid_row = []
+            for cell in row:
+                if cell == '1':
+                    grid_row.append(1)  # Wall
+                else:
+                    grid_row.append(0)  # Empty space
+            grid.append(grid_row)
+        return grid
 
     def move_ghost(self, ghost):
         original_position = ghost.rect.topleft
+        pacman_pos = (self.player.sprite.rect.x // CELL_SIZE, self.player.sprite.rect.y // CELL_SIZE)
+        ghost_pos = (ghost.rect.x // CELL_SIZE, ghost.rect.y // CELL_SIZE)
+        
+        path = a_star(ghost_pos, pacman_pos, self.grid)
+      
+
+        if path:
+            next_step = path[1] if len(path) > 1 else path[0]
+            if next_step[0] > ghost_pos[0]:
+                ghost.direction = 'RIGHT'
+            elif next_step[0] < ghost_pos[0]:
+                ghost.direction = 'LEFT'
+            elif next_step[1] > ghost_pos[1]:
+                ghost.direction = 'DOWN'
+            elif next_step[1] < ghost_pos[1]:
+                ghost.direction = 'UP'
+        
         ghost.move()
+
         if pygame.sprite.spritecollide(ghost, self.walls, False):
             ghost.rect.topleft = original_position
             ghost.direction = random.choice(['LEFT', 'RIGHT', 'UP', 'DOWN'])
@@ -133,4 +167,6 @@ class Maze:
             ghost.rect.x = SCREEN_WIDTH - CELL_SIZE
         elif ghost.rect.x >= SCREEN_WIDTH:
             ghost.rect.x = 0
+    
+
 
