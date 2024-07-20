@@ -21,7 +21,7 @@ class Ghost(pygame.sprite.Sprite):
         self.rect.topleft = (self.initial_pos[0] * CELL_SIZE, self.initial_pos[1] * CELL_SIZE)
 
     def set_direction(self, player_pos):
-        path = a_star((self.rect.x // CELL_SIZE, self.rect.y // CELL_SIZE), player_pos, maze)
+        path = a_star((self.rect.x // CELL_SIZE, self.rect.y // CELL_SIZE), player_pos, MAZE)
         if path and len(path) > 1:
             next_pos = path[1]
             if next_pos[0] * CELL_SIZE < self.rect.x:
