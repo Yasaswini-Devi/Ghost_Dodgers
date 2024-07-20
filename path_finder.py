@@ -20,23 +20,22 @@ def get_neighbors(node, grid):
     directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]
     for d in directions:
         nx, ny = node.x + d[0], node.y + d[1]
-        if 0 <= nx < len(grid) and 0 <= ny < len(grid[0]) and grid[nx][ny] == ' ':
+        if 0 <= nx < len(grid) and 0 <= ny < len(grid[0]) and grid[nx][ny] != '1':
             neighbors.append(Node(nx, ny))
+
     return neighbors
 
 def a_star(start, goal, grid):
     open_list = []
     closed_list = set()
-    print(start, goal)
+    came_from = {}
     start_node = Node(start[0], start[1])
     goal_node = Node(goal[0], goal[1])
 
     heapq.heappush(open_list, start_node)
 
     while open_list:
-        print([(n.x, n.y) for n in open_list])
         current_node = heapq.heappop(open_list)
-        print(current_node.x, current_node.y)
         
         if (current_node.x, current_node.y) == (goal_node.x, goal_node.y):
             path = []
@@ -46,20 +45,17 @@ def a_star(start, goal, grid):
             return path
 
         for neighbor in get_neighbors(current_node, grid):
-            print(neighbor)
-            if (neighbor.x, neighbor.y) in closed_list:
-                continue
-
-            tentative_g_cost = current_node.g_cost + 1
-            if (neighbor.x, neighbor.y) not in [(n.x, n.y) for n in open_list]:
-                neighbor.g_cost = tentative_g_cost
-                neighbor.h_cost = heuristic(neighbor, goal_node)
-                neighbor.f_cost = neighbor.g_cost + neighbor.h_cost
-                came_from[(neighbor.x, neighbor.y)] = current_node
-                heapq.heappush(open_list, neighbor)
-            elif tentative_g_cost < neighbor.g_cost:
-                neighbor.g_cost = tentative_g_cost
-                neighbor.f_cost = neighbor.g_cost + neighbor.h_cost
-                came_from[(neighbor.x, neighbor.y)] = current_node
+            if (neighbor.x, neighbor.y) not in closed_list:
+                tentative_g_cost = current_node.g_cost + 1
+                if (neighbor.x, neighbor.y) not in [(n.x, n.y) for n in open_list]:
+                    neighbor.g_cost = tentative_g_cost
+                    neighbor.h_cost = heuristic(neighbor, goal_node)
+                    neighbor.f_cost = neighbor.g_cost + neighbor.h_cost
+                    came_from[(neighbor.x, neighbor.y)] = current_node
+                    heapq.heappush(open_list, neighbor)
+                elif tentative_g_cost < neighbor.g_cost:
+                    neighbor.g_cost = tentative_g_cost
+                    neighbor.f_cost = neighbor.g_cost + neighbor.h_cost
+                    came_from[(neighbor.x, neighbor.y)] = current_node
 
         return []
