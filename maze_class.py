@@ -8,6 +8,7 @@ from powerup import *
 from pellets import *
 from display import *
 from theme import *
+from path_finder import *
 
 class Maze:
     def __init__(self, screen, theme):
@@ -22,6 +23,7 @@ class Maze:
         self.score = 0
         self.lives = 3
         self.generate_maze()
+        self.grid = self.create_grid()
 
     def generate_maze(self):
         for y_index, col in enumerate(MAZE):
@@ -115,17 +117,27 @@ class Maze:
         self.pellets = 0
         self.score = 0
         self.lives = 3
+        self.grid = self.create_grid()
         self.generate_maze()
 
+    
+    def create_grid(self):
+        grid = []
+        for row in MAZE:
+            grid_row = []
+            for cell in row:
+                if cell == '1':
+                    grid_row.append(1)  # Wall
+                else:
+                    grid_row.append(0)  # Empty space
+            grid.append(grid_row)
+        return grid
+
     def move_ghost(self, ghost):
-        original_position = ghost.rect.topleft
         player_pos = self.player.sprite.rect
         ghost.set_direction((player_pos.x // CELL_SIZE, player_pos.y // CELL_SIZE))
         ghost.move()
-        '''if pygame.sprite.spritecollide(ghost, self.walls, False):
-            ghost.rect.topleft = original_position
-            ghost.direction = random.choice(['LEFT', 'RIGHT', 'UP', 'DOWN'])'''
-
+           
         for other_ghost in self.ghosts:
             if other_ghost != ghost and pygame.sprite.collide_rect(ghost, other_ghost):
                 ghost.rect.topleft = original_position
@@ -135,4 +147,6 @@ class Maze:
             ghost.rect.x = SCREEN_WIDTH - CELL_SIZE
         elif ghost.rect.x >= SCREEN_WIDTH:
             ghost.rect.x = 0
+    
+
 

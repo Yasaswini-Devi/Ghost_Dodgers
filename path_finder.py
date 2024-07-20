@@ -33,8 +33,6 @@ def a_star(start, goal, grid):
 
     heapq.heappush(open_list, start_node)
 
-    came_from = {}
-
     while open_list:
         print([(n.x, n.y) for n in open_list])
         current_node = heapq.heappop(open_list)
@@ -45,10 +43,7 @@ def a_star(start, goal, grid):
             while current_node:
                 path.append((current_node.x, current_node.y))
                 current_node = came_from.get((current_node.x, current_node.y))
-
-            return path[::-1]
-
-        closed_list.add((current_node.x, current_node.y))
+            return path
 
         for neighbor in get_neighbors(current_node, grid):
             print(neighbor)
@@ -67,4 +62,4 @@ def a_star(start, goal, grid):
                 neighbor.f_cost = neighbor.g_cost + neighbor.h_cost
                 came_from[(neighbor.x, neighbor.y)] = current_node
 
-        return None
+        return []
