@@ -99,9 +99,6 @@ class Display:
         text_rect = text_obj.get_rect()
         text_rect.center = (x, y)
         surface.blit(text_obj, text_rect)
-
-    def show_main_menu(self):
-        menu_options = ["Start Game", "Instructions", "Quit"]
           
     def show_life(self, lives):
         text = f"Lives: {lives}"
