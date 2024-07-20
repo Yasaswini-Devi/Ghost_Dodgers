@@ -65,6 +65,12 @@ class Maze:
             player.rect.x = SCREEN_WIDTH - CELL_SIZE
         elif player.rect.x >= SCREEN_WIDTH:
             player.rect.x = 0
+        
+        if player.invincible:
+            if player.invincible_timer == 0:
+                player.invincible = False
+            else:
+                player.invincible_timer -= 1
 
         if pygame.sprite.spritecollide(player, self.walls, False):
             player.rect.topleft = original_position
