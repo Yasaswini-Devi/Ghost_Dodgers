@@ -15,6 +15,7 @@ class Ghost(pygame.sprite.Sprite):
         self.direction = ''
         self.timer = 0
         self.delay = delay
+        self.mode = "chase"
     
     def update(self, screen):
         screen.blit(self.image, self.rect.topleft)
