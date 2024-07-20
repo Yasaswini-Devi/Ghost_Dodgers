@@ -122,14 +122,14 @@ class Maze:
         self.generate_maze()
 
     def move_ghost(self, ghost):
-        original_position = ghost.rect.topleft
-        pacman_pos = (self.player.sprite.rect.x // CELL_SIZE, self.player.sprite.rect.y // CELL_SIZE)
-        ghost_pos = (ghost.rect.x // CELL_SIZE, ghost.rect.y // CELL_SIZE)
-        
-        path = a_star(ghost_pos, pacman_pos, self.grid)
-      
 
-        if path:
+        #original_position = ghost.rect.topleft
+        pacman_pos = (self.player.sprite.rect.x // CELL_SIZE, self.player.sprite.rect.y // CELL_SIZE)
+        '''ghost_pos = (ghost.rect.x // CELL_SIZE, ghost.rect.y // CELL_SIZE)
+        
+        path = a_star(ghost_pos, pacman_pos, self.grid)     '''
+
+        '''if path:
             next_step = path[1] if len(path) > 1 else path[0]
             if next_step[0] > ghost_pos[0]:
                 ghost.direction = 'RIGHT'
@@ -138,8 +138,8 @@ class Maze:
             elif next_step[1] > ghost_pos[1]:
                 ghost.direction = 'DOWN'
             elif next_step[1] < ghost_pos[1]:
-                ghost.direction = 'UP'
-        
+                ghost.direction = 'UP'''
+        ghost.set_direction(pacman_pos)
         ghost.move()
 
         for other_ghost in self.ghosts:
