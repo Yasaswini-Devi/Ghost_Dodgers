@@ -1,55 +1,40 @@
 import heapq
 
-class Node:
-    def __init__(self, x, y, g_cost=0, h_cost=0, parent=None):
-        self.x = x
-        self.y = y
-        self.g_cost = g_cost
-        self.h_cost = h_cost
-        self.f_cost = g_cost + h_cost
-        self.parent = parent
-
-    def __lt__(self, other):
-        return self.f_cost < other.f_cost
-
-def heuristic(a, b):
-    return abs(a.x - b.x) + abs(a.y - b.y)
-
-def get_neighbors(node, grid):
-    neighbors = []
-    directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]
-    for d in directions:
-        nx, ny = node.x + d[0], node.y + d[1]
-        if 0 <= nx < len(grid) and 0 <= ny < len(grid[0]) and grid[nx][ny] == 0:
-            neighbors.append(Node(nx, ny))
-    return neighbors
-
 def a_star(start, goal, grid):
-    open_list = []
-    closed_list = set()
+    def heuristic(a, b):
+        return abs(a[0] - b[0]) + abs(a[1] - b[1])
 
-    start_node = Node(start[0], start[1])
-    goal_node = Node(goal[0], goal[1])
+    def reconstruct_path(came_from, current):
+        path = [current]
+        while current in came_from:
+            current = came_from[current]
+            path.append(current)
+        path.reverse()
+        return path
 
-    heapq.heappush(open_list, start_node)
-
+    open_set = []
+    heapq.heappush(open_set, (0, start))
     came_from = {}
+    g_score = {start: 0}
+    f_score = {start: heuristic(start, goal)}
 
-    while open_list:
-        current_node = heapq.heappop(open_list)
-        
-        if (current_node.x, current_node.y) == (goal_node.x, goal_node.y):
-            path = []
-            while current_node:
-                path.append((current_node.x, current_node.y))
-                current_node = came_from.get((current_node.x, current_node.y))
+    while open_set:
+        _, current = heapq.heappop(open_set)
 
-            return path[::-1]
+        if current == goal:
+            return reconstruct_path(came_from, current)
 
-        closed_list.add((current_node.x, current_node.y))
+        for direction in [(0, 1), (1, 0), (0, -1), (-1, 0)]:
+            neighbor = (current[0] + direction[0], current[1] + direction[1])
+            if 0 <= neighbor[0] < len(grid) and 0 <= neighbor[1] < len(grid[0]) and grid[neighbor[1]][neighbor[0]] == 0:
+                tentative_g_score = g_score[current] + 1
 
-        for neighbor in get_neighbors(current_node, grid):
-            if (neighbor.x, neighbor.y) in closed_list:
-                continue
+                if neighbor not in g_score or tentative_g_score < g_score[neighbor]:
+                    came_from[neighbor] = current
+                    g_score[neighbor] = tentative_g_score
+                    f_score[neighbor] = tentative_g_score + heuristic(neighbor, goal)
+                    if not any(neighbor == item[1] for item in open_set):
+                        heapq.heappush(open_set, (f_score[neighbor], neighbor))
 
-            tentative_g_cost = current_node.g_cost + 1
+    return []
+
