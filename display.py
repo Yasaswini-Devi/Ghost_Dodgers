@@ -64,6 +64,29 @@ class Display:
                                     pygame.quit()
                                     exit()
 
+    def show_instructions(self):
+        self.screen.fill(BLACK)
+        instructions = [
+            "1. Use arrow keys to move Pacman.",
+            "2. Eat pellets to score points.",
+            "3. Avoid ghosts or use power-ups to defeat them.",
+            "4. You have three lives to win the game.",
+            "5. Press Q to quit or R to restart during the game.",
+            "6. Press Esc to go back to home page."
+        ]
+        for i, line in enumerate(instructions):
+            text = self.font.render(line, True, WHITE)
+            self.screen.blit(text, (20, SCREEN_HEIGHT // 4 + i * 50))
+        pygame.display.flip()
+
+        while True:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    exit()
+                if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+                    return
+
     def theme_selection_menu(self):
         background = pygame.transform.scale(pygame.image.load("assets/wallpaper.jpeg"), (SCREEN_WIDTH, SCREEN_HEIGHT))
         title_font = pygame.font.Font(None, 56)
