@@ -1,4 +1,5 @@
 import pygame
+import sys
 from constants import *
 from static_maze import *
 from main_character import *
@@ -107,7 +108,7 @@ class Maze:
                         return
                     elif event.key == pygame.K_q:
                         pygame.quit()
-                        return
+                        sys.exit()
 
     def reset_game(self):
         self.player.empty()
@@ -140,10 +141,6 @@ class Maze:
                 ghost.direction = 'UP'
         
         ghost.move()
-
-        if pygame.sprite.spritecollide(ghost, self.walls, False):
-            ghost.rect.topleft = original_position
-            ghost.direction = random.choice(['LEFT', 'RIGHT', 'UP', 'DOWN'])
 
         for other_ghost in self.ghosts:
             if other_ghost != ghost and pygame.sprite.collide_rect(ghost, other_ghost):
