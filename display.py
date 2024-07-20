@@ -23,7 +23,7 @@ class Display:
             self.screen.blit(title_text, title_rect)
 
             for index, option in enumerate(menu_options):
-                option_text = self.font.render(option, True, WHITE)
+                option_text = self.font.render(option, True, BLACK)
                 option_rect = option_text.get_rect(center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + index * 50))
 
                 box_rect = pygame.Rect(option_rect.left - 10, option_rect.top - 10, option_rect.width + 20, option_rect.height + 20)
