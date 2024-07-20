@@ -3,6 +3,7 @@ import random
 from static_maze import *
 from constants import *
 from theme import *
+from path_finder import a_star
 
 class Ghost(pygame.sprite.Sprite):
     def __init__(self, x, y, img):
