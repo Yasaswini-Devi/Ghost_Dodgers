@@ -8,36 +8,39 @@ def main():
     pygame.display.set_caption('Trouble Escapers')
 
     display = Display(screen)
-    selected_theme = display.theme_selection_menu()
-    theme = Theme(selected_theme)
+    menu_choice = display.show_main_menu()
 
-    clock = pygame.time.Clock()
-    maze = Maze(screen, theme)
+    if menu_choice == "start":
+        selected_theme = display.theme_selection_menu()
+        theme = Theme(selected_theme)
 
-    running = True
-    current_direction = None
-    move_timer = 0  
+        clock = pygame.time.Clock()
+        maze = Maze(screen, theme)
 
-    while running:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                running = False
-            elif event.type == pygame.KEYDOWN:
-                new_direction = handle_keys(event)
-                if new_direction:
-                    current_direction = new_direction
+        running = True
+        current_direction = None
+        move_timer = 0  
 
-        move_timer += 1
-        if move_timer >= 10:
-            maze.move_player(current_direction)
-            for ghost in maze.ghosts:
-                maze.move_ghost(ghost)
-            move_timer = 0
+        while running:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    running = False
+                elif event.type == pygame.KEYDOWN:
+                    new_direction = handle_keys(event)
+                    if new_direction:
+                        current_direction = new_direction
 
-        screen.fill(BLUE)
-        maze.update()
-        pygame.display.flip()
-        clock.tick(60)
+            move_timer += 1
+            if move_timer >= 10:
+                maze.move_player(current_direction)
+                for ghost in maze.ghosts:
+                    maze.move_ghost(ghost)
+                move_timer = 0
+
+            screen.fill(BLUE)
+            maze.update()
+            pygame.display.flip()
+            clock.tick(60)
 
     pygame.quit()
 
