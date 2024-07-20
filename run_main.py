@@ -35,9 +35,10 @@ def main():
                 maze.move_player(current_direction)
             
                 for ghost in maze.ghosts:
+                    print(ghost.rect.x//CELL_SIZE, ghost.rect.y//CELL_SIZE)
                     ghost.timer = move_timer
-                    if ghost.timer >= ghost.delay:
-                        maze.move_ghost(ghost) 
+                    '''if ghost.timer >= ghost.delay:
+                        maze.move_ghost(ghost) '''
 
             screen.fill(BLUE)
             maze.update()
