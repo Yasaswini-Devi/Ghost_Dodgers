@@ -19,6 +19,9 @@ class Ghost(pygame.sprite.Sprite):
     def reset_pos(self):
         self.rect.topleft = (self.initial_pos[0] * CELL_SIZE, self.initial_pos[1] * CELL_SIZE)
 
+    def set_direction(self, player_pos):
+        path = a_star((self.rect.x // CELL_SIZE, self.rect.y // CELL_SIZE), player_pos, maze)
+
     def move(self):
         if self.direction == 'LEFT':
             self.rect.x -= CELL_SIZE
