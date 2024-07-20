@@ -26,7 +26,7 @@ def a_star(start, goal, grid):
 
         for direction in [(0, 1), (1, 0), (0, -1), (-1, 0)]:
             neighbor = (current[0] + direction[0], current[1] + direction[1])
-            if 0 <= neighbor[0] < len(grid) and 0 <= neighbor[1] < len(grid[0]) and grid[neighbor[1]][neighbor[0]] == 0:
+            if 0 <= neighbor[0] < len(grid) and 0 <= neighbor[1] < len(grid[0]) and grid[neighbor[1]][neighbor[0]] != '1':
                 tentative_g_score = g_score[current] + 1
 
                 if neighbor not in g_score or tentative_g_score < g_score[neighbor]:
