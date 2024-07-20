@@ -69,6 +69,7 @@ class Maze:
         if player.invincible:
             if player.invincible_timer == 0:
                 player.invincible = False
+                ghost.mode = "chase"
             else:
                 player.invincible_timer -= 1
 
