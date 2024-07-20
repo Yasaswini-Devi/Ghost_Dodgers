@@ -131,13 +131,12 @@ class Maze:
         self.pellets = 0
         self.score = 0
         self.lives = 3
-        self.grid = self.create_grid()
         self.generate_maze()
 
     def move_ghost(self, ghost):
-        target = {'chase': self.player.sprite.rect, 'frightened': ghost.rect}
+        target = {'chase': (self.player.sprite.rect.x // CELL_SIZE, self.player.sprite.rect.y // CELL_SIZE), 'frightened': ghost.initial_pos}
         original_position = ghost.rect.topleft
-        ghost.set_direction((target[ghost.mode].x // CELL_SIZE, target[ghost.mode].y // CELL_SIZE))
+        ghost.set_direction(target[ghost.mode])
         ghost.move()
 
         for other_ghost in self.ghosts:
