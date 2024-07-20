@@ -59,3 +59,5 @@ def a_star(start, goal, grid):
                 neighbor.f_cost = neighbor.g_cost + neighbor.h_cost
                 came_from[(neighbor.x, neighbor.y)] = current_node
                 heapq.heappush(open_list, neighbor)
+            elif tentative_g_cost < neighbor.g_cost:
+                neighbor.g_cost = tentative_g_cost
