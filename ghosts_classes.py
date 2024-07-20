@@ -22,6 +22,16 @@ class Ghost(pygame.sprite.Sprite):
 
     def set_direction(self, player_pos):
         path = a_star((self.rect.x // CELL_SIZE, self.rect.y // CELL_SIZE), player_pos, maze)
+        if path and len(path) > 1:
+            next_pos = path[1]
+            if next_pos[0] * CELL_SIZE < self.rect.x:
+                self.direction = 'LEFT'
+            elif next_pos[0] * CELL_SIZE > self.rect.x:
+                self.direction = 'RIGHT'
+            elif next_pos[1] * CELL_SIZE < self.rect.y:
+                self.direction = 'UP'
+            elif next_pos[1] * CELL_SIZE > self.rect.y:
+                self.direction = 'DOWN'
 
     def move(self):
         if self.direction == 'LEFT':
