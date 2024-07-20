@@ -35,6 +35,7 @@ def main():
                 maze.move_player(current_direction)
                 for ghost in maze.ghosts:
                     maze.move_ghost(ghost)
+                    break
                 move_timer = 0
 
             screen.fill(BLUE)
