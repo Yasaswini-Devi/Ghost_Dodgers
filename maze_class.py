@@ -10,6 +10,7 @@ from pellets import *
 from display import *
 from theme import *
 from path_finder import *
+from play_sounds import *
 
 class Maze:
     def __init__(self, screen, theme):
