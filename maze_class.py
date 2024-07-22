@@ -112,6 +112,7 @@ class Maze:
         self.update()
 
     def game_over(self, win=False):
+        play_game_over_sound()
         self.display.show_game_over(win, self.score)
 
         while True:
