@@ -102,6 +102,8 @@ class Maze:
                 if self.lives == 0:
                     self.game_over(win=False)
                 else:
+                    for ghost in self.ghosts:
+                        ghost.reset_pos()
                     player.reset_pos()
                     self.display.show_life_lost_message(self.lives)
 
