@@ -11,3 +11,7 @@ def play_eat_sound():
 
 def play_game_over_sound():
     game_over_sound.play()
+
+def play_background_music():
+    pygame.mixer.music.load('assets/sounds/background_music.mp3')
+    pygame.mixer.music.play(-1)
