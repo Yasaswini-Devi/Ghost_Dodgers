@@ -1,6 +1,7 @@
 import pygame
 from constants import *
 from maze_class import *
+from play_sounds import *
 
 def main():
     pygame.init()
@@ -27,6 +28,7 @@ def main():
                 if event.type == pygame.QUIT:
                     running = False
                 elif event.type == pygame.KEYDOWN:
+                    play_click_sound()
                     new_direction = handle_keys(event)
                     if new_direction:
                         current_direction = new_direction
