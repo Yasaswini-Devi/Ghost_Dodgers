@@ -5,7 +5,7 @@ from play_sounds import *
 class Display:
     def __init__(self, screen):
         self.screen = screen
-        self.font = pygame.font.Font(None, 36)
+        self.font = pygame.font.Font(None, 30)
         self.themes = {
                 "It's Halloween Time": "halloween",
                 "Let's Hack": "lets_hack"
