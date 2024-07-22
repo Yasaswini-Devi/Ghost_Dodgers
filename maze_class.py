@@ -80,6 +80,7 @@ class Maze:
 
         pellets_collided = pygame.sprite.spritecollide(player, self.fruits, True)
         if pellets_collided:
+            play_eat_sound()
             for pellet in pellets_collided:
                 self.pellets -= 1
                 if isinstance(pellet, PowerUp):
