@@ -19,7 +19,8 @@ class Display:
 
         while True:
             self.screen.blit(background, (0, 0))
-            title_text = self.font.render("WELCOME TO TROUBLE ESCAPERS!", True, BLACK)
+            title_font = pygame.font.Font(None, 40)
+            title_text = title_font.render("WELCOME TO TROUBLE ESCAPERS!", True, BLACK)
             title_rect = title_text.get_rect(center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 - 150))
             self.screen.blit(title_text, title_rect)
 
