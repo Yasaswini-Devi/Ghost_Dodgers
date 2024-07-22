@@ -121,6 +121,7 @@ class Maze:
                     pygame.quit()
                     sys.exit()
                 if event.type == pygame.KEYDOWN:
+                    play_click_sound()
                     if event.key == pygame.K_r:
                         self.reset_game()
                         return
