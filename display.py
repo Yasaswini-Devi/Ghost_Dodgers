@@ -6,6 +6,7 @@ class Display:
     def __init__(self, screen):
         self.screen = screen
         self.font = pygame.font.Font(None, 30)
+        self.title_font = pygame.font.Font(None, 56)
         self.themes = {
                 "It's Halloween Time": "halloween",
                 "Let's Hack": "lets_hack"
@@ -19,8 +20,7 @@ class Display:
 
         while True:
             self.screen.blit(background, (0, 0))
-            title_font = pygame.font.Font(None, 40)
-            title_text = title_font.render("WELCOME TO TROUBLE ESCAPERS!", True, BLACK)
+            title_text = self.title_font.render("WELCOME TO TROUBLE ESCAPERS!", True, BLACK)
             title_rect = title_text.get_rect(center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 - 150))
             self.screen.blit(title_text, title_rect)
 
@@ -95,7 +95,7 @@ class Display:
     def theme_selection_menu(self):
         background = pygame.transform.scale(pygame.image.load("assets/wallpaper.jpeg"), (SCREEN_WIDTH, SCREEN_HEIGHT))
         title_font = pygame.font.Font(None, 56)
-        title_text = title_font.render("Select a Theme", True, BLACK)
+        title_text = self.title_font.render("Select a Theme", True, BLACK)
         title_rect = title_text.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 - 50))
         theme_texts = []
 
