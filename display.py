@@ -35,11 +35,11 @@ class Display:
             pygame.display.flip()
 
             for event in pygame.event.get():
-                play_click_sound()
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     exit()
                 elif event.type == pygame.KEYDOWN:
+                    play_click_sound()
                     if event.key == pygame.K_UP:
                         selected_option = (selected_option - 1) % len(menu_options)
                     elif event.key == pygame.K_DOWN:
@@ -83,11 +83,11 @@ class Display:
 
         while True:
             for event in pygame.event.get():
-                play_click_sound()
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     exit()
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+                    play_click_sound()
                     return
 
     def theme_selection_menu(self):
@@ -112,13 +112,14 @@ class Display:
             pygame.display.flip()
 
             for event in pygame.event.get():
-                play_click_sound()
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     exit()
                 elif event.type == pygame.MOUSEBUTTONDOWN:
+                    play_click_sound()
                     for text, rect, theme_folder in theme_texts:
                         if rect.collidepoint(event.pos):
+                            play_click_sound()
                             return theme_folder
 
     def draw_text(text, font, color, surface, x, y):
