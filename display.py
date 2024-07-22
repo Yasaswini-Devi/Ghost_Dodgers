@@ -1,5 +1,6 @@
 import pygame
 from constants import *
+from play_sounds import *
 
 class Display:
     def __init__(self, screen):
@@ -34,6 +35,7 @@ class Display:
             pygame.display.flip()
 
             for event in pygame.event.get():
+                play_click_sound()
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     exit()
@@ -81,6 +83,7 @@ class Display:
 
         while True:
             for event in pygame.event.get():
+                play_click_sound()
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     exit()
@@ -109,6 +112,7 @@ class Display:
             pygame.display.flip()
 
             for event in pygame.event.get():
+                play_click_sound()
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     exit()
