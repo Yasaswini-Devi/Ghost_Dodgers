@@ -5,7 +5,7 @@ pygame.mixer.init()
 
 eat_sound = pygame.mixer.Sound('assets/sounds/eat.mp3')
 game_over_sound = pygame.mixer.Sound('assets/sounds/game_over.mp3')
-click_sound = pygame.mixer.Sound('assets/sounds.click.wav')
+click_sound = pygame.mixer.Sound('assets/sounds/click.wav')
 
 def play_eat_sound():
     eat_sound.play()
