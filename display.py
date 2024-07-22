@@ -5,7 +5,7 @@ from play_sounds import *
 class Display:
     def __init__(self, screen):
         self.screen = screen
-        self.font = pygame.font.Font(None, 34)
+        self.font = pygame.font.Font(None, 36)
         self.title_font = pygame.font.Font(None, 56)
         self.themes = {
                 "It's Halloween Time": "halloween",
@@ -78,8 +78,9 @@ class Display:
             "5. Press Q to quit or R to restart during the game.",
             "6. Press Esc to go back to home page."
         ]
+        text_font = pygame.font.Font(None, 34)
         for i, line in enumerate(instructions):
-            text = self.font.render(line, True, WHITE)
+            text = text_font.render(line, True, WHITE)
             self.screen.blit(text, (20, SCREEN_HEIGHT // 4 + i * 50))
         pygame.display.flip()
 
