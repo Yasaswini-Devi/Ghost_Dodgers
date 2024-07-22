@@ -4,6 +4,7 @@ from maze_class import *
 
 def main():
     pygame.init()
+    play_background_music()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     pygame.display.set_caption('Trouble Escapers')
 
