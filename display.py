@@ -53,6 +53,7 @@ class Display:
                             pygame.quit()
                             exit()
                 elif event.type == pygame.MOUSEBUTTONDOWN:
+                    play_click_sound()
                     if event.button == 1:
                         x, y = event.pos
                         for i, option in enumerate(menu_options):
