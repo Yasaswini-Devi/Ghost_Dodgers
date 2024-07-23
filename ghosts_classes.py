@@ -15,7 +15,7 @@ class Ghost(pygame.sprite.Sprite):
         self.direction = ''
         self.timer = 0
         self.delay = delay
-        self.mode = "scatter"
+        self.mode = 'scatter'
         self.target = None
     
     def update(self, screen):
@@ -25,7 +25,7 @@ class Ghost(pygame.sprite.Sprite):
         self.rect.topleft = (self.initial_pos[0] * CELL_SIZE, self.initial_pos[1] * CELL_SIZE)
 
     def set_target(self):
-        if mode == 'scatter':
+        if self.mode == 'scatter':
             scatter_targets = [
                 (0, 0),
                 (NCOLS - 1, 0),
@@ -33,9 +33,9 @@ class Ghost(pygame.sprite.Sprite):
                 (0, NROWS - 1)
             ]  
             self.target = random.choice(scatter_targets)
+            print(self.target)
 
     def set_direction(self):
-        set_target()
         path = a_star((self.rect.x // CELL_SIZE, self.rect.y // CELL_SIZE), self.target, MAZE)
         if path and len(path) > 1:
             next_pos = path[1]
@@ -57,6 +57,11 @@ class Ghost(pygame.sprite.Sprite):
             self.rect.y -= CELL_SIZE
         elif self.direction == 'DOWN':
             self.rect.y += CELL_SIZE
+
+        if pygame.sprite.spritecollideany(self, walls):
+            self.rect.topleft = original_position
+            self.direction = random.choice(['LEFT', 'RIGHT', 'UP', 'DOWN'])
+
 
 class Ghost1(Ghost):
     def __init__(self, x, y, theme):
