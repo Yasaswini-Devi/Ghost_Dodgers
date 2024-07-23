@@ -28,6 +28,8 @@ class Ghost(pygame.sprite.Sprite):
 
     def set_target(self, pacman_pos: (int, int), valid_positions: list[int]):
         if self.mode == 'scatter': 
+            if (self.rect.x // CELL_SIZE, self.rect.y // CELL_SIZE) == self.scatter_target:
+                self.target = random.choice([target for target in scatter_targets if target != self.scatter_target])
             self.target = self.scatter_target
         elif self.mode == 'chase':
             self.target = pacman_pos
