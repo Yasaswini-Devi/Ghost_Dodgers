@@ -35,6 +35,9 @@ class Ghost(pygame.sprite.Sprite):
             self.target = random.choice(scatter_targets)
         elif self.mode == 'chase':
             self.target = (maze.player.sprite.rect.x // CELL_SIZE, maze.player.sprite.rect.y // CELL_SIZE)
+        elif mode == 'frightened':
+            self.target = (random.randint(1, NCOLS - 2), random.randint(1, NROWS - 2))
+
 
     def set_direction(self):
         path = a_star((self.rect.x // CELL_SIZE, self.rect.y // CELL_SIZE), self.target, MAZE)
