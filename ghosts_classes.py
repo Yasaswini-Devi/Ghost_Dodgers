@@ -60,16 +60,16 @@ class Ghost(pygame.sprite.Sprite):
 
 class Ghost1(Ghost):
     def __init__(self, x, y, theme):
-        super().__init__(x, y, theme.get_ghost_image(0), 0, scatter_target[0])
+        super().__init__(x, y, theme.get_ghost_image(0), 0, scatter_targets[0])
         
 class Ghost2(Ghost):
     def __init__(self, x, y, theme):
-        super().__init__(x, y, theme.get_ghost_image(1), 100, scatter_target[1])
+        super().__init__(x, y, theme.get_ghost_image(1), 100, scatter_targets[1])
 
 class Ghost3(Ghost):
     def __init__(self, x, y, theme):
-        super().__init__(x, y, theme.get_ghost_image(2), 200, scatter_target[2])
+        super().__init__(x, y, theme.get_ghost_image(2), 200, scatter_targets[2])
 
 class Ghost4(Ghost):
     def __init__(self, x, y, theme):
-        super().__init__(x, y, theme.get_ghost_image(3), 300, scatter_target[3])
+        super().__init__(x, y, theme.get_ghost_image(3), 300, scatter_targets[3])
