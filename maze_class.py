@@ -26,6 +26,8 @@ class Maze:
         self.lives = 3
         self.generate_maze()
         self.grid = MAZE
+        self.mode_timer = 0
+        self.mode_switch_times = [7, 20, 7, 20, 5, 20, 5, 20]
 
     def generate_maze(self):
         for y_index, col in enumerate(MAZE):
