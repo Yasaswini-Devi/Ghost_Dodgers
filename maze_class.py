@@ -28,6 +28,7 @@ class Maze:
         self.mode_timer = 0
         self.mode_switch_times = [7, 20, 7, 20, 5, 20, 5, 20]
         self.current_mode_index = 0
+        self.valid_positions = []
 
     def generate_maze(self):
         for y_index, col in enumerate(MAZE):
@@ -37,9 +38,11 @@ class Maze:
                 elif char == " ":
                     self.fruits.add(Pellet(x_index, y_index, CELL_SIZE // 3))
                     self.pellets += 1
+                    self.valid_positions.append((x_index, y_index))
                 elif char == "B":
                     self.fruits.add(PowerUp(x_index, y_index, CELL_SIZE,self.theme, is_power_up=True))
                     self.pellets += 1
+                    self.valid_positions.append((x_index, y_index))
                 elif char == "s":
                     self.ghosts.add(Ghost4(x_index, y_index, self.theme))
                 elif char == "p":
@@ -50,6 +53,7 @@ class Maze:
                     self.ghosts.add(Ghost1(x_index, y_index, self.theme))
                 elif char == "P":
                     self.player.add(Pacman(x_index, y_index, self.theme.get_pacman_image()))
+                    self.valid_positions.append((x_index, y_index))
 
     def update(self):
         self.update_mode()
