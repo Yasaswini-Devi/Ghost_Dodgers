@@ -160,7 +160,7 @@ class Maze:
 
     def move_ghost(self, ghost):
         original_position = ghost.rect.topleft
-        ghost.set_target((self.player.sprite.rect.x // CELL_SIZE, self.player.sprite.rect.y // CELL_SIZE))
+        ghost.set_target((self.player.sprite.rect.x // CELL_SIZE, self.player.sprite.rect.y // CELL_SIZE), self.valid_positions)
         ghost.set_direction()
         ghost.move()
 
