@@ -38,7 +38,7 @@ def main():
                 maze.move_player(current_direction)
             
                 for ghost in maze.ghosts:
-                    ghost.timer = move_timer
+                    ghost.timer = move_timer 
                     if ghost.timer >= ghost.delay:
                         maze.move_ghost(ghost)
 

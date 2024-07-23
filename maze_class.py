@@ -26,6 +26,9 @@ class Maze:
         self.lives = 3
         self.generate_maze()
         self.grid = MAZE
+        self.mode_timer = 0
+        self.mode_switch_times = [7, 20, 7, 20, 5, 20, 5, 20]
+        self.current_mode_index = 0
 
     def generate_maze(self):
         for y_index, col in enumerate(MAZE):
@@ -39,17 +42,18 @@ class Maze:
                     self.fruits.add(PowerUp(x_index, y_index, CELL_SIZE,self.theme, is_power_up=True))
                     self.pellets += 1
                 elif char == "s":
-                    self.ghosts.add(Ghost1(x_index, y_index, self.theme))
+                    self.ghosts.add(Ghost4(x_index, y_index, self.theme))
                 elif char == "p":
                     self.ghosts.add(Ghost2(x_index, y_index, self.theme))
                 elif char == "o":
                     self.ghosts.add(Ghost3(x_index, y_index, self.theme))
                 elif char == "r":
-                    self.ghosts.add(Ghost4(x_index, y_index, self.theme))
+                    self.ghosts.add(Ghost1(x_index, y_index, self.theme))
                 elif char == "P":
                     self.player.add(Pacman(x_index, y_index, self.theme.get_pacman_image()))
 
     def update(self):
+        self.update_mode()
         self.walls.update(self.screen)
         self.fruits.update(self.screen)
         self.player.update(self.screen)
@@ -71,7 +75,7 @@ class Maze:
             if player.invincible_timer == 0:
                 player.invincible = False
                 for ghost in self.ghosts:
-                    ghost.mode = "chase"
+                    ghost.mode = "scatter"
             else:
                 player.invincible_timer -= 1
 
@@ -85,7 +89,7 @@ class Maze:
                 self.pellets -= 1
                 if isinstance(pellet, PowerUp):
                     self.score += 50
-                    player.activate_powerup(100)
+                    player.activate_powerup(50)
                     for ghost in self.ghosts:
                         ghost.mode = "frightened"
                 else:
@@ -138,11 +142,23 @@ class Maze:
         self.score = 0
         self.lives = 3
         self.generate_maze()
+    
+    
+    def update_mode(self):
+        self.mode_timer += 1 / 60
+        if self.mode_timer >= self.mode_switch_times[self.current_mode_index]:
+            self.mode_timer = 0
+            self.current_mode_index += 1
+            if self.current_mode_index >= len(self.mode_switch_times):
+                self.current_mode_index = len(self.mode_switch_times) - 1  # Stay in chase mode
+            new_mode = "scatter" if self.current_mode_index % 2 == 0 else "chase"
+            for ghost in self.ghosts:
+                ghost.mode = new_mode
 
     def move_ghost(self, ghost):
-        target = {'chase': (self.player.sprite.rect.x // CELL_SIZE, self.player.sprite.rect.y // CELL_SIZE), 'frightened': ghost.initial_pos}
         original_position = ghost.rect.topleft
-        ghost.set_direction(target[ghost.mode])
+        ghost.set_target((self.player.sprite.rect.x // CELL_SIZE, self.player.sprite.rect.y // CELL_SIZE))
+        ghost.set_direction()
         ghost.move()
 
         for other_ghost in self.ghosts:
