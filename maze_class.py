@@ -140,6 +140,18 @@ class Maze:
         self.score = 0
         self.lives = 3
         self.generate_maze()
+    
+    
+    def update_mode(self):
+        self.mode_timer += 1 / 60
+        if self.mode_timer >= self.mode_switch_times[self.current_mode_index]:
+            self.mode_timer = 0
+            self.current_mode_index += 1
+            if self.current_mode_index >= len(self.mode_switch_times):
+                self.current_mode_index = len(self.mode_switch_times) - 1  # Stay in chase mode
+            new_mode = "scatter" if self.current_mode_index % 2 == 0 else "chase"
+            for ghost in self.ghosts:
+                ghost.mode = new_mode
 
     def move_ghost(self, ghost):
         original_position = ghost.rect.topleft
