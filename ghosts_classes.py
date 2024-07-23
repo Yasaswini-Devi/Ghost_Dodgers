@@ -35,7 +35,6 @@ class Ghost(pygame.sprite.Sprite):
             self.target = random.choice(scatter_targets)
 
     def set_direction(self):
-        self.set_target()
         path = a_star((self.rect.x // CELL_SIZE, self.rect.y // CELL_SIZE), self.target, MAZE)
         if path and len(path) > 1:
             next_pos = path[1]

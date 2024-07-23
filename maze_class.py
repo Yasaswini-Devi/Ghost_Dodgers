@@ -141,7 +141,7 @@ class Maze:
 
     def move_ghost(self, ghost):
         original_position = ghost.rect.topleft
-        #ghost.set_target()
+        ghost.set_target()
         ghost.set_direction()
         ghost.move()
 
