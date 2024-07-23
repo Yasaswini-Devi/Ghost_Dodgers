@@ -4,6 +4,7 @@ from static_maze import *
 from constants import *
 from theme import *
 from path_finder import a_star
+from main_character import Pacman
 
 class Ghost(pygame.sprite.Sprite):
     def __init__(self, x, y, img, delay):
@@ -24,7 +25,7 @@ class Ghost(pygame.sprite.Sprite):
     def reset_pos(self):
         self.rect.topleft = (self.initial_pos[0] * CELL_SIZE, self.initial_pos[1] * CELL_SIZE)
 
-    def set_target(self):
+    def set_target(self, pacman_pos: (int, int)):
         if self.mode == 'scatter':
             scatter_targets = [
                 (1, 1),
@@ -34,7 +35,7 @@ class Ghost(pygame.sprite.Sprite):
             ]  
             self.target = random.choice(scatter_targets)
         elif self.mode == 'chase':
-            self.target = (maze.player.sprite.rect.x // CELL_SIZE, maze.player.sprite.rect.y // CELL_SIZE)
+            self.target = pacman_pos
         elif self.mode == 'frightened':
             self.target = (random.randint(1, NCOLS - 2), random.randint(1, NROWS - 2))
 
