@@ -1,7 +1,6 @@
 import heapq
 
 def a_star(start, goal, grid):
-    print(start, goal)
     def heuristic(a, b):
         return abs(a[0] - b[0]) + abs(a[1] - b[1])
 
@@ -20,7 +19,6 @@ def a_star(start, goal, grid):
     f_score = {start: heuristic(start, goal)}
 
     while open_set:
-        print(open_set)
         _, current = heapq.heappop(open_set)
 
         if current == goal:
