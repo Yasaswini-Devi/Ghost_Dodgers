@@ -7,7 +7,7 @@ from path_finder import a_star
 from main_character import Pacman
 
 class Ghost(pygame.sprite.Sprite):
-    def __init__(self, x, y, img, delay):
+    def __init__(self, x: int, y: int, img, delay: int, scatter_target: (int, int)):
         super().__init__()
         self.image = img
         self.rect = self.image.get_rect()
@@ -18,6 +18,7 @@ class Ghost(pygame.sprite.Sprite):
         self.delay = delay
         self.mode = 'scatter'
         self.target = None
+        self.scatter_target = scatter_target
     
     def update(self, screen):
         screen.blit(self.image, self.rect.topleft)
@@ -25,19 +26,13 @@ class Ghost(pygame.sprite.Sprite):
     def reset_pos(self):
         self.rect.topleft = (self.initial_pos[0] * CELL_SIZE, self.initial_pos[1] * CELL_SIZE)
 
-    def set_target(self, pacman_pos: (int, int)):
-        if self.mode == 'scatter':
-            scatter_targets = [
-                (1, 1),
-                (NCOLS - 2, 1),
-                (NCOLS - 2, NROWS - 2),
-                (1, NROWS - 2)
-            ]  
-            self.target = random.choice(scatter_targets)
+    def set_target(self, pacman_pos: (int, int), valid_positions: list[int]):
+        if self.mode == 'scatter': 
+            self.target = self.scatter_target
         elif self.mode == 'chase':
             self.target = pacman_pos
         elif self.mode == 'frightened':
-            self.target = (random.randint(1, NCOLS - 2), random.randint(1, NROWS - 2))
+            self.target = random.choice(valid_positions)
 
 
     def set_direction(self):
@@ -65,16 +60,16 @@ class Ghost(pygame.sprite.Sprite):
 
 class Ghost1(Ghost):
     def __init__(self, x, y, theme):
-        super().__init__(x, y, theme.get_ghost_image(0), 0)
+        super().__init__(x, y, theme.get_ghost_image(0), 0, scatter_targets[0])
         
 class Ghost2(Ghost):
     def __init__(self, x, y, theme):
-        super().__init__(x, y, theme.get_ghost_image(1), 100)
+        super().__init__(x, y, theme.get_ghost_image(1), 100, scatter_targets[1])
 
 class Ghost3(Ghost):
     def __init__(self, x, y, theme):
-        super().__init__(x, y, theme.get_ghost_image(2), 200)
+        super().__init__(x, y, theme.get_ghost_image(2), 200, scatter_targets[2])
 
 class Ghost4(Ghost):
     def __init__(self, x, y, theme):
-        super().__init__(x, y, theme.get_ghost_image(3), 300)
+        super().__init__(x, y, theme.get_ghost_image(3), 300, scatter_targets[3])

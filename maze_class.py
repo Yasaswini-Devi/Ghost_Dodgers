@@ -24,8 +24,8 @@ class Maze:
         self.pellets = 0
         self.score = 0
         self.lives = 3
+        self.valid_positions = []
         self.generate_maze()
-        self.grid = MAZE
         self.mode_timer = 0
         self.mode_switch_times = [7, 20, 7, 20, 5, 20, 5, 20]
         self.current_mode_index = 0
@@ -38,9 +38,11 @@ class Maze:
                 elif char == " ":
                     self.fruits.add(Pellet(x_index, y_index, CELL_SIZE // 3))
                     self.pellets += 1
+                    self.valid_positions.append((x_index, y_index))
                 elif char == "B":
                     self.fruits.add(PowerUp(x_index, y_index, CELL_SIZE,self.theme, is_power_up=True))
                     self.pellets += 1
+                    self.valid_positions.append((x_index, y_index))
                 elif char == "s":
                     self.ghosts.add(Ghost4(x_index, y_index, self.theme))
                 elif char == "p":
@@ -51,6 +53,7 @@ class Maze:
                     self.ghosts.add(Ghost1(x_index, y_index, self.theme))
                 elif char == "P":
                     self.player.add(Pacman(x_index, y_index, self.theme.get_pacman_image()))
+                    self.valid_positions.append((x_index, y_index))
 
     def update(self):
         self.update_mode()
@@ -157,7 +160,7 @@ class Maze:
 
     def move_ghost(self, ghost):
         original_position = ghost.rect.topleft
-        ghost.set_target((self.player.sprite.rect.x // CELL_SIZE, self.player.sprite.rect.y // CELL_SIZE))
+        ghost.set_target((self.player.sprite.rect.x // CELL_SIZE, self.player.sprite.rect.y // CELL_SIZE), self.valid_positions)
         ghost.set_direction()
         ghost.move()
 
