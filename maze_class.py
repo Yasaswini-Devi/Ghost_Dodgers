@@ -39,13 +39,13 @@ class Maze:
                     self.fruits.add(PowerUp(x_index, y_index, CELL_SIZE,self.theme, is_power_up=True))
                     self.pellets += 1
                 elif char == "s":
-                    self.ghosts.add(Ghost1(x_index, y_index, self.theme))
+                    self.ghosts.add(Ghost4(x_index, y_index, self.theme))
                 elif char == "p":
                     self.ghosts.add(Ghost2(x_index, y_index, self.theme))
                 elif char == "o":
                     self.ghosts.add(Ghost3(x_index, y_index, self.theme))
                 elif char == "r":
-                    self.ghosts.add(Ghost4(x_index, y_index, self.theme))
+                    self.ghosts.add(Ghost1(x_index, y_index, self.theme))
                 elif char == "P":
                     self.player.add(Pacman(x_index, y_index, self.theme.get_pacman_image()))
 
@@ -140,9 +140,8 @@ class Maze:
         self.generate_maze()
 
     def move_ghost(self, ghost):
-        '''get = {'scatter': , 'chase': (self.player.sprite.rect.x // CELL_SIZE, self.player.sprite.rect.y // CELL_SIZE), 'frightened': ghost.initial_pos}'''
         original_position = ghost.rect.topleft
-        ghost.set_target()
+        #ghost.set_target()
         ghost.set_direction()
         ghost.move()
 
