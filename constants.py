@@ -10,4 +10,4 @@ RED = (255, 0, 0)
 CELL_SIZE = 30
 PACMAN_START_X = 1
 PACMAN_START_Y = 1
-NCOLS, NROWS = 19, 19 
+scatter_targets = [(1, 1), (1, 17), (17, 1), (17, 17)] 
