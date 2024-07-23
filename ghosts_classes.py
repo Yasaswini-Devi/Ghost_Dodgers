@@ -31,7 +31,8 @@ class Ghost(pygame.sprite.Sprite):
                 (NCOLS - 1, 0),
                 (NCOLS - 1, NROWS - 1),
                 (0, NROWS - 1)
-            ]   
+            ]  
+            self.target = random.choice(scatter_targets)
 
     def set_direction(self, target):
         set_target()
