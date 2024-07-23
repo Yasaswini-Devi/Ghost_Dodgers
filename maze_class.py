@@ -27,7 +27,7 @@ class Maze:
         self.valid_positions = []
         self.generate_maze()
         self.mode_timer = 0
-        self.mode_switch_times = [7, 20, 7, 20, 5, 20, 5, 20]
+        self.mode_switch_times = [7, 10, 7, 10, 5, 10, 5, 10]
         self.current_mode_index = 0
 
     def generate_maze(self):
@@ -108,6 +108,7 @@ class Maze:
                     ghost.reset_pos()
             else:
                 self.lives -= 1
+                self.mode_switch_index = 0
                 if self.lives == 0:
                     self.game_over(win=False)
                 else:
