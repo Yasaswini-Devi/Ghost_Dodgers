@@ -26,13 +26,13 @@ class Ghost(pygame.sprite.Sprite):
     def reset_pos(self):
         self.rect.topleft = (self.initial_pos[0] * CELL_SIZE, self.initial_pos[1] * CELL_SIZE)
 
-    def set_target(self, pacman_pos: (int, int)):
+    def set_target(self, pacman_pos: (int, int), valid_positions: list[int]):
         if self.mode == 'scatter': 
             self.target = self.scatter_target
         elif self.mode == 'chase':
             self.target = pacman_pos
         elif self.mode == 'frightened':
-            self.target = (random.randint(1, NCOLS - 2), random.randint(1, NROWS - 2))
+            self.target = random.choice(valid_positions)
 
 
     def set_direction(self):
