@@ -7,7 +7,7 @@ from path_finder import a_star
 from main_character import Pacman
 
 class Ghost(pygame.sprite.Sprite):
-    def __init__(self, x, y, img, delay):
+    def __init__(self, x: int, y: int, img, delay: int, scatter_target: tuple(int, int)):
         super().__init__()
         self.image = img
         self.rect = self.image.get_rect()
@@ -18,6 +18,7 @@ class Ghost(pygame.sprite.Sprite):
         self.delay = delay
         self.mode = 'scatter'
         self.target = None
+        self.scatter_target = scatter_target
     
     def update(self, screen):
         screen.blit(self.image, self.rect.topleft)
@@ -65,16 +66,16 @@ class Ghost(pygame.sprite.Sprite):
 
 class Ghost1(Ghost):
     def __init__(self, x, y, theme):
-        super().__init__(x, y, theme.get_ghost_image(0), 0)
+        super().__init__(x, y, theme.get_ghost_image(0), 0, scatter_target[0])
         
 class Ghost2(Ghost):
     def __init__(self, x, y, theme):
-        super().__init__(x, y, theme.get_ghost_image(1), 100)
+        super().__init__(x, y, theme.get_ghost_image(1), 100, scatter_target[1])
 
 class Ghost3(Ghost):
     def __init__(self, x, y, theme):
-        super().__init__(x, y, theme.get_ghost_image(2), 200)
+        super().__init__(x, y, theme.get_ghost_image(2), 200, scatter_target[2])
 
 class Ghost4(Ghost):
     def __init__(self, x, y, theme):
-        super().__init__(x, y, theme.get_ghost_image(3), 300)
+        super().__init__(x, y, theme.get_ghost_image(3), 300, scatter_target[3])
