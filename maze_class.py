@@ -24,11 +24,11 @@ class Maze:
         self.pellets = 0
         self.score = 0
         self.lives = 3
+        self.valid_positions = []
         self.generate_maze()
         self.mode_timer = 0
         self.mode_switch_times = [7, 20, 7, 20, 5, 20, 5, 20]
         self.current_mode_index = 0
-        self.valid_positions = []
 
     def generate_maze(self):
         for y_index, col in enumerate(MAZE):
