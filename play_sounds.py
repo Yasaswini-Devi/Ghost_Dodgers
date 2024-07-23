@@ -15,6 +15,7 @@ def play_game_over_sound():
 
 def play_background_music():
     pygame.mixer.music.load('assets/sounds/background_music.mp3')
+    pygame.mixer.music.set_volume(0.2)
     pygame.mixer.music.play(-1)
 
 def play_click_sound():
