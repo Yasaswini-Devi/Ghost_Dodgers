@@ -125,7 +125,7 @@ class Display:
                             play_click_sound()
                             return theme_folder
 
-    def draw_text(text, font, color, surface, x, y):
+    def draw_text(self, text, font, color, surface, x, y):
         text_obj = self.font.render(text, True, color)
         text_rect = text_obj.get_rect()
         text_rect.center = (x, y)
