@@ -7,14 +7,30 @@
     <style>
         body {
             text-align: center;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(91.9deg, rgb(93, 248, 219) 27.8%, rgb(33, 228, 246) 67%);
         }
         header {
             color: white;
             background: linear-gradient(68.6deg, rgb(252, 165, 241) 1.8%, rgb(181, 255, 255) 100.5%);
+            width: 100%;
+            padding: 20px;
+        }
+        main {
+            background: white;
+            max-width: 80%;
+            border-radius: 10px;
         }
         button {
             color: white;
             background: radial-gradient(circle at 10% 20%, rgb(246, 98, 128) 0%, rgb(248, 129, 135) 98.3%);
+            border: solid black;
+            cursor: pointer;
         }
         button:hover {
             background: white;
@@ -22,6 +38,8 @@
         }
         footer {
             color: white;
+            width: 100%;
+            padding: 10px;
             background: linear-gradient(68.6deg, rgb(252, 165, 241) 1.8%, rgb(181, 255, 255) 100.5%);
         }
     </style>
@@ -31,6 +49,9 @@
         <h1> Welcome to Trouble Escapers </h1>
     </header>
     <main>
+        <img src = "assets/img1.jpeg" width = "300"> </img>
+        <img src = "assets/img2.jpeg" width = "300"> </img>
+        <p>Click the button below to run the game!</p>
         <button onclick = "runPythonScript()"> Start Game </button>
     </main>
     <footer>
