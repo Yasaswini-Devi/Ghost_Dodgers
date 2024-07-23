@@ -16,6 +16,7 @@ class Ghost(pygame.sprite.Sprite):
         self.timer = 0
         self.delay = delay
         self.mode = "scatter"
+        self.target = None
     
     def update(self, screen):
         screen.blit(self.image, self.rect.topleft)
@@ -23,7 +24,17 @@ class Ghost(pygame.sprite.Sprite):
     def reset_pos(self):
         self.rect.topleft = (self.initial_pos[0] * CELL_SIZE, self.initial_pos[1] * CELL_SIZE)
 
+    def set_target(self):
+        if mode == 'scatter':
+            scatter_targets = [
+                (0, 0),
+                (NCOLS - 1, 0),
+                (NCOLS - 1, NROWS - 1),
+                (0, NROWS - 1)
+            ]   
+
     def set_direction(self, target):
+        set_target()
         path = a_star((self.rect.x // CELL_SIZE, self.rect.y // CELL_SIZE), target, MAZE)
         if path and len(path) > 1:
             next_pos = path[1]
