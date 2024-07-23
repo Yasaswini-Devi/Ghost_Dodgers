@@ -7,7 +7,7 @@ from path_finder import a_star
 from main_character import Pacman
 
 class Ghost(pygame.sprite.Sprite):
-    def __init__(self, x: int, y: int, img, delay: int, scatter_target: tuple(int, int)):
+    def __init__(self, x: int, y: int, img, delay: int, scatter_target: (int, int)):
         super().__init__()
         self.image = img
         self.rect = self.image.get_rect()
@@ -27,14 +27,8 @@ class Ghost(pygame.sprite.Sprite):
         self.rect.topleft = (self.initial_pos[0] * CELL_SIZE, self.initial_pos[1] * CELL_SIZE)
 
     def set_target(self, pacman_pos: (int, int)):
-        if self.mode == 'scatter':
-            scatter_targets = [
-                (1, 1),
-                (NCOLS - 2, 1),
-                (NCOLS - 2, NROWS - 2),
-                (1, NROWS - 2)
-            ]  
-            self.target = random.choice(scatter_targets)
+        if self.mode == 'scatter': 
+            self.target = self.scatter_target
         elif self.mode == 'chase':
             self.target = pacman_pos
         elif self.mode == 'frightened':
