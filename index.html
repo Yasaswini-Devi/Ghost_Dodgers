@@ -15,5 +15,23 @@
     <footer>
         <p> &copy; 2024 Trouble Escapers. All rights reserved. </p>
     </footer>
+    <script>
+            async function runPythonScript() {
+                alert("Let's play the game!")
+                try {
+                    let response = await fetch('http://127.0.0.1:5000/run-script', {
+                        method: 'POST',
+                    });
+                    let result = await response.json();
+                    if (result.output) {
+                        alert("Script Output: " + result.output);
+                    } else if (result.error) {
+                        alert("Script Error: " + result.error);
+                    }
+                } catch (error) {
+                    alert("Error: " + error.message);
+                }
+            }
+        </script>
 </body>
 </html>
