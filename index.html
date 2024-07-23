@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Trouble Escapers </title>
+    <style>
+        body {
+            text-align: center;
+        }
+        header {
+            color: white;
+            background: linear-gradient(68.6deg, rgb(252, 165, 241) 1.8%, rgb(181, 255, 255) 100.5%);
+        }
+        button {
+            color: white;
+            background: radial-gradient(circle at 10% 20%, rgb(246, 98, 128) 0%, rgb(248, 129, 135) 98.3%);
+        }
+        button:hover {
+            background: white;
+            color: palevioletred;
+        }
+        footer {
+            color: white;
+            background: linear-gradient(68.6deg, rgb(252, 165, 241) 1.8%, rgb(181, 255, 255) 100.5%);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1> Welcome to Trouble Escapers </h1>
+    </header>
+    <main>
+        <button onclick = "runPythonScript()"> Start Game </button>
+    </main>
+    <footer>
+        <p> &copy; 2024 Trouble Escapers. All rights reserved. </p>
+    </footer>
+    <script>
+            async function runPythonScript() {
+                alert("Let's play the game!")
+                try {
+                    let response = await fetch('http://127.0.0.1:5000/run-script', {
+                        method: 'POST',
+                    });
+                    let result = await response.json();
+                    if (result.output) {
+                        alert("Script Output: " + result.output);
+                    } else if (result.error) {
+                        alert("Script Error: " + result.error);
+                    }
+                } catch (error) {
+                    alert("Error: " + error.message);
+                }
+            }
+        </script>
+</body>
+</html>
