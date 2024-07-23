@@ -28,6 +28,7 @@ class Maze:
         self.grid = MAZE
         self.mode_timer = 0
         self.mode_switch_times = [7, 20, 7, 20, 5, 20, 5, 20]
+        self.current_mode_index = 0
 
     def generate_maze(self):
         for y_index, col in enumerate(MAZE):
@@ -52,6 +53,7 @@ class Maze:
                     self.player.add(Pacman(x_index, y_index, self.theme.get_pacman_image()))
 
     def update(self):
+        self.update_mode()
         self.walls.update(self.screen)
         self.fruits.update(self.screen)
         self.player.update(self.screen)
