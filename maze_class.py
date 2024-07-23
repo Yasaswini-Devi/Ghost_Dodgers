@@ -25,7 +25,6 @@ class Maze:
         self.score = 0
         self.lives = 3
         self.generate_maze()
-        self.grid = MAZE
         self.mode_timer = 0
         self.mode_switch_times = [7, 20, 7, 20, 5, 20, 5, 20]
         self.current_mode_index = 0
