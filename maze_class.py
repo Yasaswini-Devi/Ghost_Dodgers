@@ -60,7 +60,10 @@ class Maze:
         self.walls.update(self.screen)
         self.fruits.update(self.screen)
         self.player.update(self.screen)
-        self.ghosts.update(self.screen)
+        pacman_pos = (self.player.sprite.rect.x // CELL_SIZE, self.player.sprite.rect.y // CELL_SIZE)
+        blinky_pos = next((g.rect.topleft for g in self.ghosts if isinstance(g, Ghost1)), pacman_pos)
+        for ghost in self.ghosts:
+            ghost.update(self.screen, pacman_pos, self.valid_positions, blinky_pos)
         self.display.show_life(self.lives)
         self.display.show_score(self.score)
 
@@ -159,11 +162,16 @@ class Maze:
             for ghost in self.ghosts:
                 ghost.mode = new_mode
 
+            if new_mode == "chase":
+               for ghost in self.ghosts:
+                   ghost.move_delay = 150
+
     def move_ghost(self, ghost):
-        original_position = ghost.rect.topleft
-        ghost.set_target((self.player.sprite.rect.x // CELL_SIZE, self.player.sprite.rect.y // CELL_SIZE), self.valid_positions)
-        ghost.set_direction()
-        ghost.move()
+        for ghost in self.ghosts:
+            original_position = ghost.rect.topleft
+            ghost.set_target((self.player.sprite.rect.x // CELL_SIZE, self.player.sprite.rect.y // CELL_SIZE), self.valid_positions)
+            ghost.set_direction()
+            ghost.move()
 
         for other_ghost in self.ghosts:
             if other_ghost != ghost and pygame.sprite.collide_rect(ghost, other_ghost):
