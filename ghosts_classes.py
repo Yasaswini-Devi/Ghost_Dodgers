@@ -28,8 +28,8 @@ class Ghost(pygame.sprite.Sprite):
 
     def set_target(self, pacman_pos: (int, int), valid_positions: list[int]):
         if self.mode == 'scatter': 
-            if (self.rect.x // CELL_SIZE, self.rect.y // CELL_SIZE) == self.scatter_target:
-                self.target = random.choice([target for target in scatter_targets if target != self.scatter_target])
+           # if (self.rect.x // CELL_SIZE, self.rect.y // CELL_SIZE) == self.scatter_target:
+               # self.target = random.choice([target for target in scatter_targets if target != self.scatter_target])
             self.target = self.scatter_target
         elif self.mode == 'chase':
             self.target = pacman_pos
@@ -75,3 +75,91 @@ class Ghost3(Ghost):
 class Ghost4(Ghost):
     def __init__(self, x, y, theme):
         super().__init__(x, y, theme.get_ghost_image(3), 300, scatter_targets[3])
+
+
+
+'''class Ghost:
+    def __init__(self, x, y, color, maze):
+        self.x = x
+        self.y = y
+        self.color = color
+        self.maze = maze
+        self.direction = random.choice(['up', 'down', 'left', 'right'])
+
+    def move(self):
+        # Basic movement logic
+        if self.direction == 'up':
+            self.y -= 1
+        elif self.direction == 'down':
+            self.y += 1
+        elif self.direction == 'left':
+            self.x -= 1
+        elif self.direction == 'right':
+            self.x += 1
+        
+        # Ensure the ghost stays within the maze boundaries
+        if self.maze[self.y][self.x] == 1:  # Assuming 1 represents a wall
+            self.change_direction()
+
+    def change_direction(self):
+        self.direction = random.choice(['up', 'down', 'left', 'right'])
+
+    def draw(self, screen):
+        pygame.draw.rect(screen, self.color, (self.x * CELL_SIZE, self.y * CELL_SIZE, CELL_SIZE, CELL_SIZE))
+
+class Ghost1(Ghost):  # Red ghost
+    def move(self, pacman):
+        # Target Pac-Man's current position
+        if pacman.x > self.x:
+            self.x += 1
+        elif pacman.x < self.x:
+            self.x -= 1
+        elif pacman.y > self.y:
+            self.y += 1
+        elif pacman.y < self.y:
+            self.y -= 1
+
+class Ghost2(Ghost):  # Pink ghost
+    def move(self, pacman):
+        # Target four tiles ahead of Pac-Man
+        if pacman.direction == 'up':
+            target_x, target_y = pacman.x, pacman.y - 4
+        elif pacman.direction == 'down':
+            target_x, target_y = pacman.x, pacman.y + 4
+        elif pacman.direction == 'left':
+            target_x, target_y = pacman.x - 4, pacman.y
+        elif pacman.direction == 'right':
+            target_x, target_y = pacman.x + 4, pacman.y
+
+        self.chase_target(target_x, target_y)
+
+    def chase_target(self, target_x, target_y):
+        if target_x > self.x:
+            self.x += 1
+        elif target_x < self.x:
+            self.x -= 1
+        elif target_y > self.y:
+            self.y += 1
+        elif target_y < self.y:
+            self.y -= 1
+
+class Ghost3(Ghost):  # Blue ghost
+    def move(self, pacman, Ghost1):
+        # Target a tile in relation to both Pac-Man and Blinky
+        vector_x = pacman.x - Ghost1.x
+        vector_y = pacman.y - Ghost1.y
+        target_x = pacman.x + vector_x
+        target_y = pacman.y + vector_y
+
+        self.chase_target(target_x, target_y)
+
+class Ghost4(Ghost):  # Orange ghost
+    def move(self, pacman):
+        distance = ((pacman.x - self.x) ** 2 + (pacman.y - self.y) ** 2) ** 0.5
+        if distance > 8:
+            self.chase_target(pacman.x, pacman.y)
+        else:
+            # Move randomly
+            self.change_direction()
+            super().move()'''
+        
