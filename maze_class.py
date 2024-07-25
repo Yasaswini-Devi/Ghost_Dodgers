@@ -157,7 +157,7 @@ class Maze:
             self.mode_timer = 0
             self.current_mode_index += 1
             if self.current_mode_index >= len(self.mode_switch_times):
-                self.current_mode_index = len(self.mode_switch_times) - 1  # Stay in chase mode
+                self.current_mode_index = len(self.mode_switch_times) - 1  
             new_mode = "scatter" if self.current_mode_index % 2 == 0 else "chase"
             for ghost in self.ghosts:
                 ghost.mode = new_mode
