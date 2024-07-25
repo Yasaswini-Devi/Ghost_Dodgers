@@ -44,15 +44,15 @@ class Ghost(pygame.sprite.Sprite):
                # self.target = random.choice([target for target in scatter_targets if target != self.scatter_target])
             self.target = self.scatter_target
         elif self.mode == 'chase':
-             if isinstance(self, Ghost1):  # Blinky
+             if isinstance(self, Ghost1):  
                 self.target = pacman_pos
-             elif isinstance(self, Ghost2):  # Pinky
+             elif isinstance(self, Ghost2):  
                   self.target = (pacman_pos[0] + 4, pacman_pos[1])  # Move in front of Pac-Man
-             elif isinstance(self, Ghost3):  # Inky
+             elif isinstance(self, Ghost3):  
                   if blinky_pos:
                   #= next((g for g in self.groups()[0] if isinstance(g, Ghost1)), pacman_pos)
                      self.target = (2 * pacman_pos[0] - blinky_pos[0], 2 * pacman_pos[1] - blinky_pos[1])
-             elif isinstance(self, Ghost4):  # Clyde
+             elif isinstance(self, Ghost4): 
                   if abs(self.rect.x // CELL_SIZE - pacman_pos[0]) + abs(self.rect.y // CELL_SIZE - pacman_pos[1]) > 8:
                      self.target = pacman_pos
                   else:
