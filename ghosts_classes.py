@@ -3,6 +3,7 @@ import random
 from static_maze import *
 from constants import *
 from theme import *
+from path_finder import *
 from main_character import Pacman
 
 
@@ -37,7 +38,7 @@ class Ghost(pygame.sprite.Sprite):
     def reset_pos(self):
         self.rect.topleft = (self.initial_pos[0] * CELL_SIZE, self.initial_pos[1] * CELL_SIZE)
 
-    def set_target(self, pacman_pos, blinky_pos=None):
+    def set_target(self, pacman_pos, valid_positions, blinky_pos=None):
         if self.mode == 'scatter':
            self.target = self.scatter_target
         elif self.mode == 'chase':
@@ -89,7 +90,10 @@ class Ghost(pygame.sprite.Sprite):
             return ((x + CELL_SIZE) // CELL_SIZE, y // CELL_SIZE)
 
     def get_distance(self, pos1, pos2):
-        return abs(pos1[0] - pos2[0]) + abs(pos1[1] - pos2[1])
+        if isinstance(pos2, tuple):
+           return abs(pos1[0] - pos2[0]) + abs(pos1[1] - pos2[1])
+        else:
+           return float('inf')
 
     def move(self):
         if self.direction == 'LEFT':
