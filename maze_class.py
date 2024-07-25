@@ -167,18 +167,28 @@ class Maze:
                    ghost.move_delay = 150
 
     def move_ghost(self, ghost):
-        for ghost in self.ghosts:
+        pacman_pos = (self.player.sprite.rect.x // CELL_SIZE, self.player.sprite.rect.y // CELL_SIZE)
+        blinky_pos = next((g.rect.topleft for g in self.ghosts if isinstance(g, Ghost1)), pacman_pos)
+        ghost.set_target(pacman_pos, blinky_pos)
+        ghost.set_direction(self.valid_positions)
+        ghost.move()
+
+        '''for ghost in self.ghosts:
             original_position = ghost.rect.topleft
             ghost.set_target((self.player.sprite.rect.x // CELL_SIZE, self.player.sprite.rect.y // CELL_SIZE), self.valid_positions)
             ghost.set_direction()
-            ghost.move()
+            ghost.move()'''
 
-        for other_ghost in self.ghosts:
+        '''for other_ghost in self.ghosts:
             if other_ghost != ghost and pygame.sprite.collide_rect(ghost, other_ghost):
                 ghost.rect.topleft = original_position
                 ghost.direction = random.choice(['LEFT', 'RIGHT', 'UP', 'DOWN'])
 
         if ghost.rect.x < 0:
-            ghost.rect.x = SCREEN_WIDTH - CELL_SIZE
+           ghost.rect.x = SCREEN_WIDTH - CELL_SIZE
         elif ghost.rect.x >= SCREEN_WIDTH:
-            ghost.rect.x = 0
+             ghost.rect.x = 0
+        if ghost.rect.y < 0:
+           ghost.rect.y = SCREEN_WIDTH - CELL_SIZE
+        elif ghost.rect.y >= SCREEN_WIDTH:
+             ghost.rect.y = 0'''
