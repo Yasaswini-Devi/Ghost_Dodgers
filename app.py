@@ -1,12 +1,13 @@
 from flask import Flask, jsonify
 import subprocess
+import sys
 
 app = Flask(__name__)
 
 @app.route('/run-script', methods = ['POST'])
 def run_script():
     try:
-        result = subprocess.run(["python", "main.py"], capture_output = True, text = True)
+        result = subprocess.run([sys.executable, "main.py"], capture_output = True, text = True)
         return jsonify({'output': result.stdout, 'error': result.stderr})
     except Exception as e:
         return jsonify({'error': str(e)})
