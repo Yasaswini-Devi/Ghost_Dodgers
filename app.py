@@ -1,8 +1,10 @@
 from flask import Flask, jsonify
+from flask_cors import CORS
 import subprocess
 import sys
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/run-script', methods = ['POST'])
 def run_script():
