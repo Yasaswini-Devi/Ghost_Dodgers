@@ -129,16 +129,8 @@
                     let response = await fetch('http://127.0.0.1:5000/run-script', {
                         method: 'POST',
                     });
-                    let result = await response.json();
-                    if (result.output) {
-                        alert("Script Output: " + result.output);
-                    } else if (result.error) {
-                        alert("Script Error: " + result.error);
                     }
-                } catch (error) {
-                    alert("Error: " + error.message);
                 }
-            }
         </script>
 </body>
 </html>
