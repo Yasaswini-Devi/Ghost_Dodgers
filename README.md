@@ -1,70 +1,24 @@
-**Ghost Dodgers**
+# Trouble Escapers
 
-We plan to develop the classic Pacman game, enhanced with a 1 vs 1 player mode.\
-We also plan to add multiple themes for improved user experience.\
+Welcome to the **Trouble Escapers** project! This is an immersive game that challenges your wit and reflexes. Choose from two exciting themes and embark on a journey filled with fun and surprises.
 
-Execute the run_main.py file to play the game.\
+## Features
 
-Our plan of action:\
- \
-Start \
-| \
-|--- Concept and Design \
-|    | \
-|    |---> Brainstorm Game Mechanics \
-|    | \
-|    |---> Design UI and Game Elements \
-| \
-|--- Divide Tasks \
-|    | \
-|    |---> Implement Game Logic \
-|    |       | \
-|    |       |---> Game Grid \
-|    |       |---> Pacman Movement \
-|    |       |---> Ghost Movement \
-|    |       |---> Collision Detection \
-|    | \
-|    |---> Create Graphics and UI \
-|    |       | \
-|    |       |---> Pacman Sprite \
-|    |       |---> Ghost Sprites \
-|    |       |---> Pellets and Power-Ups \
-|    |       |---> UI Elements \
-|    | \
-|    |---> Implement Sound and Effects \
-|            | \
-|            |---> Background Music \
-|            |---> Sound Effects \
-|            |---> Integration with Game Events \
-| \
-|--- Development Phases \
-|    | \
-|    |---> Phase 1 \
-|    |       | \
-|    |       |---> Basic Movement Mechanics \
-|    |       |---> Initial Gameplay Testing \
-|    | \
-|    |---> Phase 2 \
-|    |       | \
-|    |       |---> Power-Ups and Fruits \
-|    |       |---> Enhanced Gameplay Features \
-|    | \
-|    |---> Phase 3 \
-|    |       | \
-|    |       |---> UI Polish \
-|    |       |---> Gameplay Refinement \
-|    |       |---> Bug Fixes and Testing \
-|    | \
-|    |---> Phase 4 \
-|            | \
-|            |---> Final Touches \
-|            |---> High Score Tracking \
-|            |---> Game Over Screen \
-| \
-|--- Documentation and Presentation \
-|    | \
-|    |---> Document Development Process \
-|    |---> Prepare Presentation \
-| \
-|--- End \
+- **Interactive Gameplay**: Engage with two thrilling game themes:
+  - **Theme 1: It's Halloween Time** - Experience the spooky excitement of Halloween with ghouls and ghosts. Can you escape the haunted maze?
+  - **Theme 2: Let's Hack** - Step into the shoes of a digizen. Navigate through a digital maze and outsmart the hacking hats to win.
 
+- **Responsive Design**: The application features a user-friendly interface that adapts to different screen sizes for an optimal experience on both desktop and mobile devices.
+
+- **Flask Backend**: The server-side logic is handled by Flask, providing a smooth gameplay experience and easy integration of future features.
+
+- **Asynchronous Game Start**: The game can be started with a button click that triggers a Python script in the background, making it interactive and dynamic.
+
+## Installation
+
+To run the Trouble Escapers game locally, follow these steps:
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://gitlab.com/we_crafters/ghost-dodgers.git
+   cd ghost-dodgers
