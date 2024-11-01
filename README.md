@@ -22,3 +22,26 @@ To run the Trouble Escapers game locally, follow these steps:
    ```bash
    git clone https://gitlab.com/we_crafters/ghost-dodgers.git
    cd ghost-dodgers
+
+2. **Set up a virtual environment (optional but recommended):**
+   ```bash
+   python3 -m venv venv
+   source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+
+3. **Install the required packages:**
+   ```bash
+   pip install -r requirements.txt
+
+## Usage
+
+1. **Start the Flask application:**
+   ```bash
+   python app.py
+
+2. **Open your web browser and naviagte to:**
+   ```arduino
+   http://127.0.0.1:5000/
+
+3. **Explore the game:**
+   - Once the page loads, you will see the welcome message and options to start the game.
+   - Click the button to begin your adventure!
