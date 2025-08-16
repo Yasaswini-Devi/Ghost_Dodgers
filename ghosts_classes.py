@@ -17,7 +17,7 @@ GHOST_EXIT_PATH = {
 }
 
 class Ghost(pygame.sprite.Sprite):
-    def __init__(self, x: int, y: int, img, scatter_target: (int, int)):
+    def __init__(self, x: int, y: int, img, scatter_target: (int, int), head_start):
         super().__init__()
         self.image = img
         self.rect = self.image.get_rect()
@@ -30,11 +30,16 @@ class Ghost(pygame.sprite.Sprite):
         self.delay = 400
         self.last_move_time = pygame.time.get_ticks()
         self.valid_positions = {}
+        self.initial_time = self.last_move_time
+        self.head_start = head_start
 
     def update(self, screen, pacman_pos, valid_positions, pacman_dir=None, blinky_pos=None):
         screen.blit(self.image, self.rect.topleft)
         current_time = pygame.time.get_ticks()
         self.valid_positions = set(valid_positions)
+
+        if current_time - self.initial_time < self.head_start:
+            return
 
         # Ghost makes a decision and moves only after its delay
         if current_time - self.last_move_time >= self.delay:
@@ -134,7 +139,7 @@ class Ghost(pygame.sprite.Sprite):
 
 class Ghost1(Ghost):
     def __init__(self, x, y, theme):
-        super().__init__(x, y, theme.get_ghost_image(0), scatter_targets[0])
+        super().__init__(x, y, theme.get_ghost_image(0), scatter_targets[0], 0)
         
     def set_target(self, pacman_pos, pacman_dir=None, blinky_pos=None):
         if self.mode == 'chase':
@@ -145,7 +150,7 @@ class Ghost1(Ghost):
 
 class Ghost2(Ghost):
     def __init__(self, x, y, theme):
-        super().__init__(x, y, theme.get_ghost_image(1), scatter_targets[1])
+        super().__init__(x, y, theme.get_ghost_image(1), scatter_targets[1], 400)
 
     def set_target(self, pacman_pos, pacman_dir=None, blinky_pos=None):
         if self.mode == 'chase' and pacman_dir:
@@ -165,7 +170,7 @@ class Ghost2(Ghost):
 
 class Ghost3(Ghost):
     def __init__(self, x, y, theme):
-        super().__init__(x, y, theme.get_ghost_image(2), scatter_targets[2])
+        super().__init__(x, y, theme.get_ghost_image(2), scatter_targets[2], 800)
 
     def set_target(self, pacman_pos, pacman_dir=None, blinky_pos=None):
         if self.mode == 'chase' and blinky_pos:
@@ -179,7 +184,7 @@ class Ghost3(Ghost):
 
 class Ghost4(Ghost):
     def __init__(self, x, y, theme):
-        super().__init__(x, y, theme.get_ghost_image(3), scatter_targets[3])        
+        super().__init__(x, y, theme.get_ghost_image(3), scatter_targets[3], 1200)        
 
     def set_target(self, pacman_pos, pacman_dir=None, blinky_pos=None):
         if self.mode == 'chase':
