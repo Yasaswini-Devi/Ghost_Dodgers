@@ -23,18 +23,18 @@ class Pacman(pygame.sprite.Sprite):
         if direction == 'LEFT':
             self.rect.x -= CELL_SIZE
         elif direction == 'RIGHT':
-      	    self.rect.x += CELL_SIZE
+            self.rect.x += CELL_SIZE
         elif direction == 'UP':
-       	    self.rect.y -= CELL_SIZE
+            self.rect.y -= CELL_SIZE
         elif direction == 'DOWN':
-       		self.rect.y += CELL_SIZE
+            self.rect.y += CELL_SIZE
 
     def activate_powerup(self, duration):
-	    self.invincible = True
-	    self.invincible_timer = duration
+        self.invincible = True
+        self.invincible_timer = duration
 
     def reset_pos(self):
-	    self.rect.topleft = (self.initial_pos[0] * CELL_SIZE, self.initial_pos[1] * CELL_SIZE)
+        self.rect.topleft = (self.initial_pos[0] * CELL_SIZE, self.initial_pos[1] * CELL_SIZE)
 
 def handle_keys(event):
     if event.key == pygame.K_LEFT:
